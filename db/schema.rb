@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301074238) do
+ActiveRecord::Schema.define(version: 20160301232030) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 20160301074238) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "text"
+    t.string   "head"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_group_connections", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+  end
+
+  add_index "user_group_connections", ["group_id"], name: "index_user_group_connections_on_group_id"
+  add_index "user_group_connections", ["user_id"], name: "index_user_group_connections_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
