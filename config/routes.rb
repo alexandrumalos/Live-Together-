@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   resources :categories
   resources :comments
-  resources :comments
   resources :events
-  resources :events
+  resources :messages
   resources :groups
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
