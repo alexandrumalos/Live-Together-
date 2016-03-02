@@ -9,7 +9,5 @@
 #
 
 class Group < ActiveRecord::Base
-
-
-  111111111111111111111
+  has_and_belongs_to_many :users
 end
