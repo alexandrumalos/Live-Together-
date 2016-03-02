@@ -1,17 +1,13 @@
 # == Schema Information
 #
-# Table name: groups
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  score      :integer
+#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
-
-class GroupTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+module CommentsHelper
 end

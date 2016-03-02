@@ -1,9 +1,10 @@
 # == Schema Information
 #
-# Table name: groups
+# Table name: comments
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  score      :integer
+#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -11,7 +12,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-   name: MyString
+  score: 1
+  comment: MyText
 
 two:
-   name: MyString
+  score: 1
+  comment: MyText

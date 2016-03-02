@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :neighborhoods
+  resources :categories
+  resources :comments
+  resources :events
   resources :messages
   resources :groups
   resources :users
