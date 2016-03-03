@@ -159,11 +159,12 @@ ActiveRecord::Schema.define(version: 20160331053248) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text     "post"
+    t.text     "body"
     t.integer  "score"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
+    t.string   "title"
   end
 
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
