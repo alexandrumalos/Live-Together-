@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160303000428) do
 
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160303000428) do
     t.datetime "updated_at",  null: false
   end
 
+<<<<<<< 71874ae66ecd051f365398bc1b8340b7147eff97
   create_table "posts", force: :cascade do |t|
     t.text     "post"
     t.integer  "score"
@@ -64,6 +66,8 @@ ActiveRecord::Schema.define(version: 20160303000428) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> Requests scaffold made
   create_table "requests", force: :cascade do |t|
     t.date     "date"
     t.string   "type"
