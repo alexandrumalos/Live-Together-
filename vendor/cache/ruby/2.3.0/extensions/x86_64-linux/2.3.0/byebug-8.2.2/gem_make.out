@@ -1,0 +1,19 @@
+current directory: /home/ben/Code/Rails/LiveTogether/vendor/cache/ruby/2.3.0/gems/byebug-8.2.2/ext/byebug
+/usr/bin/ruby -r ./siteconf20160329-9018-1895v1n.rb extconf.rb
+creating Makefile
+
+current directory: /home/ben/Code/Rails/LiveTogether/vendor/cache/ruby/2.3.0/gems/byebug-8.2.2/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/ben/Code/Rails/LiveTogether/vendor/cache/ruby/2.3.0/gems/byebug-8.2.2/ext/byebug
+make "DESTDIR="
+compiling threads.c
+compiling locker.c
+compiling context.c
+compiling byebug.c
+compiling breakpoint.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/ben/Code/Rails/LiveTogether/vendor/cache/ruby/2.3.0/gems/byebug-8.2.2/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20160329-9018-qvnscu/byebug

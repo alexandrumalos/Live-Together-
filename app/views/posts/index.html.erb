@@ -1,28 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+<h1>Here's What's New</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Post</th>
-      <th>Score</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.post %></td>
-        <td><%= post.score %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div>
+  <% @posts.each do |post| %>
+    <div style="border: 2px solid grey; border-radius: 5px; width: 30%;">
+      <h3><%= post.title %></h3>
+      <p><%= post.body %></p>
+      <table>
+        <tr>
+          <td><%= button_to 'Edit', edit_post_path(post), method: :get %></td>
+          <td><%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>
 
 <br>
 
