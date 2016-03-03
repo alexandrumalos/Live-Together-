@@ -60,16 +60,27 @@ ActiveRecord::Schema.define(version: 20160303000428) do
   create_table "posts", force: :cascade do |t|
     t.text     "post"
     t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
 
+<<<<<<< HEAD
+=======
+  add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
+
+>>>>>>> Connects posts with neighborhoods
   create_table "requests", force: :cascade do |t|
     t.date     "date"
     t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
   end
+
+  add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "user_group_connections", id: false, force: :cascade do |t|
     t.integer "user_id"
