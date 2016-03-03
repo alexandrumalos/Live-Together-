@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20160331053248) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "group_message", id: false, force: :cascade do |t|
+    t.integer "groups_id"
+    t.integer "messages_id"
+  end
+
+  add_index "group_message", ["groups_id"], name: "index_group_message_on_groups_id"
+  add_index "group_message", ["messages_id"], name: "index_group_message_on_messages_id"
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -70,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160331053248) do
     t.string   "title"
   end
 
+<<<<<<< 1747847f4115bdce9caa370190d8954cbf515e98
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
 
   create_table "requests", force: :cascade do |t|
@@ -84,6 +93,8 @@ ActiveRecord::Schema.define(version: 20160331053248) do
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
+=======
+>>>>>>> Added  connections between users and posts
   create_table "user_group_connections", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
