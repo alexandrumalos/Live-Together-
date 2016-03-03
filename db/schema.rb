@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160303073705) do
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
 
@@ -83,6 +84,16 @@ ActiveRecord::Schema.define(version: 20160303073705) do
   end
 
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
+=======
+  create_table "requests", force: :cascade do |t|
+    t.date     "date"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+>>>>>>> Adds connection for users and requests
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "user_group_connections", id: false, force: :cascade do |t|
