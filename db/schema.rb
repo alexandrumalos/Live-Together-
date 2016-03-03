@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302233501) do
+ActiveRecord::Schema.define(version: 20160303000428) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 20160302233501) do
 
   add_index "user_group_connections", ["group_id"], name: "index_user_group_connections_on_group_id"
   add_index "user_group_connections", ["user_id"], name: "index_user_group_connections_on_user_id"
+
+  create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "neighborhood_id"
+  end
+
+  add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
+  add_index "user_neighborhood_connections", ["user_id"], name: "index_user_neighborhood_connections_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
