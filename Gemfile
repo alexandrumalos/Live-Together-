@@ -1,5 +1,13 @@
 source 'https://rubygems.org'
 
+# Bootstrap for CSS and JavaScript
+gem 'bootstrap-sass'
+
+# For static pages like "about"
+gem 'high_voltage'
+
+#Forms made easy
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
