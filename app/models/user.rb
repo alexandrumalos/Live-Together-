@@ -17,4 +17,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_and_belongs_to_many :neighborhoods
+
+  validates :name, presence: true, uniqueness: true
+  has_secure_password
 end

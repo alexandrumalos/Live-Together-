@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 #
 gem 'figaro'
+
+gem 'bcrypt'
+
 # Bootstrap for CSS and JavaScript
 gem 'bootstrap-sass'
 
