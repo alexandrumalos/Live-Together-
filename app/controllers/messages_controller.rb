@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer          not null, primary key
+#  text       :string
+#  head       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
@@ -69,6 +80,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(: text, :head)
+      params.require(:message).permit(:text, :head)
     end
 end
