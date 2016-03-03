@@ -4,6 +4,8 @@ gem 'figaro'
 
 gem 'bcrypt'
 
+gem 'carousel'
+
 # Bootstrap for CSS and JavaScript
 gem 'bootstrap-sass'
 
