@@ -12,6 +12,9 @@
 #  updated_at :datetime         not null
 #
 
+#may can use has_and_belongs_to_many :groups :neighborhoods
+
 class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
+  has_and_belongs_to_many :neighborhoods
 end
