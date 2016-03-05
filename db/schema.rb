@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303073705) do
+ActiveRecord::Schema.define(version: 20160305050630) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
+
+  add_index "categories", ["neighborhood_id"], name: "index_categories_on_neighborhood_id"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "score"
@@ -59,22 +62,16 @@ ActiveRecord::Schema.define(version: 20160303073705) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text     "post"
+    t.text     "body"
     t.integer  "score"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
+    t.string   "title"
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
 
->>>>>>> Connects posts with neighborhoods
-=======
->>>>>>> Connects request with neighborhood
   create_table "requests", force: :cascade do |t|
     t.date     "date"
     t.string   "type"
@@ -85,16 +82,6 @@ ActiveRecord::Schema.define(version: 20160303073705) do
   end
 
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
-=======
-  create_table "requests", force: :cascade do |t|
-    t.date     "date"
-    t.string   "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-  end
-
->>>>>>> Adds connection for users and requests
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "user_group_connections", id: false, force: :cascade do |t|
@@ -105,15 +92,6 @@ ActiveRecord::Schema.define(version: 20160303073705) do
   add_index "user_group_connections", ["group_id"], name: "index_user_group_connections_on_group_id"
   add_index "user_group_connections", ["user_id"], name: "index_user_group_connections_on_user_id"
 
-<<<<<<< HEAD
-  create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "neighborhood_id"
-  end
-
-  add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
-  add_index "user_neighborhood_connections", ["user_id"], name: "index_user_neighborhood_connections_on_user_id"
-=======
   create_table "user_message_connections", force: :cascade do |t|
     t.integer "user_id"
     t.integer "message_id"
@@ -121,7 +99,14 @@ ActiveRecord::Schema.define(version: 20160303073705) do
 
   add_index "user_message_connections", ["message_id"], name: "index_user_message_connections_on_message_id"
   add_index "user_message_connections", ["user_id"], name: "index_user_message_connections_on_user_id"
->>>>>>> Connects Message with User
+
+  create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "neighborhood_id"
+  end
+
+  add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
+  add_index "user_neighborhood_connections", ["user_id"], name: "index_user_neighborhood_connections_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
