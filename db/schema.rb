@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160303073705) do
     t.string   "head"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160303073705) do
   add_index "user_group_connections", ["group_id"], name: "index_user_group_connections_on_group_id"
   add_index "user_group_connections", ["user_id"], name: "index_user_group_connections_on_user_id"
 
+<<<<<<< HEAD
   create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "neighborhood_id"
@@ -111,6 +113,15 @@ ActiveRecord::Schema.define(version: 20160303073705) do
 
   add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
   add_index "user_neighborhood_connections", ["user_id"], name: "index_user_neighborhood_connections_on_user_id"
+=======
+  create_table "user_message_connections", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "message_id"
+  end
+
+  add_index "user_message_connections", ["message_id"], name: "index_user_message_connections_on_message_id"
+  add_index "user_message_connections", ["user_id"], name: "index_user_message_connections_on_user_id"
+>>>>>>> Connects Message with User
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
