@@ -2,11 +2,31 @@
 
 <h1>Here's What's New</h1>
 
-<div>
+<!-- NOTE: when this page is styled, get rid of this css tag. This is just a temporary stylesheet -->
+<style>
+.post {
+  text-align: left;
+  display: inline-block;
+  border: 2px solid grey;
+  border-radius: 15px;
+  width: 40%;
+  margin: 5px;
+  padding: 20px;
+}
+</style>
+
+<div style="text-align: center;">
+  <div class="post">
+    <%= render 'form' %>
+  </div>
+  <br>
+
   <% @posts.each do |post| %>
-    <div style="border: 2px solid grey; border-radius: 5px; width: 30%;">
+    <div class="post">
       <h3><%= post.title %></h3>
       <p><%= post.body %></p>
+      <hr>
+      <p><%= I18n.localize post.updated_at, format: :post %></p>
       <table>
         <tr>
           <td><%= button_to 'Edit', edit_post_path(post), method: :get %></td>
@@ -14,6 +34,7 @@
         </tr>
       </table>
     </div>
+    <br>
   <% end %>
 </div>
 
