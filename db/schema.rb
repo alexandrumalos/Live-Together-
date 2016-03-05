@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303000428) do
+ActiveRecord::Schema.define(version: 20160303073705) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -66,10 +66,13 @@ ActiveRecord::Schema.define(version: 20160303000428) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
 
 >>>>>>> Connects posts with neighborhoods
+=======
+>>>>>>> Connects request with neighborhood
   create_table "requests", force: :cascade do |t|
     t.date     "date"
     t.string   "type"
