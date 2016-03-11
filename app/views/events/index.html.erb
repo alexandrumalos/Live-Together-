@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script type='text/javascript'
+  src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){<!--from w  ww.  j  a  v a 2  s  .c  o m-->
+//save the selector so you don't have to do the lookup everytime
+$dropdown = $("#contextMenu");
+$(".actionButton").click(function() {
+    //get row ID
+    var id = $(this).closest("tr").children().first().html();
+    //move dropdown menu
+    $(this).after($dropdown);
+    //update links
+    $dropdown.find(".edit").attr("href", "/transaction/pay?id="+id);
+    $dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);
+    //show dropdown
+    $(this).dropdown();
+});
+});//]]>  
+</script>
+</head>
+
+
 <p id="notice"><%= notice %></p>
 
 
@@ -28,6 +59,8 @@
           <th><%= event.description %></th>
           <th><%= event.date %></th>
           <th><%= event.location %></th>
+          <td class="dropdown"><a class="btn btn-default actionButton"
+          data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a></td>
           <th><%= button_to 'Show', event, :method => "get" %></th>
           <th><%= button_to 'Edit', edit_event_path(event), :method => "get" %></th>
           <th><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></th>
@@ -35,6 +68,12 @@
       <% end %>
     </tbody>
   </table>
+  <ul id="contextMenu" class="dropdown-menu" role="menu">
+    <li><a tabindex="-1" href="#" class="edit_event_path">Edit</a></li>
+    <li><a tabindex="-1" href="#" class="destory">Delete</a></li>
+  </ul>
+</body>
+</html>
 </div>
 
 </body>
