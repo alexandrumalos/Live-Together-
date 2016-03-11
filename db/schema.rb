@@ -62,12 +62,11 @@ ActiveRecord::Schema.define(version: 20160305050630) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text     "body"
+    t.text     "post"
     t.integer  "score"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
-    t.string   "title"
   end
 
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
@@ -110,12 +109,12 @@ ActiveRecord::Schema.define(version: 20160305050630) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "email"
     t.string   "name"
     t.integer  "isNewser"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
