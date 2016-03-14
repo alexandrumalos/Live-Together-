@@ -15,18 +15,19 @@ $(window).load(function(){<!--from w  ww.  j  a  v a 2  s  .c  o m-->
 $dropdown = $("#contextMenu");
 $(".actionButton").click(function() {
     //get row ID
-    var id = $(this).closest("tr").children().first().html();
+    //var id = $(this).closest("tr").children().first().html();
     //move dropdown menu
     $(this).after($dropdown);
     //update links
-    $dropdown.find(".edit").attr("href", "/transaction/pay?id="+id);
-    $dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);
+    //$dropdown.find(".edit").attr("href", "/events/"+id"/edit?");
+    /*$dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);*/
     //show dropdown
     $(this).dropdown();
 });
 });//]]>  
 </script>
 </head>
+
 
 
 <p id="notice"><%= notice %></p>
@@ -61,6 +62,7 @@ $(".actionButton").click(function() {
           <th><%= event.location %></th>
           <td class="dropdown"><a class="btn btn-default actionButton"
           data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a></td>
+          <th class="dropdown"><button type="button" class="btn btn-primary actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></th>
           <th><%= button_to 'Show', event, :method => "get" %></th>
           <th><%= button_to 'Edit', edit_event_path(event), :method => "get" %></th>
           <th><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></th>
@@ -69,7 +71,8 @@ $(".actionButton").click(function() {
     </tbody>
   </table>
   <ul id="contextMenu" class="dropdown-menu" role="menu">
-    <li><a tabindex="-1" href="#" class="edit_event_path">Edit</a></li>
+    <li><a tabindex="-1" href="#" class="edit_event_path">Show</a></li>
+    <li><a tabindex="-1" href="#" class="edit">Edit</a></li>
     <li><a tabindex="-1" href="#" class="destory">Delete</a></li>
   </ul>
 </body>
@@ -81,4 +84,35 @@ $(".actionButton").click(function() {
 
 <br>
 
-<%= button_to 'New Event', new_event_path, :method => "get" %>
+<%= button_to 'New Event', new_event_path, :method => "get", class: "btn btn-success" %>
+<body>
+  <div class="bs-example">
+    <!-- Button HTML (to Trigger Modal) -->
+    <a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal">Launch
+      Demo Modal</a>
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+              aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            
+            <p>Do you want to close this dialog?</p>
+            <p class="text-warning">
+              <small>If you don't save, your changes will be lost.</small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
