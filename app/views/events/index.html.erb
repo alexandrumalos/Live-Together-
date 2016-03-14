@@ -111,29 +111,29 @@ $(".actionButton").click(function() {
             
             <div class="field">
               <%= f.label :name %><br>
-              <%= f.text_field :name, class: 'form-control' %>
+              <%= f.text_field :name %>
             </div>
             
             <div class="field">
               <%= f.label :description %><br>
-              <%= f.text_field :description, class: 'form-control' %>
+              <%= f.text_field :description %>
             </div>
             
             <div class="field">
               <%= f.label :date %><br>
-              <%= f.date_select :date, class: 'form-control' %>
+              <%= f.date_select :date %>
             </div>
             
             <div class="field">
               <%= f.label :location %><br>
-              <%= f.text_field :location, class: 'form-control' %>
+              <%= f.text_field :location %>
             </div>
             <div class="modal-footer">
               <%= f.submit "Create Event", class: "btn btn-primary" %>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
-      </div>
     <% end %>
   </div>
 </body>

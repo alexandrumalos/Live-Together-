@@ -1,64 +1,33 @@
-<html>
-<body>
-  <div class="bs-example">
-    <!-- Button HTML (to Trigger Modal) -->
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-    <!-- Modal HTML -->
-    <%= form_for(@event) do |f| %>
-      <% if @event.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-      
-          <ul>
-          <% @event.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
-    
-    <div id="myModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"
-              aria-hidden="true">&times;</button>
-            <h4 class="modal-title">New Event</h4>
-          </div>
-          <div class="modal-body">
-            <p>Do you want to close this dialog?</p>
-            <p class="text-warning">
-              <small>If you don't save, your changes will be lost.</small>
-            </p>
-          </div>
-          <div class="field">
-            <%= f.label :name %><br>
-            <%= f.text_field :name, class: 'form-control' %>
-            
-          </div>
-          <div class="field">
-            <%= f.label :description %><br>
-            <%= f.text_field :description, class: 'form-control' %>
-          </div>
-          <div class="field">
-            <%= f.label :date %><br>
-            <%= f.date_select :date, class: 'form-control' %>
-          </div>
-          <div class="field">
-            <%= f.label :location %><br>
-            <%= f.text_field :location, class: 'form-control'%>
-          </div>
-          
-          <div class="modal-footer">
-            <%= f.submit "Create Event", class: "btn btn-primary" %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <% end %>
-          </div>
-        </div>
-      </div>
+      </ul>
     </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
-</body>
-</html>
-
-
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
