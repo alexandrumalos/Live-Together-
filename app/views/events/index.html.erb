@@ -28,8 +28,6 @@ $(".actionButton").click(function() {
 </script>
 </head>
 
-
-
 <p id="notice"><%= notice %></p>
 
 
@@ -37,44 +35,8 @@ $(".actionButton").click(function() {
   
  <%= render 'calendar' %>
  
- <h1></h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Location</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @events.each do |event| %>
-        <tr>
-          <th><%= event.id %></th>
-          <th><%= event.name %></th>
-          <th><%= event.description %></th>
-          <th><%= event.date %></th>
-          <th><%= event.location %></th>
-          <td class="dropdown"><a class="btn btn-default actionButton"
-          data-toggle="dropdown" href="#"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> </a></td>
-          <th class="dropdown"><button type="button" class="btn btn-primary actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button></th>
-          <th><%= button_to 'Show', event, :method => "get" %></th>
-          <th><%= button_to 'Edit', edit_event_path(event), :method => "get" %></th>
-          <th><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></th>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <ul id="contextMenu" class="dropdown-menu" role="menu">
-    <li><a tabindex="-1" href="#" class="edit_event_path">Show</a></li>
-    <li><a tabindex="-1" href="#" class="edit">Edit</a></li>
-    <li><a tabindex="-1" href="#" class="destory">Delete</a></li>
-  </ul>
+ <%= render 'table' %>
+ 
 </html>
 </div>
 
@@ -85,7 +47,7 @@ $(".actionButton").click(function() {
 <body>
   <div class="bs-example">
     <!-- Button HTML (to Trigger Modal) -->
-    <a href="#new" class="btn btn-lg btn-primary" data-toggle="modal">Add New Event</a>
+    <a href="#new" class="btn btn-md btn-primary" data-toggle="modal">Add New Event</a>
     <%= form_for(@event) do |f| %>
       <% if @event.errors.any? %>
         <div id="error_explanation">
@@ -111,22 +73,22 @@ $(".actionButton").click(function() {
             
             <div class="field">
               <%= f.label :name %><br>
-              <%= f.text_field :name %>
+              <%= f.text_field :name, class: 'form-control' %>
             </div>
             
             <div class="field">
               <%= f.label :description %><br>
-              <%= f.text_field :description %>
+              <%= f.text_field :description, class: 'form-control' %>
             </div>
             
             <div class="field">
               <%= f.label :date %><br>
-              <%= f.date_select :date %>
+              <%= f.date_select :date, class: 'form-control' %>
             </div>
             
             <div class="field">
               <%= f.label :location %><br>
-              <%= f.text_field :location %>
+              <%= f.text_field :location, class: 'form-control' %>
             </div>
             <div class="modal-footer">
               <%= f.submit "Create Event", class: "btn btn-primary" %>
