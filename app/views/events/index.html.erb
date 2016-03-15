@@ -1,3 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script type='text/javascript'
+  src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+<script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){<!--from w  ww.  j  a  v a 2  s  .c  o m-->
+//save the selector so you don't have to do the lookup everytime
+$dropdown = $("#contextMenu");
+$(".actionButton").click(function() {
+    //get row ID
+    //var id = $(this).closest("tr").children().first().html();
+    //move dropdown menu
+    $(this).after($dropdown);
+    //update links
+    //$dropdown.find(".edit").attr("href", "/events/"+id"/edit?");
+    /*$dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);*/
+    //show dropdown
+    $(this).dropdown();
+});
+});//]]>  
+</script>
+</head>
+
 <p id="notice"><%= notice %></p>
 
 
@@ -5,41 +35,68 @@
   
  <%= render 'calendar' %>
  
- <h1></h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Location</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @events.each do |event| %>
-        <tr>
-          <th><%= event.id %></th>
-          <th><%= event.name %></th>
-          <th><%= event.description %></th>
-          <th><%= event.date %></th>
-          <th><%= event.location %></th>
-          <th><%= button_to 'Show', event, :method => "get" %></th>
-          <th><%= button_to 'Edit', edit_event_path(event), :method => "get" %></th>
-          <th><%= button_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></th>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-</body>
+ <%= render 'table' %>
+ 
 </html>
+</div>
 
 <br>
 
-<%= button_to 'New Event', new_event_path, :method => "get" %>
+<%#= button_to 'New Event', new_event_path, :method => "get", class: "btn btn-success" %>
+<html>
+<body>
+  <div class="bs-example">
+    <!-- Button HTML (to Trigger Modal) -->
+    <a href="#new" class="btn btn-md btn-primary" data-toggle="modal">Add New Event</a>
+    <%= form_for(@event) do |f| %>
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div id="new" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">New Event</h4>
+            </div>
+            <div class="modal-body">
+              <p><large>Please fill out the information below</large></p>
+            </div>
+            
+            <div class="field">
+              <%= f.label :name %><br>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :description %><br>
+              <%= f.text_field :description, class: 'form-control' %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :date %><br>
+              <%= f.date_select :date, class: 'form-control' %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :location %><br>
+              <%= f.text_field :location, class: 'form-control' %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit "Create Event", class: "btn btn-primary" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</body>
+</html>
