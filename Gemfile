@@ -5,7 +5,7 @@ gem 'figaro'
 gem 'bcrypt'
 
 gem 'carousel'
-
+gem 'client_side_validations'
 # Bootstrap for CSS and JavaScript
 gem 'bootstrap-sass'
 
