@@ -26,6 +26,10 @@ class UsersController < ApplicationController
   def show
   end
 
+  def forem_name
+    email_address
+  end
+
   # GET /users/new
   def new
     @user = User.new
