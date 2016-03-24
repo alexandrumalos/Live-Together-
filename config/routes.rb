@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mainfeeds
   resources :neinfos
   resources :userprofiles
   resources :newsfeeds
