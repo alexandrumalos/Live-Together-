@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :neinfos
   resources :userprofiles
   resources :newsfeeds
   get 'admin/index'
