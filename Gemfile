@@ -4,7 +4,18 @@ gem 'figaro'
 
 gem 'bcrypt'
 
+gem 'devise'
+
+gem 'forem', github: "radar/forem", branch: "rails4"
+
+gem 'forem-bootstrap', github: "radar/forem-bootstrap"
+
+gem 'forem-redcarpet', github: "radar/forem-redcarpet"
+
 gem 'carousel'
+
+gem 'will_paginate'
+
 gem 'client_side_validations'
 # Bootstrap for CSS and JavaScript
 gem 'bootstrap-sass'

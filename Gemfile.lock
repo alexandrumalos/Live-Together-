@@ -1,3 +1,35 @@
+GIT
+  remote: git://github.com/radar/forem-bootstrap.git
+  revision: 10be50afc1d0a22af1306076e41624c55fc585be
+  specs:
+    forem-bootstrap (0.0.1)
+      bootstrap-sass (~> 3.1)
+
+GIT
+  remote: git://github.com/radar/forem-redcarpet.git
+  revision: c53be9a5c3e97d65546f3f56b53f82669f3a5af5
+  specs:
+    forem-redcarpet (1.0.2)
+      nokogiri
+      pygments.rb (= 0.5.4)
+      redcarpet (= 3.0.0)
+
+GIT
+  remote: git://github.com/radar/forem.git
+  revision: 75cb9d7b5f0cb7a5a80f1c7c2c9b5ab8841b6196
+  branch: rails4
+  specs:
+    forem (1.0.0.beta1)
+      cancancan (~> 1.7)
+      decorators (~> 1.0.2)
+      friendly_id (~> 5.0.0)
+      gemoji (= 2.1.0)
+      rails (~> 4.0, != 4.2.3, != 4.2.2, != 4.2.1, != 4.2.0)
+      sanitize (= 2.0.6)
+      select2-rails (~> 3.5.4)
+      simple_form (~> 3.0)
+      workflow (= 1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,6 +82,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.2)
+    cancancan (1.13.1)
     carousel (1.1.2)
       jquery-rails
       rails
@@ -66,10 +99,22 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
+    decorators (1.0.5)
+      railties (>= 3.0.19)
+    devise (3.5.6)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
     figaro (1.1.1)
       thor (~> 0.14)
+    friendly_id (5.0.5)
+      activerecord (>= 4.0.0)
+    gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     high_voltage (2.4.0)
@@ -94,7 +139,12 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    orm_adapter (0.5.0)
     pg (0.15.1)
+    posix-spawn (0.3.11)
+    pygments.rb (0.5.4)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.1.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -130,7 +180,12 @@ GEM
     rake (10.5.0)
     rdoc (4.2.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     regexp_parser (0.3.2)
+    responders (2.1.2)
+      railties (>= 4.2.0, < 5.1)
+    sanitize (2.0.6)
+      nokogiri (>= 1.4.4)
     sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -141,6 +196,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    select2-rails (3.5.10)
+      thor (~> 0.14)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -163,11 +220,16 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.6)
+      rack (>= 1.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    will_paginate (3.1.0)
+    workflow (1.0.0)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -180,7 +242,11 @@ DEPENDENCIES
   carousel
   client_side_validations
   coffee-rails (~> 4.1.0)
+  devise
   figaro
+  forem!
+  forem-bootstrap!
+  forem-redcarpet!
   high_voltage
   jbuilder (~> 2.0)
   jquery-rails
@@ -195,6 +261,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  will_paginate
 
 BUNDLED WITH
    1.12.0.pre.2
