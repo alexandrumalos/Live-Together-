@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newsfeeds
   get 'admin/index'
 
   get 'sessions/new'
