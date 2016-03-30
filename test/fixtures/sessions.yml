@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: userprofiles
+# Table name: sessions
 #
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
