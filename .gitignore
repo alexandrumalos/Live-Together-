@@ -25,5 +25,3 @@ pkg/*
 
 # Ignore application configuration
 /config/application.yml
-
-/vendor/cache
