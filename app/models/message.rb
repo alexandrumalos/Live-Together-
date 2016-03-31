@@ -13,4 +13,5 @@
 class Message < ActiveRecord::Base
   has_many :recipients, class_name: 'User', through: :user_message_connections
   belongs_to :sender, class_name: 'User', foreign_key: 'user_id'
+  has_and_belongs_to_many :groups
 end
