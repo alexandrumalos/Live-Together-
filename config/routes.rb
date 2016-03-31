@@ -8,10 +8,6 @@ Rails.application.routes.draw do
   mount Forem::Engine, :at => '/forums'
 
   devise_for :users
-  resources :mainfeeds
-  resources :neinfos
-  resources :userprofiles
-  resources :newsfeeds
   get 'admin/index'
 
   get 'sessions/new'
@@ -21,7 +17,7 @@ Rails.application.routes.draw do
   get 'login' => "sessions#new"
   post 'login' =>'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  
+
   resources :posts
   resources :requests
   resources :neighborhoods
