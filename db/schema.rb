@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331053248) do
+ActiveRecord::Schema.define(version: 20160331222958) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -76,10 +76,11 @@ ActiveRecord::Schema.define(version: 20160331053248) do
     t.datetime "updated_at",      null: false
     t.integer  "neighborhood_id"
     t.string   "title"
+    t.integer  "user_id"
   end
 
-<<<<<<< 1747847f4115bdce9caa370190d8954cbf515e98
   add_index "posts", ["neighborhood_id"], name: "index_posts_on_neighborhood_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "requests", force: :cascade do |t|
     t.date     "date"
@@ -93,8 +94,6 @@ ActiveRecord::Schema.define(version: 20160331053248) do
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
-=======
->>>>>>> Added  connections between users and posts
   create_table "user_group_connections", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"

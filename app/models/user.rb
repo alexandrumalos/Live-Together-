@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :requests, dependent: :destroy
   has_many :received_messages, class_name: 'Message', through: :user_message_connections
   has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
+  has_many :posts
 
   def forem_name
     name
