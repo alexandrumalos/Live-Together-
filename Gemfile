@@ -6,6 +6,8 @@ gem 'bcrypt'
 
 gem 'devise'
 
+gem 'gmaps4rails'
+
 gem 'forem', github: "radar/forem", branch: "rails4"
 
 gem 'forem-bootstrap', github: "radar/forem-bootstrap"

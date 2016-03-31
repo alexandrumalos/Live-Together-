@@ -117,6 +117,7 @@ GEM
     gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     high_voltage (2.4.0)
     i18n (0.7.0)
     jbuilder (2.4.1)
@@ -247,6 +248,7 @@ DEPENDENCIES
   forem!
   forem-bootstrap!
   forem-redcarpet!
+  gmaps4rails
   high_voltage
   jbuilder (~> 2.0)
   jquery-rails
