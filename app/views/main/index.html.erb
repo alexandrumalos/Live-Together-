@@ -1,0 +1,42 @@
+<div class="center jumbotron">
+  <h1>Welcome to Live Together</h1>
+  <h2>
+    Where your neighbor becomes your friend
+  </h2>
+  <%= link_to "View Neighborhoods!", '#', class: "btn btn-lg btn-primary" %>
+</div>
+
+<% content_for :title do %>Rails Bootstrap<% end %>
+<% content_for :description do %>Rails Bootstrap Example<% end %>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag "mainc1.jpg" %>
+      <div class="carousel-caption text-center">
+        <h4>San Francisco</h4>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag"mainc2.jpg" %>
+      <div class="carousel-caption text-center" >
+        <h4>Sydney</h4>
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag"mainc3.jpg" %>
+      <div class="carousel-caption text-center">
+        <h4>Paris</h4>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></a>
+  </div>

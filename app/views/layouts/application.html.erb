@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LiveTogether</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav>
+        <li><%= link_to "Site logo", '#', id: "logo" %></li>
+        <ul class="nav navbar-nav navbar-right">
+
+          <% if user_signed_in? %>
+            <li><%= link_to "Welcome " + current_user.email[/.*(?=@)/], '#' %></li>
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Home", '/' %></li>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+
+          <li><%= link_to "About us", '#' %></li>
+          <%= link_to 'Forums', forem.forums_path %>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<div class="container">
+
+
+<%= yield %>
+
+<footer class="footer">
+ <small>
+ A website made with love by: Ben,Alex,Jamal</a>
+ </small>
+ <nav>
+ <ul>
+ <li><a href="http://www.facebook.com">Facebook</a></li>
+ <li><a href="http://www.twitter.com">Twitter</a></li>
+ <li><a href="http://www.valdosta.edu">Our School</a></li>
+ </ul>
+ </nav>
+</footer>
+
+</body>
+</html>
