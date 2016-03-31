@@ -26,19 +26,29 @@ $(".actionButton").click(function() {
 });
 });//]]>  
 </script>
+<style>
+  
+</style>
 </head>
+
 
 <p id="notice"><%= notice %></p>
 
 
+
+ 
+ 
+ 
+ <div class="container">
+   <%= render 'calendar' %>
+ </div>
+ 
 <div class="container">
-  
- <%= render 'calendar' %>
+   <%= render 'table' %>
+ </div>
  
- <%= render 'table' %>
- 
+
 </html>
-</div>
 
 <br>
 
