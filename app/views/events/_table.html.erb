@@ -1,35 +1,100 @@
-<h1></h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Date</th>
-        <th>Location</th>
-        <th></th>
+<html>
+<head>
+  <style>
+    table{
+      width:100%;
+      table-layout: fixed;
+    }
+    .tbl-header{
+      background-color: rgba(255,255,255,0.3);
+     }
+    .tbl-content{
+      height:300px;
+      overflow-x:auto;
+      margin-top: 0px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    th{
+      padding: 20px 15px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    td{
+      padding: 15px;
+      text-align: left;
+      vertical-align:middle;
+      font-weight: 300;
+      font-size: 12px;
+      color: #000000;
+      border-bottom: solid 1px rgba(255,255,255,0.1);
+    }
+    thead {
+      background-color: #000033;
+      color: white;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 6px;
+    } 
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    } 
+    ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    }
 
-        
-      </tr>
-    </thead>
+  </style>
   
-    <tbody>
-      <% @events.each do |event| %>
-        <tr>
-          <td><%= event.name %></td>
-          <td><%= event.description %></td>
-          <td><%= event.date %></td>
-          <td><%= event.location %></td>
-          <td class="dropdown">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-primary actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
-              <ul id="contextMenu" class="dropdown-menu" role="menu">
-                <li><%= link_to 'Show', event %></li>
-                <li><%= link_to 'Edit', edit_event_path(event) %></li>
-                <li><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <script>
+    $(window).on("load resize ", function() {
+      var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+      $('.tbl-header').css({'padding-right':scrollWidth});
+    }).resize();
+  </script>
+    <h1></h1>
+    <div class= "tbl-header">
+      <table class="table table-striped" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th></th>
+    
+            
+          </tr>
+        </thead>
+      </table>
+    </div>
+    
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          <% @events.each do |event| %>
+            <tr>
+              <td><%= event.name %></td>
+              <td><%= event.description %></td>
+              <td><%= event.date %></td>
+              <td><%= event.location %></td>
+              <td class="dropdown">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-primary actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                  <ul id="contextMenu" class="dropdown-menu" role="menu">
+                    <li><%= link_to 'Show', event %></li>
+                    <li><%= link_to 'Edit', edit_event_path(event) %></li>
+                    <li><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  
+</html>
+</head>
