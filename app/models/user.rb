@@ -37,8 +37,6 @@ class User < ActiveRecord::Base
   has_many :received_messages, class_name: 'Message', through: :user_message_connections
   has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
 
-  # validates :name, presence: true, uniqueness: true
-
   def forem_name
     name
   end

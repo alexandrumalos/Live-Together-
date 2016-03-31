@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 #
-gem 'figaro'
-
-gem 'bcrypt'
-
 gem 'devise'
 
 gem 'forem', github: "radar/forem", branch: "rails4"
