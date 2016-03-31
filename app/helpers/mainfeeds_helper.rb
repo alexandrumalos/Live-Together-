@@ -1,2 +1,0 @@
-module MainfeedsHelper
-end
