@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require_tree .
 //= require rails.validations
+//= require forem

@@ -10,13 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'admin/index'
 
-  get 'sessions/new'
-
   root 'main#index'
-
-  get 'login' => "sessions#new"
-  post 'login' =>'sessions#create'
-  delete 'logout' => 'sessions#destroy'
 
   resources :posts
   resources :requests
