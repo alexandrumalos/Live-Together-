@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LiveTogether</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>LiveTogether</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+
       <nav>
         <div class="navbar-header">
           <%= link_to "LiveTogether", root_path, class: ["navbar-brand"] %>
@@ -78,22 +79,27 @@
   </header>
 <div class="container">
 
+      <%= yield %>
 
-<%= yield %>
-
-<footer class="footer">
- <small>
- A website made with love by: Ben,Alex,Jamal</a>
- </small>
- <nav>
-   <ul>
-     <li><a href="http://www.facebook.com">Facebook</a></li>
-     <li><a href="http://www.twitter.com">Twitter</a></li>
-     <li><a href="http://www.valdosta.edu">Our School</a></li>
-     <li><%= link_to "About us", '#' %></li>
-   </ul>
- </nav>
-</footer>
-
-</body>
+      <footer class="footer">
+        <small>
+          A website made with love by: Ben, Alex, Jamal
+        </small>
+        <nav>
+          <ul>
+            <li>
+              <a href="http://www.facebook.com">Facebook</a>
+            </li>
+            <li>
+              <a href="http://www.twitter.com">Twitter</a>
+            </li>
+            <li>
+              <a href="http://www.valdosta.edu">Our School</a>
+            </li>
+            <li><%= link_to "About us", '#' %></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
 </html>
