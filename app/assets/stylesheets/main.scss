@@ -27,18 +27,6 @@
   color: rgba(0, 0, 0, 1);
 }
 
-.footer {
-  position: fixed;
-  padding-left: 20px;
-  padding-right: 20px;
-  left: 0px;
-  bottom: 0px;
-  height: 30px;
-  width: 100%;
-  background-color: rgba(238, 238, 238, 0.4);
-}
-
-.footer, .footer a {
-  font-weight: bold;
-  color: rgba(34, 34, 34, 1) !important;
+.white-text {
+  color: white !important;
 }
