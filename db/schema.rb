@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331222958) do
+ActiveRecord::Schema.define(version: 20160401001837) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 20160331222958) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "name"
-    t.integer  "isNewser"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.string   "email",                  default: "",               null: false
@@ -137,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160331222958) do
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
+    t.string   "newser_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

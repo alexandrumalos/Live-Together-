@@ -5,7 +5,6 @@
 #  id                     :integer          not null, primary key
 #  username               :string
 #  name                   :string
-#  isNewser               :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -21,6 +20,7 @@
 #  forem_admin            :boolean          default("f")
 #  forem_state            :string           default("pending_review")
 #  forem_auto_subscribe   :boolean          default("f")
+#  newser_type            :string
 #
 
 require 'test_helper'
