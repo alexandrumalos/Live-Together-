@@ -9,6 +9,7 @@
 #  updated_at      :datetime         not null
 #  neighborhood_id :integer
 #  title           :string
+#  user_id         :integer
 #
 
 require 'test_helper'
