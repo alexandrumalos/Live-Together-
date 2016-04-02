@@ -1,0 +1,2 @@
+== 20160324111446 AddDeviseToUsers: migrating =================================
+-- change_table(:users)
