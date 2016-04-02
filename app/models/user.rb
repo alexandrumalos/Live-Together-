@@ -26,6 +26,12 @@
 #may can use has_and_belongs_to_many :groups :neighborhoods
 
 class User < ActiveRecord::Base
+  validates :username,
+    :presence => true,
+    :uniqueness => {
+      :case_sensitive => false
+    }
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -38,11 +44,19 @@ class User < ActiveRecord::Base
   has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
   has_many :posts
 
-  def forem_name
-    name
-  end
+  attr_accessor :login
 
-  def forem_email
-    email
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:username) || conditions.has_key?(:email)
+      conditions[:email].downcase! if conditions[:email]
+      if conditions[:username].nil?
+        where(conditions).first
+      else
+        where(username: conditions[:username]).first
+      end
+    end
   end
 end
