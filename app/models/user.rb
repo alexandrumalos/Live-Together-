@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :groups
+  belongs_to :current_neighborhood, class_name: 'Neighborhood', foreign_key: 'current_neighborhood_id'
   has_and_belongs_to_many :neighborhoods
   has_many :requests, dependent: :destroy
   has_many :received_messages, class_name: 'Message', through: :user_message_connections
