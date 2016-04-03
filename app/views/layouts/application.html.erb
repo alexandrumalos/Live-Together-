@@ -10,175 +10,76 @@
 
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-
-  <% flash.each do |key, value| %>
-   <%= content_tag(:div, value, class: "alert alert-#{key}") %>
- <% end %>
-
-      <nav>
-        <% if user_signed_in? %>
-      <%= link_to current_user.email, main_app.edit_user_registration_path %>
-      | <%= link_to "Sign out", main_app.destroy_user_session_path, :method => :delete %>
-      <% if current_user.forem_admin %>
-        | <%= link_to "Administrate", forem.admin_root_url %>
-      <% end %>
-    <% else %>
-      <%= link_to "Sign up", main_app.new_user_registration_path %>
-      | <%= link_to "Sign in", main_app.new_user_session_path %>
-    <% end %>
-        <li><%= link_to "Site logo", '#', id: "logo" %></li>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Home", '/' %></li>
-          <li><%= link_to "About us", '#' %></li>
-
         <div class="navbar-header">
           <%= link_to "LiveTogether", root_path, class: ["navbar-brand"] %>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-nav">
+          <button class="navbar-toggle" data-target="#collapse-nav" data-toggle="collapse" type="button">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
         </div>
-        <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="collapse-nav">
-          <% if user_signed_in? %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right navbar-collapse collapse" id="collapse-nav">
+            <% if user_signed_in? %>
             <li>
               <%= link_to posts_path do %>
-                <span class="glyphicon glyphicon-home"></span>
-                Home
+              <span class="glyphicon glyphicon-home"></span>
+              Home
               <% end %>
             </li>
             <li>
               <%= link_to messages_path do %>
-                <span class="glyphicon glyphicon-envelope"></span>
-                Messages
+              <span class="glyphicon glyphicon-envelope"></span>
+              Messages
               <% end %>
             </li>
             <li>
               <%= link_to neighborhoods_path do %>
-                <span class="glyphicon glyphicon-tree-conifer"></span>
-                Neighborhood
+              <span class="glyphicon glyphicon-tree-conifer"></span>
+              Neighborhood
               <% end %>
             </li>
             <li>
               <%= link_to events_path do %>
-                <span class="glyphicon glyphicon-calendar"></span>
-                Events
+              <span class="glyphicon glyphicon-calendar"></span>
+              Events
               <% end %>
             </li>
             <li>
               <%= link_to current_user do %>
-                <span class="glyphicon glyphicon-user"></span>
-                <%= current_user.name %>
+              <span class="glyphicon glyphicon-user"></span>
+              <%= current_user.name %>
               <% end %>
             </li>
             <li class="navbar-text">&#124;</li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <span class="glyphicon glyphicon-log-out"></span>
-                Log out
+              <span class="glyphicon glyphicon-log-out"></span>
+              Log out
               <% end %>
             </li>
           <% else %>
             <li>
               <%= link_to '#sign-up-modal', 'data-toggle' => 'modal' do %>
-                <span class="glyphicon glyphicon-log-in"></span>
-                Sign up
+              <span class="glyphicon glyphicon-log-in"></span>
+              Sign up
               <% end %>
             </li>
             <li>
               <%= link_to '#log-in-modal', 'data-toggle' => 'modal' do %>
-                <span class="glyphicon glyphicon-user"></span>
-                Log in
+              <span class="glyphicon glyphicon-user"></span>
+              Log in
               <% end %>
             </li>
-          <% end %>
->>>>>>> eeefdee56b0992530a722a1cad502ccc40dc6dcf
-        </ul>
-      </nav>
-    </div>
-  </header>
-<div class="container">
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
 
       <%= yield %>
 
-<<<<<<< HEAD
-<%= yield %>
-
-<footer class="footer">
- <small>
- A website made with love by: Ben,Alex,Jamal</a>
- </small>
- <nav>
-   <ul>
-     <li><a href="http://www.facebook.com">Facebook</a></li>
-     <li><a href="http://www.twitter.com">Twitter</a></li>
-     <li><a href="http://www.valdosta.edu">Our School</a></li>
-     <li><%= link_to "About us", '#' %></li>
-   </ul>
- </nav>
-</footer>
-
-<div id="log-in-modal" class="modal fade" role="dialog" >
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Log in</h4>
-      </div>
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="modal-body">
-          <div class="form-inputs">
-            <%= f.input :login, required: true, autofocus: true, input_html: { class: 'form-control'} %>
-            <%= f.input :password, required: true, input_html: { class: 'form-control'} %>
-            <%= f.input :remember_me, wrapper_html: { class: 'pad-left' }, as: :boolean if devise_mapping.rememberable? %>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <%= f.button :submit, "log in", class: 'btn btn-lg btn-primary' %>
-          <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
-        </div>
-      <% end %>
-    </div>
-
-  </div>
-</div>
-
-<div id="sign-up-modal" class="modal fade" role="dialog" >
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Sign Up</h4>
-      </div>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <div class="modal-body">
-            <%= f.error_notification %>
-
-            <div class="form-inputs">
-              <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
-              <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
-              <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
-              <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
-              <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, "Sign up", class: 'btn btn-lg btn-primary' %>
-          <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
-        </div>
-      <% end %>
-    </div>
-
-  </div>
-</div>
-</body>
-=======
       <footer class="footer">
         <small>
           A website made with love by: Ben, Alex, Jamal
@@ -199,6 +100,65 @@
         </nav>
       </footer>
     </div>
+
+    <div class="modal fade" id="log-in-modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button">&times;</button>
+            <h4 class="modal-title">Log in</h4>
+          </div>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="modal-body">
+            <div class="form-inputs">
+              <%= f.input :login, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+              <%= f.input :password, required: true, input_html: { class: 'form-control'} %>
+              <%= f.input :remember_me, wrapper_html: { class: 'pad-left' }, as: :boolean if devise_mapping.rememberable? %>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <%= f.button :submit, "log in", class: 'btn btn-lg btn-primary' %>
+            <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal fade" id="sign-up-modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button">&times;</button>
+            <h4 class="modal-title">Sign Up</h4>
+          </div>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <div class="modal-body">
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+              <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+              <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+              <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+              <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <%= f.button :submit, "Sign up", class: 'btn btn-lg btn-primary' %>
+            <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
   </body>
->>>>>>> origin/front-page
 </html>
