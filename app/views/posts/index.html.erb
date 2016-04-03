@@ -1,34 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Here's What's New</h1>
+<!-- <h1>Here's What's New</h1> -->
 
-<!-- NOTE: when this page is styled, get rid of this css tag. This is just a temporary stylesheet -->
-<style>
-.post {
-  text-align: left;
-  display: inline-block;
-  border: 2px solid grey;
-  border-radius: 15px;
-  width: 40%;
-  margin: 5px;
-  padding: 20px;
-}
-</style>
+<div class="center post">
 
+  <%= render 'form' %>
 
-
-<div style="text-align: center;">
-  <div class="post">
-    <%= render 'form' %>
-  </div>
-  <br>
+  <hr>
 
   <% @posts.each do |post| %>
     <%= render post %>
-    <br>
   <% end %>
 </div>
 
 <br>
-
-<%= link_to 'New Post', new_post_path %>

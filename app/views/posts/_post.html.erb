@@ -1,43 +1,51 @@
 <div class="well">
   <div class="media">
-    <a class="pull-left" href="#">
-      <img class="media-object" src="http://placekitten.com/150/150">
-    </a>
+    <div class="pull-left">
+      <a href="#">
+        <img class="media-object" src="http://placekitten.com/150/150">
+      </a>
+      <p><%= post.user.name + ' <' + post.user.username + '>' %></p>
+      <p><span class="label label-primary"><%= post.category.name unless post.category.nil? %></span></p>
+    </div>
     <div class="media-body">
       <h4 class="media-heading"><%= post.title %></h4>
-      <p class="text-right"><%= post.category.name if post.category %></p>
       <p><%= post.body %></p>
-      <ul class="list-inline list-unstyled">
-        <%  if canEditPost(current_user, post) %>
-        <li>
-          <%= link_to 'Edit', edit_post_path(post), method: :get %>
-        </li>
-        <li>|</li>
-        <% end %>
-        <% if canDeletePost(current_user, post) %>
-        <li>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </li>
-        <li>|</li>
-        <% end %>
-        <li>
-          <span>
-            <i class="glyphicon glyphicon-calendar"></i>
-            <%= I18n.localize post.updated_at, format: :post %>
-          </span>
-        </li>
-        <li>|</li>
-        <span>
-          <i class="glyphicon glyphicon-comment"></i>
-          2 comments</span>
-        <li>|</li>
-        <li>
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-        </li>
-        <li>
-          <span class="glyphicon glyphicon-thumbs-down"></span>
-        </li>
-      </ul>
     </div>
   </div>
+  <ul class="list-inline list-unstyled">
+    <% if canEditPost(current_user, post) %>
+    <li>
+      <%= link_to 'Edit', edit_post_path(post), method: :get %>
+    </li>
+    <li>|</li>
+    <% end %>
+    <% if canDeletePost(current_user, post) %>
+    <li>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+    <li>|</li>
+    <% end %>
+    <li>
+      <span>
+        <i class="glyphicon glyphicon-calendar"></i>
+        <%= I18n.localize post.updated_at, format: :post %>
+      </span>
+    </li>
+    <li>|</li>
+      <%= link_to '#' do %>
+      <i class="glyphicon glyphicon-comment"></i>
+      2 comments
+      <% end %>
+    <li>|</li>
+    <li>
+      <%= link_to '#' do %>
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to '#' do %>
+      <span class="glyphicon glyphicon-thumbs-down"></span>
+      <% end %>
+    </li>
+  </ul>
 </div>
