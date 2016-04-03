@@ -6,3 +6,19 @@
   width: 80%;
   margin-left: 10%;
 }
+
+.well {
+  position: relative;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+}
