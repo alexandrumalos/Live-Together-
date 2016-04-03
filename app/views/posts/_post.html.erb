@@ -1,27 +1,29 @@
-<div class="post">
-  <h3><%= post.title %></h3>
-  <p><%= post.body %></p>
-  <hr>
-  <p><%= I18n.localize post.updated_at, format: :post %></p>
-  <%= button_to 'Edit', edit_post_path(post), class: 'btn btn-default', method: :get if canEditPost(current_user, post) %>
-  <%= button_to 'Destroy', post, method: :delete, class: 'btn btn-default', data: { confirm: 'Are you sure?' } if canDeletePost(current_user, post) %>
-</div>
-
 <div class="well">
   <div class="media">
     <a class="pull-left" href="#">
       <img class="media-object" src="http://placekitten.com/150/150">
     </a>
     <div class="media-body">
-      <h4 class="media-heading">Receta 1</h4>
-      <p class="text-right">By Francisco</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-        tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</p>
+      <h4 class="media-heading"><%= post.title %></h4>
+      <p class="text-right"><%= post.category.name if post.category %></p>
+      <p><%= post.body %></p>
       <ul class="list-inline list-unstyled">
+        <%  if canEditPost(current_user, post) %>
+        <li>
+          <%= link_to 'Edit', edit_post_path(post), method: :get %>
+        </li>
+        <li>|</li>
+        <% end %>
+        <% if canDeletePost(current_user, post) %>
+        <li>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+        <li>|</li>
+        <% end %>
         <li>
           <span>
             <i class="glyphicon glyphicon-calendar"></i>
-            2 days, 8 hours
+            <%= I18n.localize post.updated_at, format: :post %>
           </span>
         </li>
         <li>|</li>
@@ -30,24 +32,10 @@
           2 comments</span>
         <li>|</li>
         <li>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-thumbs-up"></span>
         </li>
-        <li>|</li>
         <li>
-          <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-          <span>
-            <i class="fa fa-facebook-square"></i>
-          </span>
-          <span>
-            <i class="fa fa-twitter-square"></i>
-          </span>
-          <span>
-            <i class="fa fa-google-plus-square"></i>
-          </span>
+          <span class="glyphicon glyphicon-thumbs-down"></span>
         </li>
       </ul>
     </div>
