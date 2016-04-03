@@ -12,7 +12,7 @@
 #
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!
 
   # GET /posts
@@ -43,6 +43,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     @post.neighborhood = current_user.current_neighborhood
     @post.neighborhood.posts << @post
+    @post.score = 0;
 
     respond_to do |format|
       if @post.save
@@ -76,6 +77,26 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def upvote
+    @post.score = @post.score + 1
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    @post.score = @post.score - 1
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
     end
   end
 
