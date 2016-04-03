@@ -38,12 +38,17 @@
       <% end %>
     <li>|</li>
     <li>
-      <%= link_to '#' do %>
+      <%= link_to upvote_post_path(post), remote: true, method: :post do %>
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <% end %>
     </li>
     <li>
-      <%= link_to '#' do %>
+      <span id='score-<%= post.id %>'>
+        <%= post.score %>
+      </span>
+    </li>
+    <li>
+      <%= link_to downvote_post_path(post), remote: true, method: :post do %>
       <span class="glyphicon glyphicon-thumbs-down"></span>
       <% end %>
     </li>
