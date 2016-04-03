@@ -41,7 +41,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-
     @post.neighborhood = current_user.current_neighborhood
     @post.neighborhood.posts << @post
 
