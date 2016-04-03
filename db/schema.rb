@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402201024) do
+ActiveRecord::Schema.define(version: 20160402225426) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -111,9 +111,11 @@ ActiveRecord::Schema.define(version: 20160402201024) do
   add_index "user_message_connections", ["message_id"], name: "index_user_message_connections_on_message_id"
   add_index "user_message_connections", ["user_id"], name: "index_user_message_connections_on_user_id"
 
-  create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "neighborhood_id"
+  create_table "user_neighborhood_connections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
@@ -137,8 +139,13 @@ ActiveRecord::Schema.define(version: 20160402201024) do
     t.boolean  "forem_admin",             default: false
     t.string   "forem_state",             default: "pending_review"
     t.boolean  "forem_auto_subscribe",    default: false
+<<<<<<< 4fbfa846d0723c58b638e90da1785f05ce0d7cdf
     t.string   "newser_type"
     t.integer  "current_neighborhood_id"
+=======
+    t.integer  "current_neighborhood_id"
+    t.string   "type"
+>>>>>>> Post now only displays edit/delete if you have permission
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

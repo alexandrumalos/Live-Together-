@@ -15,6 +15,8 @@
 }
 </style>
 
+
+
 <div style="text-align: center;">
   <div class="post">
     <%= render 'form' %>
@@ -22,18 +24,7 @@
   <br>
 
   <% @posts.each do |post| %>
-    <div class="post">
-      <h3><%= post.title %></h3>
-      <p><%= post.body %></p>
-      <hr>
-      <p><%= I18n.localize post.updated_at, format: :post %></p>
-      <table>
-        <tr>
-          <td><%= button_to 'Edit', edit_post_path(post), method: :get %></td>
-          <td><%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      </table>
-    </div>
+    <%= render post %>
     <br>
   <% end %>
 </div>
