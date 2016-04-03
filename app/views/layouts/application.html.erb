@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LiveTogether</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>LiveTogether</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
 
   <% flash.each do |key, value| %>
    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
  <% end %>
 
-  <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
       <nav>
         <% if user_signed_in? %>
       <%= link_to current_user.email, main_app.edit_user_registration_path %>
@@ -98,7 +99,9 @@
   </header>
 <div class="container">
 
+      <%= yield %>
 
+<<<<<<< HEAD
 <%= yield %>
 
 <footer class="footer">
@@ -175,4 +178,27 @@
   </div>
 </div>
 </body>
+=======
+      <footer class="footer">
+        <small>
+          A website made with love by: Ben, Alex, Jamal
+        </small>
+        <nav>
+          <ul>
+            <li>
+              <a href="http://www.facebook.com">Facebook</a>
+            </li>
+            <li>
+              <a href="http://www.twitter.com">Twitter</a>
+            </li>
+            <li>
+              <a href="http://www.valdosta.edu">Our School</a>
+            </li>
+            <li><%= link_to "About us", '#' %></li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+  </body>
+>>>>>>> origin/front-page
 </html>

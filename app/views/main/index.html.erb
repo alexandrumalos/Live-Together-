@@ -1,14 +1,32 @@
-<div class="center jumbotron">
+<style>
+.footer {
+  position: fixed;
+  padding-left: 20px;
+  padding-right: 20px;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
+  background-color: rgba(238, 238, 238, 0.4);
+}
+
+.footer, .footer a {
+  font-weight: bold;
+  color: rgba(34, 34, 34, 1) !important;
+}
+</style>
+
+<div class="jumbotron center">
   <h1>Welcome to LiveTogether</h1>
   <h2>
-    Where your neighbor becomes your friend
+    <strong>Where your neighbor becomes your friend</strong>
   </h2>
-  <%= link_to "View Neighborhoods!", '#', class: "btn btn-lg btn-primary" %>
+  <%= link_to "Get Started", new_user_registration_path, class: "btn btn-lg btn-primary white-text" %>
 </div>
 
 <% content_for :title do %>Rails Bootstrap<% end %>
 <% content_for :description do %>Rails Bootstrap Example<% end %>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide background" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -16,27 +34,28 @@
   </ol>
   <div class="carousel-inner">
     <div class="item active">
-      <%= image_tag "mainc1.jpg" %>
+      <%= image_tag "mainc1.jpg", class: ["bkgd-cover"] %>
       <div class="carousel-caption text-center">
         <h4>San Francisco</h4>
       </div>
     </div>
     <div class="item">
-      <%= image_tag"mainc2.jpg" %>
+      <%= image_tag "mainc2.jpg", class: ["bkgd-cover"] %>
       <div class="carousel-caption text-center" >
         <h4>Sydney</h4>
       </div>
     </div>
     <div class="item">
-      <%= image_tag"mainc3.jpg" %>
+      <%= image_tag "mainc3.jpg", class: ["bkgd-cover"] %>
       <div class="carousel-caption text-center">
         <h4>Paris</h4>
       </div>
     </div>
   </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></a>
-  </div>
+</div>
+<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<a class="right carousel-control" href="#myCarousel" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
