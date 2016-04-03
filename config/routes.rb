@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'sessions/sessions', registrations: 'sessions/registrations'
+  }
+
   get 'admin/index'
 
   root 'main#index'
