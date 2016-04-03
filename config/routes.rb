@@ -5,23 +5,15 @@ Rails.application.routes.draw do
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  mount Forem::Engine, :at => '/forums'
 
-  devise_for :users
-  resources :mainfeeds
-  resources :neinfos
-  resources :userprofiles
-  resources :newsfeeds
+  devise_for :users, controllers: {
+    sessions: 'sessions/sessions', registrations: 'sessions/registrations'
+  }
+
   get 'admin/index'
-
-  get 'sessions/new'
 
   root 'main#index'
 
-  get 'login' => "sessions#new"
-  post 'login' =>'sessions#create'
-  delete 'logout' => 'sessions#destroy'
-  
   resources :posts
   resources :requests
   resources :neighborhoods

@@ -9,7 +9,7 @@
   src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
   href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
-<script type='text/javascript'>//<![CDATA[ 
+<script type='text/javascript'>//<![CDATA[
 $(window).load(function(){<!--from w  ww.  j  a  v a 2  s  .c  o m-->
 //save the selector so you don't have to do the lookup everytime
 $dropdown = $("#contextMenu");
@@ -24,21 +24,31 @@ $(".actionButton").click(function() {
     //show dropdown
     $(this).dropdown();
 });
-});//]]>  
+});//]]>
 </script>
+<style>
+
+</style>
 </head>
+
 
 <p id="notice"><%= notice %></p>
 
 
+
+
+
+
+ <div class="container">
+   <%= render 'calendar' %>
+ </div>
+
 <div class="container">
-  
- <%= render 'calendar' %>
- 
- <%= render 'table' %>
- 
+   <%= render 'table' %>
+ </div>
+
+
 </html>
-</div>
 
 <br>
 
@@ -59,7 +69,7 @@ $(".actionButton").click(function() {
           </ul>
         </div>
       <% end %>
-    
+
       <div id="new" class="modal fade">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -70,22 +80,22 @@ $(".actionButton").click(function() {
             <div class="modal-body">
               <p><large>Please fill out the information below</large></p>
             </div>
-            
+
             <div class="field">
               <%= f.label :name %><br>
               <%= f.text_field :name, class: 'form-control' %>
             </div>
-            
+
             <div class="field">
               <%= f.label :description %><br>
               <%= f.text_field :description, class: 'form-control' %>
             </div>
-            
+
             <div class="field">
               <%= f.label :date %><br>
               <%= f.date_select :date, class: 'form-control' %>
             </div>
-            
+
             <div class="field">
               <%= f.label :location %><br>
               <%= f.text_field :location, class: 'form-control' %>

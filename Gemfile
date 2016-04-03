@@ -1,16 +1,8 @@
 source 'https://rubygems.org'
 #
-gem 'figaro'
-
-gem 'bcrypt'
-
 gem 'devise'
 
-gem 'forem', github: "radar/forem", branch: "rails4"
-
-gem 'forem-bootstrap', github: "radar/forem-bootstrap"
-
-gem 'forem-redcarpet', github: "radar/forem-redcarpet"
+gem 'gmaps4rails'
 
 gem 'carousel'
 
@@ -28,6 +20,7 @@ gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
+gem 'rake', '11.1.2'
 # Use sqlite3 as the database for Active Record
 
 group :development do

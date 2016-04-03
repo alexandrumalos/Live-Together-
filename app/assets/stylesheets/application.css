@@ -14,3 +14,16 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  padding-top: 70px;
+}
+
+.modal-header {
+  background-color: #333333;
+  color: #cccccc;
+}
+
+.pad-left {
+  padding-left: 20px;
+}
