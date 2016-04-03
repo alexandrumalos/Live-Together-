@@ -18,6 +18,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    if current_user.current_neighborhood.nil?
+      flash[:notice] = "Cannot view posts: No neighborhood is currently active"
+      redirect_to neighborhoods_url
+    end
+
     @posts = Post.all
     @post = Post.new
   end
