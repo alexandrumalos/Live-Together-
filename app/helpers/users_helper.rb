@@ -25,4 +25,19 @@
 #
 
 module UsersHelper
+  def canEditPost(user, post)
+    if post.neighborhood.users.include?(user)
+      user.id == post.user_id || user.type == 'lead'
+    else
+      false
+    end
+  end
+
+  def canDeletePost(user, post)
+    if post.neighborhood.users.include?(user)
+      user.id == post.user_id || user.type == 'lead'
+    else
+      false
+    end
+  end
 end

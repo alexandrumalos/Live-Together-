@@ -13,6 +13,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /posts
   # GET /posts.json
@@ -39,6 +40,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
+
+    @post.neighborhood = current_user.current_neighborhood
+    @post.neighborhood.posts << @post
 
     respond_to do |format|
       if @post.save
