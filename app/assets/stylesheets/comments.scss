@@ -1,3 +1,19 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.well {
+  position: relative;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+}
