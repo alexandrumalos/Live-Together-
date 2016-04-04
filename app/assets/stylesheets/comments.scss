@@ -2,8 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.well {
+.foot-parent {
   position: relative;
+}
+
+.comment {
+  background-color: #ddd !important;
+  margin-bottom: 10px !important;
+  padding-bottom: 20 !important;
+}
+
+.comment-textarea {
+}
+
+.comment-submit {
+  margin-left: 20px;
+  text-align: right;
+  margin-bottom: 0px !important;
 }
 
 .bottom-right {

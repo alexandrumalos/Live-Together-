@@ -1,7 +1,8 @@
-<div class="well">
+<div class="well comment foot-parent">
   <p>
-    comment.comment
+    <%= comment.comment %>
   </p>
+  <br>
   <ul class="list-inline list-unstyled bottom-right">
     <li>
       <%= link_to '#', remote: true, method: :post do %>
@@ -17,6 +18,10 @@
       <%= link_to '#', remote: true, method: :post do %>
       <span class="glyphicon glyphicon-thumbs-down"></span>
       <% end %>
+    </li>
+    <li>|</li>
+    <li>
+      <p><%= comment.user.name + ' <' + comment.user.username + '>' %></p>
     </li>
     <li>|</li>
     <li>

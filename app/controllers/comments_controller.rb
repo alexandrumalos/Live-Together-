@@ -36,10 +36,16 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.user.comments << @comment
+    @comment.post_id = post.id
+    @comment.post.comments << @comment
+    @comment.score = 0
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -80,6 +86,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:score, :comment)
+      params.require(:comment).permit(:score, :comment, :user_id, :post_id)
     end
 end
