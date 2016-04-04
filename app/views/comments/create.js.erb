@@ -1,0 +1,1 @@
+$('<%=j "comments-" + @post.id.to_s %>').html("<% @post.comments.each do |comment| %><%=j render comment %><% end %><%=j render partial: 'comments/form', :locals => { :post => @post } %>");

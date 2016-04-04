@@ -20,10 +20,13 @@ Rails.application.routes.draw do
       post 'downvote'
     end
   end
+
+  post 'comment/:post_id', to: 'comments#create', as: 'create_comment'
+
   resources :requests
   resources :neighborhoods
   resources :categories
-  resources :comments
+  resources :comments, except: [:create]
   resources :events
   resources :messages
   resources :groups
