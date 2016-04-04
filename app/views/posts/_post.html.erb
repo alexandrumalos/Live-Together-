@@ -59,10 +59,12 @@
         </li>
       </ul>
     </div>
-    <div id="comments-<%= post.id %>">
-      <% post.comments.each do |comment| %>
-        <%= render comment %>
-      <% end %>
+    <div>
+      <div id="comments-<%= post.id %>">
+        <% post.comments.each do |comment| %>
+          <%= render comment %>
+        <% end %>
+      </div>
       <%= render partial: 'comments/form', :locals => { :post => post } %>
     </div>
 
