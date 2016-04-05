@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405063139) do
+ActiveRecord::Schema.define(version: 20160405063749) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,13 +41,15 @@ ActiveRecord::Schema.define(version: 20160405063139) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "group_message", id: false, force: :cascade do |t|
-    t.integer "groups_id"
-    t.integer "messages_id"
+  create_table "group_messages", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "group_message", ["groups_id"], name: "index_group_message_on_groups_id"
-  add_index "group_message", ["messages_id"], name: "index_group_message_on_messages_id"
+  add_index "group_messages", ["group_id"], name: "index_group_messages_on_group_id"
+  add_index "group_messages", ["message_id"], name: "index_group_messages_on_message_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
