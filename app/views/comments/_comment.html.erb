@@ -1,6 +1,9 @@
 <div class="well comment foot-parent">
   <p>
     <%= comment.comment %>
+    <%= link_to delete_comment_path(comment), remote: true, method: :delete, class: 'pull-right' do %>
+      <span class="glyphicon glyphicon-remove"></span>
+    <% end %>
   </p>
   <br>
   <ul class="list-inline list-unstyled bottom-right">

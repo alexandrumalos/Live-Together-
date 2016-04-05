@@ -10,4 +10,11 @@
 #
 
 module CommentsHelper
+  def comments_button(post)
+    if post.comments.count > 0
+      post.comments.count.to_s + ' comments'
+    else
+      'Leave a comment'
+    end
+  end
 end

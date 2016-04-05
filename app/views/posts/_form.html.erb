@@ -33,12 +33,12 @@
           <% end %>
           <p>
             <div class="field">
-              <%= f.label :title %><br>
-              <%= f.text_field :title, class: 'form-control' %>
+              <!-- <%= f.label :title %><br> -->
+              <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
             </div>
             <div class="field">
-              <%= f.label :body %><br>
-              <%= f.text_area :body, cols: 50, rows: 5, class: 'form-control' %>
+              <!-- <%= f.label :body %><br> -->
+              <%= f.text_area :body, cols: 50, rows: 5, class: 'form-control', placeholder: 'Say something...' %>
             </div>
             <div class="actions">
               <%= f.submit class: 'btn btn-lg btn-primary pull-right' %>

@@ -28,7 +28,11 @@ Rails.application.routes.draw do
   resources :requests
   resources :neighborhoods
   resources :categories
-  resources :comments, except: [:create]
+  resources :comments, except: [:create, :destroy] do
+    member do
+      delete 'delete', to: 'comments#destroy'
+    end
+  end
   resources :events
   resources :messages
   resources :groups

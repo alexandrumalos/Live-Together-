@@ -8,6 +8,7 @@
         <p><%= post.user.name + ' <' + post.user.username + '>' %></p>
         <p><span class="label label-primary"><%= post.category.name unless post.category.nil? %></span></p>
         <br>
+        <br>
       </div>
       <div class="media-body">
         <h4 class="media-heading"><%= post.title %></h4>
@@ -47,7 +48,7 @@
         <li>
           <a onclick='toggle_comments(<%= post.id %>)' class="pointer">
           <i class="glyphicon glyphicon-comment"></i>
-          <span id="comments-count-<%= post.id %>"><%= post.comments.count %></span>&nbsp;comments
+          <span id="comments-count-<%= post.id %>"><%= comments_button(post) %></span>
           </a>
         </li>
         <li>|</li>
