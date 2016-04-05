@@ -45,11 +45,10 @@
         </li>
         <li>|</li>
         <li>
-          <%= link_to '#' do %>
+          <a onclick='toggle_comments(<%= post.id %>)' class="pointer">
           <i class="glyphicon glyphicon-comment"></i>
-          <span id="comments-count-<%= post.id %>"><%= post.comments.count %></span>
-           comments
-          <% end %>
+          <span id="comments-count-<%= post.id %>"><%= post.comments.count %></span>&nbsp;comments
+          </a>
         </li>
         <li>|</li>
         <li>
@@ -60,7 +59,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div id="comments-section-<%= post.id %>" hidden="true">
       <div id="comments-<%= post.id %>">
         <% post.comments.each do |comment| %>
           <%= render comment %>
