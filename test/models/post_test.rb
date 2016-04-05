@@ -10,6 +10,7 @@
 #  neighborhood_id :integer
 #  title           :string
 #  user_id         :integer
+#  category_id     :integer
 #
 
 require 'test_helper'

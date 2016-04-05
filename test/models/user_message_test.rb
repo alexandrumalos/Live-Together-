@@ -1,15 +1,18 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: user_messages
 #
 #  id         :integer          not null, primary key
-#  score      :integer
-#  comment    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  post_id    :integer
 #  user_id    :integer
+#  message_id :integer
 #
 
-class Comment < ActiveRecord::Base
+require 'test_helper'
+
+class UserMessageTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
