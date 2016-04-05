@@ -133,10 +133,12 @@
 				<h1>Hello <%= @user.username %> !!</h1>
 				<img id="center" img src="profile.png" class="img-rounded" alt="profile" width="304" height="236">
 				
-				<div class="panel panel-default">
-          <div class="panel-heading">Panel Heading</div>
-          <div class="panel-body">Panel Content</div>
+				<div class="panel panel-primary">
+          <div class="panel-heading">Contact Information</div>
+          <div class="panel-body"><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
+          <div class="panel-body"><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
         </div>
+				
 				
 			
 			</article>								
