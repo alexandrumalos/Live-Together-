@@ -1,1 +1,3 @@
 $('#comments-<%=j @post.id.to_s %>').html("<% @post.comments.each do |comment| %><%=j render comment %><% end %>");
+
+$('#comments-count-<%=j @post.id.to_s %>').html("<%=j @post.comments.count.to_s %>");

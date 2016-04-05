@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
+  post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
+
   resources :posts do
     member do
       post 'upvote'
