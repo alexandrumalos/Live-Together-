@@ -1,17 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Neighborhoods</h1>
+<h1>Neighborhoods</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
+<html>
+<head>
+<style>
+#neighborhoods {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#neighborhoods td, #neighborhoods th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#neighborhoods tr:nth-child(even){background-color: #f2f2f2}
+
+#neighborhoods tr:hover {background-color: #ddd;}
+
+#neighborhoods th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<table id="neighborhoods">
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Neighborhood Name</th>
+    <th colspan="3"></th>
+  </tr>
   <tbody>
     <% @neighborhoods.each do |neighborhood| %>
       <tr>
@@ -25,6 +52,10 @@
     <% end %>
   </tbody>
 </table>
+
+</body>
+</html>
+
 
 <br>
 
