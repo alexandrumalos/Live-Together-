@@ -1,22 +1,20 @@
 # == Schema Information
 #
-# Table name: comments
+# Table name: group_messages
 #
 #  id         :integer          not null, primary key
-#  score      :integer
-#  comment    :text
+#  group_id   :integer
+#  message_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  post_id    :integer
-#  user_id    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  score: 1
-  comment: MyText
+  group_id: 1
+  message_id: 1
 
 two:
-  score: 1
-  comment: MyText
+  group_id: 1
+  message_id: 1

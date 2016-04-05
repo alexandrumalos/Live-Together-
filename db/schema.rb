@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402201024) do
+ActiveRecord::Schema.define(version: 20160405063749) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20160402201024) do
     t.text     "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "post_id"
+    t.integer  "user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -39,13 +41,15 @@ ActiveRecord::Schema.define(version: 20160402201024) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "group_message", id: false, force: :cascade do |t|
-    t.integer "groups_id"
-    t.integer "messages_id"
+  create_table "group_messages", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "group_message", ["groups_id"], name: "index_group_message_on_groups_id"
-  add_index "group_message", ["messages_id"], name: "index_group_message_on_messages_id"
+  add_index "group_messages", ["group_id"], name: "index_group_messages_on_group_id"
+  add_index "group_messages", ["message_id"], name: "index_group_messages_on_message_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -95,25 +99,31 @@ ActiveRecord::Schema.define(version: 20160402201024) do
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
-  create_table "user_group_connections", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
+  create_table "user_groups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "user_group_connections", ["group_id"], name: "index_user_group_connections_on_group_id"
-  add_index "user_group_connections", ["user_id"], name: "index_user_group_connections_on_user_id"
+  add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id"
+  add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id"
 
-  create_table "user_message_connections", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "message_id"
+  create_table "user_messages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "message_id"
   end
 
-  add_index "user_message_connections", ["message_id"], name: "index_user_message_connections_on_message_id"
-  add_index "user_message_connections", ["user_id"], name: "index_user_message_connections_on_user_id"
+  add_index "user_messages", ["message_id"], name: "index_user_messages_on_message_id"
+  add_index "user_messages", ["user_id"], name: "index_user_messages_on_user_id"
 
-  create_table "user_neighborhood_connections", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "neighborhood_id"
+  create_table "user_neighborhood_connections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "user_neighborhood_connections", ["neighborhood_id"], name: "index_user_neighborhood_connections_on_neighborhood_id"
@@ -137,8 +147,8 @@ ActiveRecord::Schema.define(version: 20160402201024) do
     t.boolean  "forem_admin",             default: false
     t.string   "forem_state",             default: "pending_review"
     t.boolean  "forem_auto_subscribe",    default: false
-    t.string   "newser_type"
     t.integer  "current_neighborhood_id"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -9,6 +9,8 @@
 #
 
 class Group < ActiveRecord::Base
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :messages
+  has_many :user_groups
+  has_many :users, through: :user_groups
+  has_many :group_messages
+  has_many :messages, through: :group_messages
 end
