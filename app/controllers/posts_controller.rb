@@ -12,11 +12,17 @@
 #
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comment]
+  before_action :authenticate_user!
 
   # GET /posts
   # GET /posts.json
   def index
+    if current_user.current_neighborhood.nil?
+      flash[:notice] = "Cannot view posts: No neighborhood is currently active"
+      redirect_to neighborhoods_url
+    end
+
     @posts = Post.all
     @post = Post.new
   end
@@ -39,6 +45,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.neighborhood = current_user.current_neighborhood
+    @post.neighborhood.posts << @post
+    @post.score = 0;
 
     respond_to do |format|
       if @post.save
@@ -75,6 +85,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post.score = @post.score + 1
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    @post.score = @post.score - 1
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -83,6 +113,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :category_id, :comment)
     end
 end

@@ -1,0 +1,72 @@
+<div class="post">
+  <div class="well">
+    <div class="media foot-parent">
+      <div class="pull-left">
+        <a href="#">
+          <img class="media-object" src="http://placekitten.com/150/150">
+        </a>
+        <p><%= post.user.name + ' <' + post.user.username + '>' %></p>
+        <p><span class="label label-primary"><%= post.category.name unless post.category.nil? %></span></p>
+        <br>
+        <br>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= post.title %></h4>
+        <hr>
+        <p><%= post.body %></p>
+      </div>
+      <ul class="list-inline list-unstyled bottom-left">
+        <% if canEditPost(current_user, post) %>
+        <li>
+          <%= link_to 'Edit', edit_post_path(post), method: :get %>
+        </li>
+        <li>|</li>
+        <% end %>
+        <% if canDeletePost(current_user, post) %>
+        <li>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+        <% end %>
+      </ul>
+      <ul class="list-inline list-unstyled bottom-right">
+        <li>
+          <%= link_to upvote_post_path(post), remote: true, method: :post do %>
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          <% end %>
+        </li>
+        <li>
+          <span id='score-<%= post.id %>'>
+            <%= post.score %>
+          </span>
+        </li>
+        <li>
+          <%= link_to downvote_post_path(post), remote: true, method: :post do %>
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+          <% end %>
+        </li>
+        <li>|</li>
+        <li>
+          <a onclick='toggle_comments(<%= post.id %>)' class="pointer">
+          <i class="glyphicon glyphicon-comment"></i>
+          <span id="comments-count-<%= post.id %>"><%= comments_button(post) %></span>
+          </a>
+        </li>
+        <li>|</li>
+        <li>
+          <span>
+            <i class="glyphicon glyphicon-calendar"></i>
+            <%= I18n.localize post.updated_at, format: :post %>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div id="comments-section-<%= post.id %>" hidden="true">
+      <div id="comments-<%= post.id %>">
+        <% post.comments.each do |comment| %>
+          <%= render comment %>
+        <% end %>
+      </div>
+      <%= render partial: 'comments/form', :locals => { :post => post } %>
+    </div>
+  </div>
+</div>

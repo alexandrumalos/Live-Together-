@@ -25,4 +25,24 @@
 #
 
 module UsersHelper
+  def canEditPost(user, post)
+    if post.neighborhood.users.include?(user)
+      user.id == post.user_id || is_lead(user, user.current_neighborhood)
+    else
+      false
+    end
+  end
+
+  def canDeletePost(user, post)
+    if post.neighborhood.users.include?(user)
+      user.id == post.user_id || is_lead(user, user.current_neighborhood)
+    else
+      false
+    end
+  end
+
+  def is_lead(user, neighborhood)
+    # logic for determining if user is a lead goes here
+    false
+  end
 end
