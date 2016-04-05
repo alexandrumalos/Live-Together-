@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active]
 
   # GET /neighborhoods
   # GET /neighborhoods.json
@@ -70,6 +70,20 @@ class NeighborhoodsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to neighborhoods_url, notice: 'Neighborhood was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def set_active
+    current_user.current_neighborhood = @neighborhood
+
+    respond_to do |format|
+      if current_user.save
+        format.html { redirect_to posts_url, notice: 'Neighborhood has been visited' }
+        format.json { render :show, status: :created, location: @neighborhood }
+      else
+        format.html { redirect_to @neighborhood, notice: 'Neighborhood could not be visited' }
+        format.json { render json: @neighborhood.errors, status: :unprocessable_entity }
+      end
     end
   end
 

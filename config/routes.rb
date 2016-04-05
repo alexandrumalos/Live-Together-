@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   post 'comment/:post_id', to: 'comments#create', as: 'create_comment'
 
   resources :requests
-  resources :neighborhoods
+  resources :neighborhoods do
+    member do
+      post 'set_active', to: 'neighborhoods#set_active'
+    end
+  end
   resources :categories
   resources :comments, except: [:create, :destroy] do
     member do

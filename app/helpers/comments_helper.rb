@@ -17,4 +17,12 @@ module CommentsHelper
       'Leave a comment'
     end
   end
+
+  def can_delete_comment(user, comment)
+    if comment.user_id == user.id || is_lead(user, user.current_neighborhood)
+      true
+    else
+      false
+    end
+  end
 end
