@@ -1,29 +1,80 @@
-<p id="notice"><%= notice %></p>
+<div id="columns">
+  <div id="center">
+    <article>
+      <h1>Hello <%= @user.name %>!!</h1>
+      <div class="center">
+        <img alt="profile" class="img-rounded profile-pic" id="center" src="<%= asset_path("profile.png") %>">
+      </div>
+      <div class="user-info">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            Contact Information
+            <!-- Button HTML (to Trigger Modal) -->
+            <a class="btn btn-sm btn-default pull-right" data-toggle="modal" href="#edit-modal">Edit</a>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %>
+          </div>
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-phone"></span>: User phone number
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<div class="center">
+  <% @user.posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
+<div class="modal fade" id="edit-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+        <h4 class="modal-title">Edit User</h4>
+      </div>
+      <!-- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> -->
+      <div class="modal-body">
+        <%= render 'sessions/registrations/edit' %>
+        <!-- <%= f.error_notification %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+        <div class="form-inputs">
+          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+          <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+        </div> -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+      </div>
+      <div class="modal-footer">
+        <!-- <%= f.button :submit, "Sign up", class: 'btn btn-lg btn-primary' %> -->
+        <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
+      </div>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Isnewser:</strong>
-  <%= @user.isNewser %>
-</p>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="bs-example">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %>
+        prohibited this event from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  <% end %>
+</div>
