@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   }
 
   get 'admin/index'
-
+  
+  
+  
   root 'main#index'
 
   resources :posts
