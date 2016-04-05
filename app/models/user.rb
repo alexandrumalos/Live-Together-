@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_and_belongs_to_many :groups
+  has_many :user_groups
+  has_many :groups, through: :user_groups
   belongs_to :current_neighborhood, class_name: 'Neighborhood', foreign_key: 'current_neighborhood_id'
   has_and_belongs_to_many :neighborhoods
   has_many :requests, dependent: :destroy
