@@ -1,0 +1,1 @@
+$('#comments-<%=j @post.id.to_s %>').html("<% @post.comments.each do |comment| %><%=j render comment %><% end %>");

@@ -147,18 +147,8 @@ ActiveRecord::Schema.define(version: 20160405063749) do
     t.boolean  "forem_admin",             default: false
     t.string   "forem_state",             default: "pending_review"
     t.boolean  "forem_auto_subscribe",    default: false
-<<<<<<< 06b2bf0c86ad74b6b60f6fc4a4e1de08d2f4fe5a
     t.integer  "current_neighborhood_id"
     t.string   "type"
-=======
-<<<<<<< 4fbfa846d0723c58b638e90da1785f05ce0d7cdf
-    t.string   "newser_type"
-    t.integer  "current_neighborhood_id"
-=======
-    t.integer  "current_neighborhood_id"
-    t.string   "type"
->>>>>>> Post now only displays edit/delete if you have permission
->>>>>>> Post now only displays edit/delete if you have permission
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

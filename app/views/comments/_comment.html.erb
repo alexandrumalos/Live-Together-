@@ -1,0 +1,39 @@
+<div class="well comment foot-parent">
+  <p>
+    <%= comment.comment %>
+    <% if can_delete_comment(current_user, comment) %>
+      <%= link_to delete_comment_path(comment), remote: true, method: :delete, class: 'pull-right' do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    <% end %>
+  </p>
+  <br>
+  <ul class="list-inline list-unstyled bottom-right">
+    <li>
+      <%= link_to '#', remote: true, method: :post do %>
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      <% end %>
+    </li>
+    <li>
+      <span id='comment-score-<%= comment.id %>'>
+        <%= comment.score %>
+      </span>
+    </li>
+    <li>
+      <%= link_to '#', remote: true, method: :post do %>
+      <span class="glyphicon glyphicon-thumbs-down"></span>
+      <% end %>
+    </li>
+    <li>|</li>
+    <li>
+      <p><%= comment.user.name + ' <' + comment.user.username + '>' %></p>
+    </li>
+    <li>|</li>
+    <li>
+      <span>
+        <i class="glyphicon glyphicon-calendar"></i>
+        <%= I18n.localize comment.updated_at, format: :post %>
+      </span>
+    </li>
+  </ul>
+</div>

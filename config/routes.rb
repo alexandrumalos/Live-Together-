@@ -14,16 +14,29 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
+  post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
+
   resources :posts do
     member do
       post 'upvote'
       post 'downvote'
     end
   end
+
+  post 'comment/:post_id', to: 'comments#create', as: 'create_comment'
+
   resources :requests
-  resources :neighborhoods
+  resources :neighborhoods do
+    member do
+      post 'set_active', to: 'neighborhoods#set_active'
+    end
+  end
   resources :categories
-  resources :comments
+  resources :comments, except: [:create, :destroy] do
+    member do
+      delete 'delete', to: 'comments#destroy'
+    end
+  end
   resources :events
   resources :messages
   resources :groups
