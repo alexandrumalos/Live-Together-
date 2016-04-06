@@ -87,6 +87,8 @@ class PostsController < ApplicationController
 
   def upvote
     @post.score = @post.score + 1
+    update_lead_status(@post.user, @post.neighborhood, 1)
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_url }
@@ -97,6 +99,8 @@ class PostsController < ApplicationController
 
   def downvote
     @post.score = @post.score - 1
+    update_lead_status(@post.user, @post.neighborhood, -1)
+
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_url }

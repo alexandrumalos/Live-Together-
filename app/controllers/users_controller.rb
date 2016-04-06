@@ -55,6 +55,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.score = 0
 
     respond_to do |format|
       if @user.save

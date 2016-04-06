@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405063749) do
+ActiveRecord::Schema.define(version: 20160406054411) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -65,12 +65,23 @@ ActiveRecord::Schema.define(version: 20160405063749) do
     t.integer  "user_id"
   end
 
+  create_table "neighborhood_leads", force: :cascade do |t|
+    t.integer  "lead_id"
+    t.integer  "neighborhood_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "neighborhood_leads", ["lead_id"], name: "index_neighborhood_leads_on_lead_id"
+  add_index "neighborhood_leads", ["neighborhood_id"], name: "index_neighborhood_leads_on_neighborhood_id"
+
   create_table "neighborhoods", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "threshold"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -132,20 +143,24 @@ ActiveRecord::Schema.define(version: 20160405063749) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "name"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.string   "email",                   default: "", null: false
-    t.string   "encrypted_password",      default: "", null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "email",                   default: "",               null: false
+    t.string   "encrypted_password",      default: "",               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,                null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "forem_admin",             default: false
+    t.string   "forem_state",             default: "pending_review"
+    t.boolean  "forem_auto_subscribe",    default: false
     t.integer  "current_neighborhood_id"
     t.string   "type"
+    t.integer  "score"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

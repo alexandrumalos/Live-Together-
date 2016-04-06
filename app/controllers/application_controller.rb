@@ -24,6 +24,36 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def is_lead(user, neighborhood)
+    if neighborhood.leads.include?(user)
+      true
+    else
+      false
+    end
+  end
+
+  def update_lead_status(user, neighborhood, increase)
+    if user.score.nil?
+      user.score = 0
+    end
+    user.score = user.score + increase
+    unless neighborhood.leads.include?(user)
+      if neighborhood.threshold.nil?
+        neighborhood.threshold = 100
+      end
+      if user.score >= neighborhood.threshold
+        user.lead_neighborhoods << neighborhood
+        neighborhood.leads << user
+      end
+    else
+      user.lead_neighborhoods.delete(neighborhood)
+      neighborhood.leads.delete(user)
+    end
+
+    user.save!
+    neighborhood.save!
+  end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :remember_me, :name) }

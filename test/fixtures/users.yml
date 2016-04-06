@@ -22,6 +22,7 @@
 #  forem_auto_subscribe    :boolean          default("f")
 #  current_neighborhood_id :integer
 #  type                    :string
+#  score                   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

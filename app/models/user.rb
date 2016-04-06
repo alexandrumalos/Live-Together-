@@ -22,6 +22,7 @@
 #  forem_auto_subscribe    :boolean          default("f")
 #  current_neighborhood_id :integer
 #  type                    :string
+#  score                   :integer
 #
 
 #may can use has_and_belongs_to_many :groups :neighborhoods
@@ -43,6 +44,8 @@ class User < ActiveRecord::Base
 
   has_many :user_neighborhood_connections
   has_many :neighborhoods, class_name: 'Neighborhood', through: :user_neighborhood_connections
+  has_many :neighborhood_leads
+  has_many :lead_neighborhoods, class_name: 'Neighborhood', through: :neighborhood_leads
 
   has_many :requests, dependent: :destroy
   has_many :user_messages
