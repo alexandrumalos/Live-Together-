@@ -12,6 +12,7 @@
 
 class NeighborhoodsController < ApplicationController
   before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active]
+  before_action :authenticate_user!
 
   # GET /neighborhoods
   # GET /neighborhoods.json
@@ -37,6 +38,9 @@ class NeighborhoodsController < ApplicationController
   # POST /neighborhoods.json
   def create
     @neighborhood = Neighborhood.new(neighborhood_params)
+    @neighborhood.threshold = 100
+    @neighborhood.leads << current_user
+    current_user.lead_neighborhoods << @neighborhood
 
     respond_to do |format|
       if @neighborhood.save

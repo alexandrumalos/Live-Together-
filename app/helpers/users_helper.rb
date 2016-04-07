@@ -42,7 +42,20 @@ module UsersHelper
   end
 
   def is_lead(user, neighborhood)
-    # logic for determining if user is a lead goes here
-    false
+    if neighborhood.leads.include?(user)
+      true
+    else
+      false
+    end
   end
+  # def total_score(user)
+  #   count = 0
+  #   user.posts.each do |post|
+  #     count += post.score
+  #   end
+  #   user.comments.each do |comment|
+  #     count += comment.score
+  #   end
+  #   count
+  # end
 end
