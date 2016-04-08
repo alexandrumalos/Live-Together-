@@ -37,15 +37,13 @@
     <th>Name</th>
     <th>Location</th>
     <th>Neighborhood Name</th>
-    <th>Join Neighborhood</th>
   </tr>
   <tbody>
     <% @neighborhoods.each do |neighborhood| %>
-      <tr>
+      <tr class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');">
         <td><%= neighborhood.name %></td>
         <td><%= neighborhood.location %></td>
         <td><%= neighborhood.description %></td>
-        <td><%= link_to '<button type="button">Join</button>'.html_safe, new_post_path %></td>
       </tr>
     <% end %>
   </tbody>

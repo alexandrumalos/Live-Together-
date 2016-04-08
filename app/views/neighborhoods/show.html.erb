@@ -1,23 +1,46 @@
-<p id="notice"><%= notice %></p>
+<style>
+body{
+  background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<div class="center content well">
+  <div class="center">
+    <table class="head-table">
+      <tr>
+        <td class="head-left">
+          <img class="head-img" src="http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg"/>
+        </td>
+        <td class="head-mid center">
+          <p class="neighborhood-title"><%= @neighborhood.name %></p>
+        </td>
+        <td class="head-right">
+          <%= @neighborhood.location %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr class="under-title">
 
-<p>
-  <strong>Name:</strong>
-  <%= @neighborhood.name %>
-</p>
+  <p>
+    <%= @neighborhood.description %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @neighborhood.location %>
-</p>
+  <hr class="under-description">
 
-<p>
-  <strong>Description:</strong>
-  <%= @neighborhood.description %>
-</p>
+  <p>
+    <div class="buttons">
+      <%= button_to 'Join', join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+    </div>
+    <div class="buttons">
+      <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+    </div>
+  </p>
+  <div class="clearfix"></div>
 
-<p>
-  <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
-</p>
-
-<%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
-<%= link_to 'Back', neighborhoods_path %>
+  <div class="pull-right">    
+    <%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
+    <%= link_to 'Back', neighborhoods_path %>
+  </div>
+</div>

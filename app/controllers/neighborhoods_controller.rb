@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :join]
   before_action :authenticate_user!
 
   # GET /neighborhoods
@@ -88,6 +88,11 @@ class NeighborhoodsController < ApplicationController
       format.html { redirect_to neighborhoods_url, notice: 'Neighborhood was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def join
+    @neighborhood.users << current_user unless @neighborhood.users.include?(current_user)
+    set_active
   end
 
   def set_active
