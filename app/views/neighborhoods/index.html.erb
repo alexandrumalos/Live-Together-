@@ -38,6 +38,7 @@
     <th>Location</th>
     <th>Neighborhood Name</th>
     <th>Join Neighborhood</th>
+    <th>Set your neighborhood</th>
   </tr>
   <tbody>
     <% @neighborhoods.each do |neighborhood| %>
@@ -45,7 +46,8 @@
         <td><%= neighborhood.name %></td>
         <td><%= neighborhood.location %></td>
         <td><%= neighborhood.description %></td>
-        <td><%= link_to '<button type="button">Join</button>'.html_safe, new_post_path %></td>
+        <td><%= link_to '<button type="button">Join</button>'.html_safe, new_neighborhood_path %></td>
+        <td><%= link_to '<button type="button">Make default</button>'.html_safe, new_neighborhood_path %></td>
       </tr>
     <% end %>
   </tbody>

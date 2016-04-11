@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406054411) do
+ActiveRecord::Schema.define(version: 20160412052752) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -66,13 +66,12 @@ ActiveRecord::Schema.define(version: 20160406054411) do
   end
 
   create_table "neighborhood_leads", force: :cascade do |t|
-    t.integer  "lead_id"
     t.integer  "neighborhood_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "user_id"
   end
 
-  add_index "neighborhood_leads", ["lead_id"], name: "index_neighborhood_leads_on_lead_id"
   add_index "neighborhood_leads", ["neighborhood_id"], name: "index_neighborhood_leads_on_neighborhood_id"
 
   create_table "neighborhoods", force: :cascade do |t|
@@ -100,11 +99,11 @@ ActiveRecord::Schema.define(version: 20160406054411) do
 
   create_table "requests", force: :cascade do |t|
     t.date     "date"
-    t.string   "type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
     t.integer  "neighborhood_id"
+    t.string   "request_type"
   end
 
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
