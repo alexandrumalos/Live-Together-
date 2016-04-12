@@ -18,28 +18,29 @@ body{
   <div class="panel with-nav-tabs panel-success">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">One</a></li>
-        <li><a href="#tab2" data-toggle="tab">two</a></li>
-        <li><a href="#tab3" data-toggle="tab">three</a></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+        <li><a href="#tab2" data-toggle="tab">Users</a></li>
+        <li><a href="#tab3" data-toggle="tab">Categories</a></li>
+        <li><a href="#tab4" data-toggle="tab">Requests</a></li>
       </ul>
     </div>
     <div class="panel-body">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-          ONE
+          <%= @neighborhood.description %>
         </div>
-        <div class="tab-pane fade" id="tab2">
-          TWO
+        <div class="tab-pane fade scrollable" id="tab2">
+          <%= render 'users' %>
         </div>
-        <div class="tab-pane fade" id="tab3">
-          THREE
+        <div class="tab-pane fade scrollable" id="tab3">
+          <%= render 'categories' %>
+        </div>
+        <div class="tab-pane fade" id="tab4">
+          <%= render 'requests' %>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    <%= @neighborhood.description %>
-  </p>
 
   <hr class="under-description">
 

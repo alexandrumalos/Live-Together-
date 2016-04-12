@@ -37,6 +37,14 @@
   display: none;
 }
 
+.scrollable {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.table th {
+  text-align: center;
+}
 //**********************
 //this code was taken from someone
 .panel.with-nav-tabs .panel-heading{
