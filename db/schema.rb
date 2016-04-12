@@ -41,13 +41,6 @@ ActiveRecord::Schema.define(version: 20160406054411) do
     t.datetime "updated_at",  null: false
   end
 
-<<<<<<< HEAD
-  create_table "group_messages", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "message_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-=======
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
     t.datetime "created_at"
@@ -145,10 +138,11 @@ ActiveRecord::Schema.define(version: 20160406054411) do
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
 
-  create_table "group_message", id: false, force: :cascade do |t|
-    t.integer "groups_id"
-    t.integer "messages_id"
->>>>>>> added edit button
+  create_table "group_messages", force: :cascade do |t|
+    t.integer  "group_id"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "group_messages", ["group_id"], name: "index_group_messages_on_group_id"

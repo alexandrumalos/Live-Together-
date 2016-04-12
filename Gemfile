@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 #
 
-gem 'simple_calendar'
+
 gem 'devise'
 
 gem 'gmaps4rails'
