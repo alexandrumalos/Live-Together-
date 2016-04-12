@@ -1,3 +1,124 @@
 // Place all the styles related to the Neighborhoods controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.click-row {
+  cursor: pointer;
+}
+
+.buttons {
+  display: inline-block;
+}
+
+.content {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.neighborhood-title {
+  padding-top: 15px;
+  font-size: 4em;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.under-title {
+  background-color: #000;
+  height: 2px;
+}
+
+.under-description {
+  background-color: #000;
+  height: 2px;
+  width: 40%;
+  margin-left: 30%;
+}
+
+.footer {
+  display: none;
+}
+
+.scrollable {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.table th {
+  text-align: center;
+}
+
+.n-name-form {
+  width: 60%;
+  font-size: 4em;
+  height: 2em;
+  margin-left: 20%;
+  text-align: center;
+}
+
+.n-location-form {
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+}
+
+.n-threshold-form {
+  width: 100px;
+}
+
+//**********************
+//this code was taken from someone
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+    font-weight: bold;
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+/*** PANEL SUCCESS ***/
+.with-nav-tabs.panel-success .nav-tabs > li > a,
+.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
+	color: #FFF;
+}
+.with-nav-tabs .panel-heading {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+.with-nav-tabs.panel-success .nav-tabs > .open > a,
+.with-nav-tabs.panel-success .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
+	color: #FFF;
+	background-color: #449D44;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.active > a,
+.with-nav-tabs.panel-success .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.active > a:focus {
+	color: #3c763d;
+	background-color: #fff;
+	border-color: #d6e9c6;
+	border-bottom-color: transparent;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #3c763d;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #d6e9c6;
+}
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    color: #fff;
+    background-color: #3c763d;
+}
+//**********************
