@@ -11,4 +11,7 @@
 #
 
 module NeighborhoodsHelper
+  def user_in_neighborhood(user, neighborhood)
+    return neighborhood.users.include?(user)
+  end
 end

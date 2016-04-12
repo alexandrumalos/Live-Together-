@@ -73,13 +73,13 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  def update
-      @group = Group.find(params[:id])
-      @user = User.find(params[:user_id])
-      if !@group.users.find(@user)
-          @group.users << @user
-      end
-    end
+  # def update
+  #     @group = Group.find(params[:id])
+  #     @user = User.find(params[:user_id])
+  #     if !@group.users.find(@user)
+  #         @group.users << @user
+  #     end
+  #   end
   # DELETE /neighborhoods/1
   # DELETE /neighborhoods/1.json
   def destroy
@@ -100,7 +100,7 @@ class NeighborhoodsController < ApplicationController
 
     respond_to do |format|
       if current_user.save
-        format.html { redirect_to posts_url, notice: 'Neighborhood has been visited' }
+        format.html { redirect_to @neighborhood, notice: 'Neighborhood has been visited' }
         format.json { render :show, status: :created, location: @neighborhood }
       else
         format.html { redirect_to @neighborhood, notice: 'Neighborhood could not be visited' }

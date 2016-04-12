@@ -21,7 +21,9 @@ body{
         <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
         <li><a href="#tab2" data-toggle="tab">Users</a></li>
         <li><a href="#tab3" data-toggle="tab">Categories</a></li>
-        <li><a href="#tab4" data-toggle="tab">Requests</a></li>
+        <% if is_lead(current_user, @neighborhood) %>
+          <li><a href="#tab4" data-toggle="tab">Requests</a></li>
+        <% end %>
       </ul>
     </div>
     <div class="panel-body">
@@ -35,9 +37,11 @@ body{
         <div class="tab-pane fade scrollable" id="tab3">
           <%= render 'categories' %>
         </div>
-        <div class="tab-pane fade" id="tab4">
-          <%= render 'requests' %>
-        </div>
+        <% if is_lead(current_user, @neighborhood) %>
+          <div class="tab-pane fade" id="tab4">
+            <%= render 'requests' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -45,17 +49,24 @@ body{
   <hr class="under-description">
 
   <p>
+    <% unless user_in_neighborhood(current_user, @neighborhood) %>
+      <div class="buttons">
+        <%= button_to 'Join', join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+      </div>
+    <% else %>
+      <% if current_user.current_neighborhood != @neighborhood %>
+        <div class="buttons">
+          <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if is_lead(current_user, @neighborhood) %>
+      <div class="buttons">
+        <%= button_to 'Edit', edit_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-default', method: :get %>
+      </div>
+    <% end %>
     <div class="buttons">
-      <%= button_to 'Join', join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
-    </div>
-    <div class="buttons">
-      <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+      <%= button_to 'Back', neighborhoods_path, class: 'btn btn-lg btn-default', method: :get %>
     </div>
   </p>
-  <div class="clearfix"></div>
-
-  <div class="pull-right">
-    <%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
-    <%= link_to 'Back', neighborhoods_path %>
-  </div>
 </div>
