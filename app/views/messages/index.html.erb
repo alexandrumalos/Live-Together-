@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Messages</h1>
 
 <table>
@@ -14,7 +12,7 @@
   <tbody>
     <% @messages.each do |message| %>
     <%if message.recipients.include?(current_user)%> <%end%>
-    <% if message.sender == current_user %> <%end%> 
+    <% if message.sender == current_user %> <%end%>
       <tr>
         <td><%= message. text %></td>
         <td><%= message.head %></td>
