@@ -19,6 +19,7 @@
   padding-top: 15px;
   font-size: 4em;
   display: inline-block;
+  margin-bottom: 30px;
 }
 
 .under-title {
@@ -45,6 +46,25 @@
 .table th {
   text-align: center;
 }
+
+.n-name-form {
+  width: 60%;
+  font-size: 4em;
+  height: 2em;
+  margin-left: 20%;
+  text-align: center;
+}
+
+.n-location-form {
+  width: 60%;
+  margin-left: 20%;
+  text-align: center;
+}
+
+.n-threshold-form {
+  width: 100px;
+}
+
 //**********************
 //this code was taken from someone
 .panel.with-nav-tabs .panel-heading{

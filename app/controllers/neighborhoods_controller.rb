@@ -57,11 +57,6 @@ class NeighborhoodsController < ApplicationController
   # PATCH/PUT /neighborhoods/1.json
   def update
 
-    @neighborhood = Neighborhood.find(params[:id])
-    @user = User.find(params[:user_id])
-    !neighborhood.users.find(@user)
-    @neighborhood.users << @user unless @neighborhood.users.include? @user
-
     respond_to do |format|
       if @neighborhood.update(neighborhood_params)
         format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully updated.' }
