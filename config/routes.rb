@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :neighborhoods do
     member do
       post 'set_active', to: 'neighborhoods#set_active'
+      post 'join', to: 'neighborhoods#join'
     end
   end
   resources :categories

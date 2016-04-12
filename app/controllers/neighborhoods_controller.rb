@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :join]
   before_action :authenticate_user!
 
   # GET /neighborhoods
@@ -39,29 +39,27 @@ class NeighborhoodsController < ApplicationController
   def create
     @neighborhood = Neighborhood.new(neighborhood_params)
     @neighborhood.threshold = 100
+    @neighborhood.users << current_user
+    current_user.neighborhoods << @neighborhood
     @neighborhood.leads << current_user
     current_user.lead_neighborhoods << @neighborhood
+    set_active
 
-    respond_to do |format|
-      if @neighborhood.save
-        format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
-        format.json { render :show, status: :created, location: @neighborhood }
-      else
-        format.html { render :new }
-        format.json { render json: @neighborhood.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @neighborhood.save
+    #     format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
+    #     format.json { render :show, status: :created, location: @neighborhood }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @neighborhood.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /neighborhoods/1
   # PATCH/PUT /neighborhoods/1.json
+
   def update
-
-    @neighborhood = Neighborhood.find(params[:id])
-    @user = User.find(params[:user_id])
-    !neighborhood.users.find(@user)
-    @neighborhood.users << @user unless @neighborhood.users.include? @user
-
     respond_to do |format|
       if @neighborhood.update(neighborhood_params)
         format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully updated.' }
@@ -73,13 +71,13 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  def update
-      @group = Group.find(params[:id])
-      @user = User.find(params[:user_id])
-      if !@group.users.find(@user)
-          @group.users << @user
-      end
-    end
+  # def update
+  #     @group = Group.find(params[:id])
+  #     @user = User.find(params[:user_id])
+  #     if !@group.users.find(@user)
+  #         @group.users << @user
+  #     end
+  #   end
   # DELETE /neighborhoods/1
   # DELETE /neighborhoods/1.json
   def destroy
@@ -90,12 +88,17 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
+  def join
+    @neighborhood.users << current_user unless @neighborhood.users.include?(current_user)
+    set_active
+  end
+
   def set_active
     current_user.current_neighborhood = @neighborhood
 
     respond_to do |format|
       if current_user.save
-        format.html { redirect_to posts_url, notice: 'Neighborhood has been visited' }
+        format.html { redirect_to @neighborhood, notice: 'Neighborhood has been visited' }
         format.json { render :show, status: :created, location: @neighborhood }
       else
         format.html { redirect_to @neighborhood, notice: 'Neighborhood could not be visited' }

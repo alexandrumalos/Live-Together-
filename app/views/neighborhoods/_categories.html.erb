@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @neighborhood.categories.order(:name).each do |category| %>
+      <tr>
+        <td>
+          <%= category.name %>
+        </td>
+        <td>
+          <%= category.description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

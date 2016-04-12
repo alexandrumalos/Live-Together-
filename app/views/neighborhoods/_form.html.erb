@@ -11,19 +11,63 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <style>
+  body{
+    background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  </style>
+  <div class="center content well">
+    <div class="center">
+        <p class="neighborhood-title">
+          <div class="field">
+            <%= f.text_field :name, placeholder: 'Name', value: @neighborhood.name, class: 'form-control n-name-form' %>
+          </div>
+        </p>
+        <p>
+          <div class="field">
+            <%= f.text_field :location, placeholder: 'Location', value: @neighborhood.location, class: 'form-control n-location-form' %>
+          </div>
+        </p>
+      </table>
+    </div>
+    <hr class="under-title">
+
+    <div class="panel with-nav-tabs panel-success">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+          <li><a href="#tab2" data-toggle="tab">Stats</a></li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="tab1">
+            <div class="field">
+              <%= f.text_area :description, placeholder: 'Description', value: @neighborhood.description, class: 'form-control', rows: 6 %>
+            </div>
+          </div>
+          <div class="tab-pane fade scrollable" id="tab2">
+            <div class="field text-left">
+              <%= f.label :threshold %>
+              <%= f.text_field :threshold, placeholder: 'threshold', value: @neighborhood.threshold, class: 'form-control n-threshold-form' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="under-description">
+
+    <p>
+      <div class="actions buttons">
+        <%= f.submit 'Submit', class: 'btn btn-lg btn-success' %>
+      </div>
 <% end %>
+      <div class="buttons">
+        <%= button_to 'Back', @neighborhood, class: 'btn btn-lg btn-default', method: :get %>
+      </div>
+    </p>
+  </div>

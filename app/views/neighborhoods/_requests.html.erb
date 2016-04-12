@@ -1,0 +1,33 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Request Type
+      </th>
+      <th>
+        User
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @neighborhood.requests.order(:created_at).each do |request| %>
+      <tr>
+        <td>
+          <%= request.request_type %>
+        </td>
+        <td>
+          <%= request.user.name %>
+          <span class="label label-success">
+            <%= request.user.username %>
+          </span>
+        </td>
+        <td>
+          <%= I18n.l request.created_at, format: :short %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
