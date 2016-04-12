@@ -7,22 +7,36 @@ body{
 </style>
 <div class="center content well">
   <div class="center">
-    <table class="head-table">
-      <tr>
-        <td class="head-left">
-          <img class="head-img" src="http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg"/>
-        </td>
-        <td class="head-mid center">
-          <p class="neighborhood-title"><%= @neighborhood.name %></p>
-        </td>
-        <td class="head-right">
-          <%= @neighborhood.location %>
-        </td>
-      </tr>
+      <p class="neighborhood-title"><%= @neighborhood.name %></p>
+      <p>
+        <%= @neighborhood.location %>
+      </p>
     </table>
   </div>
   <hr class="under-title">
 
+  <div class="panel with-nav-tabs panel-success">
+    <div class="panel-heading">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">One</a></li>
+        <li><a href="#tab2" data-toggle="tab">two</a></li>
+        <li><a href="#tab3" data-toggle="tab">three</a></li>
+      </ul>
+    </div>
+    <div class="panel-body">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+          ONE
+        </div>
+        <div class="tab-pane fade" id="tab2">
+          TWO
+        </div>
+        <div class="tab-pane fade" id="tab3">
+          THREE
+        </div>
+      </div>
+    </div>
+  </div>
   <p>
     <%= @neighborhood.description %>
   </p>
@@ -39,7 +53,7 @@ body{
   </p>
   <div class="clearfix"></div>
 
-  <div class="pull-right">    
+  <div class="pull-right">
     <%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
     <%= link_to 'Back', neighborhoods_path %>
   </div>
