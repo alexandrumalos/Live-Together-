@@ -39,24 +39,27 @@ class NeighborhoodsController < ApplicationController
   def create
     @neighborhood = Neighborhood.new(neighborhood_params)
     @neighborhood.threshold = 100
+    @neighborhood.users << current_user
+    current_user.neighborhoods << @neighborhood
     @neighborhood.leads << current_user
     current_user.lead_neighborhoods << @neighborhood
+    set_active
 
-    respond_to do |format|
-      if @neighborhood.save
-        format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
-        format.json { render :show, status: :created, location: @neighborhood }
-      else
-        format.html { render :new }
-        format.json { render json: @neighborhood.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @neighborhood.save
+    #     format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
+    #     format.json { render :show, status: :created, location: @neighborhood }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @neighborhood.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /neighborhoods/1
   # PATCH/PUT /neighborhoods/1.json
-  def update
 
+  def update
     respond_to do |format|
       if @neighborhood.update(neighborhood_params)
         format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully updated.' }
