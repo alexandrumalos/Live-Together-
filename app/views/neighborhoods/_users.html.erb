@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        User
+      </th>
+      <th>
+        Email
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @neighborhood.users.order(:name).each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+          <span class="label label-success">
+            <%= user.username %>
+          </span>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

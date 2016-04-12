@@ -43,9 +43,9 @@
   <tbody>
     <% @neighborhoods.each do |neighborhood| %>
       <tr>
-        <td><%= neighborhood.name %></td>
-        <td><%= neighborhood.location %></td>
-        <td><%= neighborhood.description %></td>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></td>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.location %></td>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.description %></td>
         <td><%= link_to '<button type="button">Join</button>'.html_safe, new_neighborhood_path %></td>
         <td><%= link_to '<button type="button">Make default</button>'.html_safe, new_neighborhood_path %></td>
       </tr>
