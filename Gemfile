@@ -7,6 +7,8 @@ gem 'carrierwave'
 
 gem 'devise'
 
+gem 'figaro'
+
 gem 'gmaps4rails'
 
 gem 'carousel'
