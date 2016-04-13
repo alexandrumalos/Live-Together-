@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 gem 'fog'
 
+gem 'carrierwave'
+
 gem 'devise'
 
 gem 'gmaps4rails'
