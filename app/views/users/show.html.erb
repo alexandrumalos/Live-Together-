@@ -127,100 +127,103 @@
     
     <div id="center-contents-block">
         <div id="sidebar">
-            <aside>
+          <aside>
             <h1>Hello <%= @user.name %>!!</h1>
             <div class="center">
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
+              <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
               <p></p>
             </div>
-            </aside>
-            <aside>
-            <div class="panel panel-primary">
-          <div class="panel-heading">Contact Information</div>
-          <div class="panel-body"><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
-          <div class="panel-body"><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
+          </aside>
           
-          <div class="bs-example" id="center">
-            <!-- Button HTML (to Trigger Modal) -->
-            <a href="#edit" class="btn btn-sm btn-primary" data-toggle="modal">Edit </a>
-            <%= form_for(@user) do |f| %>
-              <% if @user.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this event from being saved:</h2>
-                  <ul>
-                    <% @user.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
-        
-              <div id="edit" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Edit Profile</h4>
-                    </div>
-                    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                    <div class="modal-body">
-                      <%= f.error_notification %>
-                      <div class="form-inputs">
-                        <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
-                        <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
-                        <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
-                        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
-                        <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+          <aside>
+      
+              
+          
+            <div class="bs-example" id="center">
+              <!-- Button HTML (to Trigger Modal) -->
+              
+              <%= form_for(@user) do |f| %>
+                <% if @user.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this event from being saved:</h2>
+                    <ul>
+                      <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+          
+                <div id="edit" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Edit Profile</h4>
                       </div>
+                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <div class="modal-body">
+                        <%= f.error_notification %>
+                        <div class="form-inputs">
+                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+                          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Save", class: "btn btn-primary" %>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                      <% end %>
                     </div>
-                    <div class="modal-footer">
-                      <%= f.submit "Save", class: "btn btn-primary" %>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      
                     </div>
-                    <% end %>
                   </div>
-                    
-                  </div>
-                </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
-          
+        </aside>        
         </div>
-            </aside>        
-        </div>
+        
         <div id="main-contents">
           <div class="panel with-nav-tabs panel-success">
-    <div class="panel-heading">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Contact</a></li>
-        <li><a href="#tab2" data-toggle="tab">Posts</a></li>
-        <li><a href="#tab3" data-toggle="tab">About</a></li>
-      </ul>
-    </div>
-    <div class="panel-body">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="tab1">
-          <a href="#edit" class="btn btn-sm btn-primary pull-right" data-toggle="modal">Edit </a>
-          <h2 class="text-left">Contact</h2>
+            <div class="panel-heading">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Contact</a></li>
+                <li><a href="#tab2" data-toggle="tab">Posts</a></li>
+                <li><a href="#tab3" data-toggle="tab">About</a></li>
+              </ul>
+            </div>
+            
+            <div class="panel-body">
+              <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1">
+                  <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> Contact</h2>
+                  <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
+                  <p></p>
+                  <div><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
+                </div>
+                
+                <div class="tab-pane fade post-scrollable" id="tab2">
+                  <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
+                  <% @user.posts.each do |post| %>
+                    <%= render post %>
+                  <% end %>
+                </div>
+                
+                <div class="tab-pane fade scrollable" id="tab3">
+                </div>
+              </div>
+            </div>
+          </div>
           
-          <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
-          <p></p>
-          <div><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
+          
         </div>
-        <div class="tab-pane fade post-scrollable" id="tab2">
-          <% @user.posts.each do |post| %>
-            <%= render post %>
-          <% end %>
-        </div>
-        <div class="tab-pane fade scrollable" id="tab3">
-        </div>
-      </div>
-    </div>
   </div>
-          
-          
-        </div>
-    </div>
     
     <footer>
     ...
