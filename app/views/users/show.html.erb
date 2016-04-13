@@ -1,58 +1,11 @@
 <!DOCTYPE html>
 <!-- Template by html.am -->
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>3 Column Layout</title>
-	
-</head>
-
-<body>
-
-	<header id="header"><p>Header...</p></header>
-
-	<div id="container">
-		<main id="center" class="column">
-			<article>
-			
-				<h1>Hello <%= @user.username %> !!</h1>
-				
-			</article>								
-		</main>
-	
-</body>
-
-</html>
-
-
-
-
-
-
 <p id="notice"><%= notice %></p>
 =======================================================================================================
 <div id="columns">
   <div id="center">
     <article>
-      <h1>Hello <%= @user.name %>!!</h1>
-      <div class="center">
-        <img alt="profile" class="img-rounded profile-pic" id="center" src="<%= asset_path("profile.png") %>">
-      </div>
       <div class="user-info">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            Contact Information
-            <!-- Button HTML (to Trigger Modal) -->
-            <a class="btn btn-sm btn-default pull-right" data-toggle="modal" href="#edit-modal">Edit</a>
-            <div class="clearfix"></div>
-          </div>
-          <div class="panel-body">
-            <span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %>
-          </div>
-          <div class="panel-body">
-            <span class="glyphicon glyphicon-phone"></span>: User phone number
-          </div>
-        </div>
       </div>
     </article>
   </div>
@@ -125,11 +78,17 @@
     <header>
     ...
     </header>
-    
+    <main id="center" class="column">
+			<article>
+			
+				<h1>Profile</h1>
+				
+			</article>								
+		</main>
     <div id="center-contents-block">
         <div id="sidebar">
           <aside>
-            <h1>Hello <%= @user.name %>!!</h1>
+            <h2>Hello <%= @user.name %>!!</h2>
             <div class="center">
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
               <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
@@ -200,6 +159,7 @@
         </div>
         
         <div id="main-contents">
+          <p></p>
           <div class="panel profile-nav-tabs panel-success">
             <div class="panel-heading">
               <ul class="nav nav-tabs">
@@ -240,6 +200,21 @@
               </div>
             </div>
           </div>
+          
+          <div class="panel panel-primary">
+          <div class="panel-heading">
+            Contact Information(keep for testing purposes
+            <!-- Button HTML (to Trigger Modal) -->
+            <a class="btn btn-sm btn-default pull-right" data-toggle="modal" href="#edit-modal">Edit</a>
+            <div class="clearfix"></div>
+          </div>
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %>
+          </div>
+          <div class="panel-body">
+            <span class="glyphicon glyphicon-phone"></span>: User phone number
+          </div>
+        </div>
           
           
         </div>
