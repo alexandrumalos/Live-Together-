@@ -8,3 +8,4 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = ENV["AWS_BUCKET"]                     # required
 end
+8882482498924
