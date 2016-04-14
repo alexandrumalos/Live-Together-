@@ -36,16 +36,17 @@ $(".actionButton").click(function() {
 
 
 
-<div class="container">
+<div class="calendar">
   <%= month_calendar events: @events do |date, events| %>
     <div><%= date.day %></div> 
-
-    <% events.each do |event| %>
-      <div>
-        <%= event.name %>
-      </div>
+    <ul>
+      <% @events.each do |event| %>
+        <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y") %>
+          <li><%= event.name %></li>
+        <% end %>
+      <% end %>
+    </ul>
     <% end %>
-  <% end %>
 </div>
 
 
@@ -102,8 +103,8 @@ $(".actionButton").click(function() {
             </div>
 
             <div class="field">
-              <%= f.label :date %><br>
-              <%= f.date_select :date, class: 'form-control' %>
+              <%= f.label :start_time %><br>
+              <%= f.datetime_select :start_time, class: 'form-control' %>
             </div>
 
             <div class="field">
