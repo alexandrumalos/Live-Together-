@@ -1,8 +1,48 @@
-<div class="simple-calendar">
-  <%= link_to "Previous", calendar.url_for_previous_view %>
-  <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-  <%= link_to "Next", calendar.url_for_next_view %>
+<style>
+  .border {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1a5648;
+  }
   
+  .border ul {
+    margin: 0;
+    padding: 0;
+}
+
+.border ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.border .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.border .next {
+    float: right;
+    padding-top: 10px;
+}
+</style>
+
+<div class="simple-calendar">
+  <div class="border">
+    
+  <ul>
+    <li class="prev"><%= link_to '<' .html_safe, calendar.url_for_previous_view%></li>
+    <li style="text-align:center">
+     <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+    </li>
+    
+    <li class="next"></li><%= link_to '>' .html_safe, calendar.url_for_next_view%></li>
+  </ul>
+  
+  
+</div>
+
   <table class="table table-striped">
     <thead>
       <tr>

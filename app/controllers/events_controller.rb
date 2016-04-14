@@ -19,6 +19,8 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @event = Event.new
+    @current_month = Time.now.strftime("%m").to_i
+    @current_year = Time.now.strftime("%m").to_i
   end
 
   # GET /events/1
