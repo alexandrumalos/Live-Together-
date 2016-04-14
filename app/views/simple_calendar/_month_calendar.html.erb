@@ -2,7 +2,8 @@
   .border {
     padding: 70px 25px;
     width: 100%;
-    background: #1a5648;
+    background: #1a5675;
+    text-align: center;
   }
   
   .border ul {
@@ -10,34 +11,58 @@
     padding: 0;
 }
 
+.cal-center{
+  width: 100%;
+  text-align: center;
+
+}
+.cal-head{
+  text-align: center;
+  width: 80%;
+  float: left;
+}
+
 .border ul li {
     color: white;
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
+    
 }
 
 .border .prev {
+    width: 10%;
     float: left;
-    padding-top: 10px;
+    display: inline-block;
 }
 
 .border .next {
+    width: 10%;
     float: right;
-    padding-top: 10px;
+    display: inline-block;
+}
+
+.no-hover:hover{
+  background: none;
+}
+.my-col-md-9{
+  width: 80%;
+  margin-left: 10%;
 }
 </style>
-
-<div class="simple-calendar">
+  <div class="cal-center">
+  <div class="simple-calendar">
+  <div class="col-md-9 my-col-md-9">
   <div class="border">
     
   <ul>
-    <li class="prev"><%= link_to '<' .html_safe, calendar.url_for_previous_view%></li>
-    <li style="text-align:center">
+    <li class="prev"><%= link_to '<span class="glyphicon glyphicon-triangle-left " ></span>' .html_safe, calendar.url_for_previous_view, class: "no-hover" %></li>
+    
+    <li class="cal-head">
      <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
     </li>
     
-    <li class="next"></li><%= link_to '>' .html_safe, calendar.url_for_next_view%></li>
+    <li class="next"><%= link_to '<span class="glyphicon glyphicon-triangle-right " ></span>'.html_safe, calendar.url_for_next_view, class: "no-hover"%></li>
   </ul>
   
   
@@ -71,4 +96,6 @@
       <% end %>
     </tbody>
   </table>
+</div>
+</div>
 </div>

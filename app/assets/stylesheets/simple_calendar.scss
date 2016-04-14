@@ -1,5 +1,7 @@
 .simple-calendar {
   
+  text-align: center;
+  
   table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
@@ -78,5 +80,11 @@
   }
   .current-month {}
 
-  .has-events {}
+  .has-events {
+    background: #156545;
+  }
+  
+  .today {
+    background: #FFFFC0
+  }
 }

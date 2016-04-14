@@ -36,18 +36,7 @@ $(".actionButton").click(function() {
 
 
 
-<div class="calendar">
-  <%= month_calendar events: @events do |date, events| %>
-    <div><%= date.day %></div> 
-    <ul>
-      <% @events.each do |event| %>
-        <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y") %>
-          <li><%= event.name %></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <% end %>
-</div>
+
 
 
  <div class="container">
@@ -69,6 +58,7 @@ $(".actionButton").click(function() {
   <div class="bs-example">
     <!-- Button HTML (to Trigger Modal) -->
     <a href="#new" class="btn btn-md btn-primary" data-toggle="modal">Add New Event</a>
+  </div>
     <%= form_for(@event) do |f| %>
       <% if @event.errors.any? %>
         <div id="error_explanation">
@@ -90,9 +80,7 @@ $(".actionButton").click(function() {
             </div>
             <div class="modal-body">
               <p><large>Please fill out the information below</large></p>
-            </div>
-
-            <div class="field">
+              <div class="field">
               <%= f.label :name %><br>
               <%= f.text_field :name, class: 'form-control' %>
             </div>
@@ -111,6 +99,9 @@ $(".actionButton").click(function() {
               <%= f.label :location %><br>
               <%= f.text_field :location, class: 'form-control' %>
             </div>
+            </div>
+
+            
             <div class="modal-footer">
               <%= f.submit "Create Event", class: "btn btn-primary" %>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -118,6 +109,6 @@ $(".actionButton").click(function() {
           </div>
         </div>
     <% end %>
-  </div>
+  
 </body>
 </html>

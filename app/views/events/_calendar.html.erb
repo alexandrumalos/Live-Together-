@@ -20,7 +20,7 @@ body {font-family: Verdana,sans-serif;}
 .month {
     padding: 70px 25px;
     width: 100%;
-    background: #1a5648;
+    background: #1a56486;
 }
 
 .month ul {
@@ -103,8 +103,8 @@ body {font-family: Verdana,sans-serif;}
 <h1>Events</h1>
 
 
-
-<div class="calendar">
+<div class="center">
+    <div class="calendar" >
   <%= month_calendar events: @events do |date, events| %>
     <div><%= date.day %></div> 
     <ul>
@@ -116,6 +116,8 @@ body {font-family: Verdana,sans-serif;}
     </ul>
     <% end %>
 </div>
+</div>
+
 
 
 
