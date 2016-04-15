@@ -2,7 +2,7 @@
   .border {
     padding: 70px 25px;
     width: 100%;
-    background: #1a5675;
+    background: -webkit-linear-gradient(-45deg, rgba(163,239,204,1) 0%, rgba(23,153,120,1) 50%, rgba(15,59,92,1) 100%);
     text-align: center;
   }
   
@@ -22,6 +22,11 @@
   float: left;
 }
 
+  .day-head{
+    
+    background: -webkit-linear-gradient(-45deg, rgba(163,239,204,1) 0%, rgba(23,153,120,1) 50%, rgba(15,59,92,1) 100%);
+}
+
 .border ul li {
     color: white;
     font-size: 20px;
@@ -34,12 +39,14 @@
     width: 10%;
     float: left;
     display: inline-block;
+    
 }
 
 .border .next {
     width: 10%;
     float: right;
     display: inline-block;
+    
 }
 
 .no-hover:hover{
@@ -50,52 +57,52 @@
   margin-left: 10%;
 }
 </style>
-  <div class="cal-center">
+
+<div class="cal-center">
+  
   <div class="simple-calendar">
-  <div class="col-md-9 my-col-md-9">
-  <div class="border">
     
-  <ul>
-    <li class="prev"><%= link_to '<span class="glyphicon glyphicon-triangle-left " ></span>' .html_safe, calendar.url_for_previous_view, class: "no-hover" %></li>
-    
-    <li class="cal-head">
-     <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
-    </li>
-    
-    <li class="next"><%= link_to '<span class="glyphicon glyphicon-triangle-right " ></span>'.html_safe, calendar.url_for_next_view, class: "no-hover"%></li>
-  </ul>
-  
-  
-</div>
+    <div class="col-md-9 my-col-md-9">
+      
+      <div class="border">
+        <ul>
+          <li class="prev"><%= link_to '<span class="glyphicon glyphicon-triangle-left " ></span>' .html_safe, calendar.url_for_previous_view, class: "no-hover" %></li>
+          
+          <li class="cal-head">
+            <%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+          </li>
+          
+          <li class="next"><%= link_to '<span class="glyphicon glyphicon-triangle-right " ></span>'.html_safe, calendar.url_for_next_view, class: "no-hover"%></li>
+        </ul>
+      </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        
-        <% date_range.slice(0, 7).each do |day| %>
-          <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% date_range.each_slice(7) do |week| %>
-        <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
-                <% capture_haml do %>
-                  <% block.call day, sorted_events.fetch(day, []) %>
-                <% end %>
-              <% else %>
-                <% block.call day, sorted_events.fetch(day, []) %>
-              <% end %>
+      <table class="table table-striped">
+        <thead class="day-head">
+          <tr>
+            <% date_range.slice(0, 7).each do |day| %>
+              <th><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
             <% end %>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <% date_range.each_slice(7) do |week| %>
+            <tr>
+              <% week.each do |day| %>
+                <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+                  <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                    <% capture_haml do %>
+                      <% block.call day, sorted_events.fetch(day, []) %>
+                    <% end %>
+                  <% else %>
+                    <% block.call day, sorted_events.fetch(day, []) %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-</div>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
