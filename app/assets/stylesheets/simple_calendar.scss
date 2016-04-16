@@ -85,6 +85,7 @@
   }
   
   .today {
-    background: #FFFFC0
+    background: -webkit-linear-gradient(-45deg, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+    color: white;
   }
 }

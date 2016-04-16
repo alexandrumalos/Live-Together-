@@ -2,8 +2,8 @@
   .border {
     padding: 70px 25px;
     width: 100%;
-    background: -webkit-linear-gradient(-45deg, rgba(163,239,204,1) 0%, rgba(23,153,120,1) 50%, rgba(15,59,92,1) 100%);
     text-align: center;
+    background: -webkit-linear-gradient(-45deg, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
   }
   
   .border ul {
@@ -24,7 +24,7 @@
 
   .day-head{
     
-    background: -webkit-linear-gradient(-45deg, rgba(163,239,204,1) 0%, rgba(23,153,120,1) 50%, rgba(15,59,92,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
 }
 
 .border ul li {
@@ -32,6 +32,7 @@
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
+    text-align: center;
     
 }
 
@@ -39,6 +40,7 @@
     width: 10%;
     float: left;
     display: inline-block;
+    
     
 }
 
@@ -51,6 +53,7 @@
 
 .no-hover:hover{
   background: none;
+  
 }
 .my-col-md-9{
   width: 80%;
@@ -76,7 +79,7 @@
         </ul>
       </div>
 
-      <table class="table table-striped">
+      <table class="table table">
         <thead class="day-head">
           <tr>
             <% date_range.slice(0, 7).each do |day| %>
