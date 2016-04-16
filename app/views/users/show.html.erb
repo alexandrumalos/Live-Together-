@@ -132,9 +132,10 @@
                       <div class="modal-body">
                         <%= f.error_notification %>
                         <div class="form-inputs">
-                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :name, placeholder: 'name', value: @user.username, required: true, autofocus: true, input_html: { class: 'form-control'} %>
                           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
                           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
@@ -199,9 +200,7 @@
                   <p></p>
                   <div>User Name: <%= @user.username %></div>
                   <p></p>
-                  <div>City: Valdosta(test)</div>
-                  <p></p>
-                  <div>State: GA(test</div>
+                  <div>Bio: <%= @user.description %></div>
                 </div>
               </div>
             </div>
