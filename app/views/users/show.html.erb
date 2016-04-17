@@ -94,7 +94,6 @@
             </div>
           </aside>
           
-          
           <aside>
             <h3>Cancel my account</h3>
 
@@ -132,10 +131,36 @@
                       <div class="modal-body">
                         <%= f.error_notification %>
                         <div class="form-inputs">
-                          <%= f.input :name, placeholder: 'name', value: @user.username, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Save", class: "btn btn-primary" %>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                      <% end %>
+                    </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div id="edit2" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Edit Profile</h4>
+                      </div>
+                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <div class="modal-body">
+                        <%= f.error_notification %>
+                        <div class="form-inputs">
+                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
                           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :description, required: true, input_html: { class: 'form-control', rows: 6 }, rows: 6  %>
                           <%= f.input :phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
                           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
@@ -162,10 +187,10 @@
           <div class="panel profile-nav-tabs panel-success">
             <div class="panel-heading">
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab">Contact</a></li>
-                <li><a href="#tab2" data-toggle="tab">Posts</a></li>
-                <li><a href="#tab3" data-toggle="tab">About</a></li>
-                <li><a href="#tab4" data-toggle="tab">Neighborhoods</a></li>
+                <li class="active"><a href="#tab1" data-toggle="tab">About</a></li>
+                <li><a href="#tab2" data-toggle="tab">Contact</a></li>
+                <li><a href="#tab3" data-toggle="tab">Neighborhoods</a></li>
+                <li><a href="#tab4" data-toggle="tab">Posts</a></li>
               </ul>
             </div>
             
@@ -173,34 +198,34 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1">
                   <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
-                  <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
-                  <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
-                  <p></p>
-                  <div><span class="glyphicon glyphicon-phone"></span>: <%= @user.phone_number %></div>
-                </div>
-                
-                <div class="tab-pane fade post-scrollable" id="tab2">
-                  <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
-                  <% @user.posts.each do |post| %>
-                    <%= render post %>
-                  <% end %>
-                </div>
-                
-                <div class="tab-pane fade post-scrollable" id="tab4">
-                  <h2 class="text-left"><span class="glyphicon glyphicon-home"></span> Neighborhoods</h2>
-                  <% @user.neighborhoods.each do |neighborhood| %>
-                    <%= neighborhood.name %>
-                  <% end %>
-                </div>
-                
-                <div class="tab-pane fade scrollable" id="tab3">
-                  <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
                   <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> About</h2>
                   <div>Name: <%= @user.name %></div>
                   <p></p>
                   <div>User Name: <%= @user.username %></div>
                   <p></p>
                   <div>Bio: <%= @user.description %></div>
+                </div>
+                
+                <div class="tab-pane fade post-scrollable" id="tab2">
+                  <a href="#edit2" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
+                  <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
+                  <p></p>
+                  <div><span class="glyphicon glyphicon-phone"></span>: <%= @user.phone_number %></div>
+                </div>
+                
+                <div class="tab-pane fade scrollable" id="tab3">
+                  <h2 class="text-left"><span class="glyphicon glyphicon-home"></span> Neighborhoods</h2>
+                  <% @user.neighborhoods.each do |neighborhood| %>
+                    <%= neighborhood.name %>
+                  <% end %>
+                </div>
+                
+                <div class="tab-pane fade post-scrollable" id="tab4">
+                  <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
+                  <% @user.posts.each do |post| %>
+                    <%= render post %>
+                  <% end %>
                 </div>
               </div>
             </div>
