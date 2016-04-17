@@ -26,6 +26,7 @@ body {font-family: Verdana,sans-serif;}
 .month ul {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .month ul li {
@@ -111,7 +112,7 @@ body {font-family: Verdana,sans-serif;}
     <ul>
       <% @events.each do |event| %>
         <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y") %>
-          <li><%= event.name %></li>
+          <li class="click-row" onclick="goto('<%= event_path(event) %>');"><%= event.name %></li>
         <% end %>
       <% end %>
     </ul>
