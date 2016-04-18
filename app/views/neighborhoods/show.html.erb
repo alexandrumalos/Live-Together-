@@ -55,7 +55,7 @@ body{
   <p>
     <% unless user_in_neighborhood(current_user, @neighborhood) %>
       <div class="buttons">
-        <%= button_to 'Join', join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
+        <%= button_to 'Join', request_to_join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
       </div>
     <% else %>
       <% if current_user.current_neighborhood != @neighborhood %>

@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :join]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join]
   before_action :authenticate_user!
 
   # GET /neighborhoods
@@ -40,9 +40,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.new(neighborhood_params)
     @neighborhood.threshold = 100
     @neighborhood.users << current_user
-    current_user.neighborhoods << @neighborhood
     @neighborhood.leads << current_user
-    current_user.lead_neighborhoods << @neighborhood
     set_active
 
     # respond_to do |format|
@@ -88,9 +86,27 @@ class NeighborhoodsController < ApplicationController
     end
   end
 
-  def join
-    @neighborhood.users << current_user unless @neighborhood.users.include?(current_user)
-    set_active
+  # def join
+  #   @neighborhood.users << current_user unless @neighborhood.users.include?(current_user)
+  #   set_active
+  # end
+
+  # POST /neighborhoods/1/request_to_join
+  def request_to_join
+    @request = Request.new
+    @request.user = current_user
+    @request.neighborhood = @neighborhood
+    @request.request_type = 'join'
+
+    respond_to do |format|
+      if @request.save
+        format.html { redirect_to neighborhoods_url, notice: 'Request was successfully created.' }
+        format.json { render :show, status: :created, location: @request }
+      else
+        format.html { render :new }
+        format.json { render json: @request.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def set_active
