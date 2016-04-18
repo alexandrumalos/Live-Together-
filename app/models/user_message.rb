@@ -10,6 +10,6 @@
 #
 
 class UserMessage < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :recipients, class_name: 'User', foreign_key: 'user_id'
   belongs_to :received_messages, class_name: 'Message', foreign_key: 'message_id'
 end
