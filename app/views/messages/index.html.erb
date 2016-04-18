@@ -1,29 +1,15 @@
 <h1>Listing Messages</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> text</th>
-      <th>Head</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @messages.each do |message| %>
-    <%if message.recipients.include?(current_user)%> <%end%>
-    <% if message.sender == current_user %> <%end%>
-      <tr>
-        <td><%= message. text %></td>
-        <td><%= message.head %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <div class="center">
+
+
+    <hr>
+
+    <%current_user.received_messages.each do |message| %>
+      <%= render message %>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
 
-<%= link_to 'New Message', new_message_path %>
+<%= button_to 'New Message', new_message_path, class: 'btn btn-success btn-lg fixed-btn', method: :get %>
