@@ -110,8 +110,10 @@ class NeighborhoodsController < ApplicationController
   end
 
   def set_active
-    current_user.current_neighborhood = @neighborhood
-
+    if @neighborhood.users.include?(current_user)
+      current_user.current_neighborhood = @neighborhood
+    end
+    
     respond_to do |format|
       if current_user.save
         format.html { redirect_to @neighborhood, notice: 'Neighborhood has been visited' }
