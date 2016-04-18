@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 #
 
+gem 'fog'
+
+gem 'carrierwave'
 
 gem 'devise'
+
+gem 'figaro'
 
 gem 'gmaps4rails'
 

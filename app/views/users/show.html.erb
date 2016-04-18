@@ -30,7 +30,7 @@
 
 
 <p id="notice"><%= notice %></p>
-===========================================================================================================================================================
+=======================================================================================================
 <div id="columns">
   <div id="center">
     <article>
@@ -80,6 +80,7 @@
           <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
           <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
         </div> -->
@@ -113,7 +114,7 @@
 
 
 
-============================================================================================================================================================
+======================================================================================================
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,10 +137,19 @@
             </div>
           </aside>
           
-          <aside>
-      
-              
           
+          <aside>
+            <h3>Cancel my account</h3>
+
+            <p>
+              Unhappy? 
+              <p></p>
+              <button type="button" class="btn btn-danger btn-xs btn-block">Cancel Account</button>
+              <td><%= link_to '<button type="button" class="btn btn-danger btn-xs btn-block">Cancel Account</button>'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></td>
+              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+            </p>
+          </aside>
+          <aside>
             <div class="bs-example" id="center">
               <!-- Button HTML (to Trigger Modal) -->
               
@@ -169,6 +179,7 @@
                           <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
                           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
                           <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
                           <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
                         </div>
@@ -202,7 +213,7 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1">
                   <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
-                  <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> Contact</h2>
+                  <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
                   <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
                   <p></p>
                   <div><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
@@ -216,6 +227,15 @@
                 </div>
                 
                 <div class="tab-pane fade scrollable" id="tab3">
+                  <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> About</h2>
+                  <div>Name: <%= @user.name %></div>
+                  <p></p>
+                  <div>User Name: <%= @user.username %></div>
+                  <p></p>
+                  <div>City: Valdosta(test)</div>
+                  <p></p>
+                  <div>State: GA(test</div>
                 </div>
               </div>
             </div>
