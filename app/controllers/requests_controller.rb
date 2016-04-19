@@ -36,9 +36,11 @@ class RequestsController < ApplicationController
 
   def approve
     neighborhood = @request.neighborhood
-    if @request.request_type == 'join'
-      @request.neighborhood.users << @request.user
-      @request.destroy
+    if neighborhood.leads.include?(current_user)
+      if @request.request_type == 'join'
+        neighborhood.users << @request.user
+        @request.destroy
+      end
     end
 
     respond_to do |format|
