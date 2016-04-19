@@ -36,6 +36,14 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
+    userstring = params[:users]
+    userstring = userstring.split(',')
+    userstring.each do |user|
+      @group.users << User.find_by_username(user.squish)
+
+    end
+
+    @group.users << current_user
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
