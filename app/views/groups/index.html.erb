@@ -1,6 +1,73 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Groups</h1>
+<h1> <%= current_user.name %>'s Groups</h1>
+
+
+<html>
+<head>
+<style>
+#neighborhoods {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#neighborhoods td, #neighborhoods th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#neighborhoods tr:nth-child(even){background-color: #f2f2f2}
+
+#neighborhoods tr:hover {background-color: #ddd;}
+
+#neighborhoods th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<table id="neighborhoods">
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Neighborhood Name</th>
+    <th>Join Neighborhood</th>
+    <th>Set your neighborhood</th>
+  </tr>
+  <tbody>
+    <% @neighborhoods.each do |neighborhood| %>
+      <tr>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></td>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.location %></td>
+        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.description %></td>
+        <td><%= link_to '<button type="button">Join</button>'.html_safe, new_neighborhood_path %></td>
+        <td><%= link_to '<button type="button">Make default</button>'.html_safe, new_neighborhood_path %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</body>
+</html>
+
+
+<br>
+
+<%= link_to 'New Neighborhood', new_neighborhood_path %>
+
+
+
+
+
+
+
+
 
 <table>
   <thead>
