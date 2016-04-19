@@ -1,65 +1,91 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  
-</p>
+<div>
+   <%= form_for(@event) do |f| %>
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+          <ul>
+            <% @event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+      <div id="edit" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Edit Event</h4>
+            </div>
+            <div class="modal-body">
+              <p><large>Please fill out the information below</large></p>
+              <div class="field">
+              <%= f.label :name %><br>
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
 
-<p>
-  <strong>Start_Time:</strong>
-  <%= @event.start_time %>
-</p>
+            <div class="field">
+              <%= f.label :description %><br>
+              <%= f.text_field :description, class: 'form-control', rows: 5  %>
+            </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
+            <div class="field">
+              <%= f.label :start_time %><br>
+              <%= f.datetime_select :start_time, class: 'form-control' %>
+            </div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+            <div class="field">
+              <%= f.label :location %><br>
+              <%= f.text_field :location, class: 'form-control' %>
+            </div>
+            </div>
 
+            
+            <div class="modal-footer">
+              <%= f.submit "Save", class: "btn btn-primary" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+</div>
 
 <div class="center content well">
   <div class="center">
-      <p class="neighborhood-title"></p>
-        <%= @event.name %>
-      <p>
-        
-      </p>
-    </table>
+    <p class="neighborhood-title"><%= @event.name %></p>
   </div>
+  
   <hr class="under-title">
 
   <div class="panel with-nav-tabs panel-success">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-        <li><a href="#tab2" data-toggle="tab">Users</a></li>
-        <li><a href="#tab3" data-toggle="tab">Categories</a></li>
-      
+        <li><a href="#tab2" data-toggle="tab">Time</a></li>
+        <li><a href="#tab3" data-toggle="tab">Location</a></li>
       </ul>
     </div>
     <div class="panel-body">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-          
+          <%= @event.description %>
         </div>
         <div class="tab-pane fade scrollable" id="tab2">
-          
+          <%= @event.start_time %>
         </div>
         <div class="tab-pane fade scrollable" id="tab3">
-          
+          <%= @event.location %>
         </div>
         
       </div>
     </div>
+    
   </div>
-
   <hr class="under-description">
-
+  
+  <a href="#edit" class="btn btn-md btn-primary" data-toggle="modal">Edit Event</a>
+  <%= button_to 'Back', events_path, method: :get %>
 </div>
