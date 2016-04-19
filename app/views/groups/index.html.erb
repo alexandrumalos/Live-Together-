@@ -37,11 +37,11 @@
     <th>Delete Group </th>
   </tr>
   <tbody>
-    <% @groups.each do |group| %>
+    <% current_user.groups.each do |group| %>
       <tr>
         <td class="click-row" onclick="goto('<%= group_path(group) %>');"><%= group.name %></td>
         <td class="click-row" onclick="goto('<%= group_path(group) %>');" >
-          <% group.users do |user| %>
+          <% group.users.each do |user| %>
             <%= user.name  %>
           <% end %>
         </td>
