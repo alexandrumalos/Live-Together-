@@ -157,14 +157,11 @@
                       <div class="modal-body">
                         <%= f.error_notification %>
                         <div class="form-inputs">
-                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :description, required: true, input_html: { class: 'form-control', rows: 6 }, rows: 6  %>
                           <%= f.input :phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
-                          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
-                          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :password, placeholder: 'To change, enter new password', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+                          <%= f.input :password_confirmation, placeholder: 'Confirm', required: true, input_html: { class: 'form-control'} %>
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -230,21 +227,6 @@
               </div>
             </div>
           </div>
-          
-          <div class="panel panel-primary">
-          <div class="panel-heading">
-            Contact Information(keep for testing purposes
-            <!-- Button HTML (to Trigger Modal) -->
-            <a class="btn btn-sm btn-default pull-right" data-toggle="modal" href="#edit-modal">Edit</a>
-            <div class="clearfix"></div>
-          </div>
-          <div class="panel-body">
-            <span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %>
-          </div>
-          <div class="panel-body">
-            <span class="glyphicon glyphicon-phone"></span>: User phone number
-          </div>
-        </div>
           
           
         </div>
