@@ -1,27 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Groups</h1>
+<h1> <%= current_user.name %>'s Groups</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
+<style>
+#groups {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#groups td, #groups th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#groups tr:nth-child(even){background-color: #f2f2f2}
+
+#groups tr:hover {background-color: #ddd;}
+
+#groups th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+<table id="groups">
+  <tr>
+    <th>Name</th>
+    <th>Members</th>
+    <th>Join Group</th>
+    <th>Default Group</th>
+    <th>Delete Group </th>
+  </tr>
   <tbody>
-    <% @groups.each do |group| %>
+    <% current_user.groups.each do |group| %>
       <tr>
-        <td><%= group. name %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td class="click-row" onclick="goto('<%= group_path(group) %>');"><%= group.name %></td>
+        <td class="click-row" onclick="goto('<%= group_path(group) %>');" >
+          <% group.users.each do |user| %>
+            <%= user.name  %>
+          <% end %>
+        </td>
+        <td><%= link_to '<button type="button">Join</button>'.html_safe, new_group_path %></td>
+        <td><%= link_to '<button type="button">Make default</button>'.html_safe, new_group_path %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
 
 <%= link_to 'New Group', new_group_path %>
