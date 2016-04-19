@@ -57,7 +57,6 @@ $(".actionButton").click(function() {
 <body>
   <div class="bs-example">
     <!-- Button HTML (to Trigger Modal) -->
-    <a href="#new" class="btn btn-md btn-primary" data-toggle="modal">Add New Event</a>
   </div>
     <%= form_for(@event) do |f| %>
       <% if @event.errors.any? %>

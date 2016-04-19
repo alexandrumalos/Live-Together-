@@ -63,10 +63,6 @@
   .wday-5 {}
   .wday-6 {}
 
-  .today {
-    background: #FFFFC0
-  }
-
   .past {}
   .future {}
 
@@ -81,11 +77,12 @@
   .current-month {}
 
   .has-events {
-    background: #156545;
+    
   }
   
   .today {
     background: -webkit-linear-gradient(-45deg, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
     color: white;
+    
   }
 }

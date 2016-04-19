@@ -2,7 +2,7 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @event.name %>
+  
 </p>
 
 <p>
@@ -22,3 +22,44 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+
+<div class="center content well">
+  <div class="center">
+      <p class="neighborhood-title"></p>
+        <%= @event.name %>
+      <p>
+        
+      </p>
+    </table>
+  </div>
+  <hr class="under-title">
+
+  <div class="panel with-nav-tabs panel-success">
+    <div class="panel-heading">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+        <li><a href="#tab2" data-toggle="tab">Users</a></li>
+        <li><a href="#tab3" data-toggle="tab">Categories</a></li>
+      
+      </ul>
+    </div>
+    <div class="panel-body">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+          
+        </div>
+        <div class="tab-pane fade scrollable" id="tab2">
+          
+        </div>
+        <div class="tab-pane fade scrollable" id="tab3">
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <hr class="under-description">
+
+</div>
