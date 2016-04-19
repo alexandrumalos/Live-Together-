@@ -2,19 +2,8 @@
 <!-- Template by html.am -->
 <p id="notice"><%= notice %></p>
 
-<div id="columns">
-  <div id="center">
-    <article>
-      <div class="user-info">
-      </div>
-    </article>
-  </div>
-</div>
 
 
-<div class="center">
-  
-</div>
 
 <div class="modal fade" id="edit-modal" role="dialog">
   <div class="modal-dialog">
@@ -68,6 +57,9 @@
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +86,7 @@
             </div>
           </aside>
           
+
           <aside>
             <h3>Cancel my account</h3>
 
@@ -102,6 +95,7 @@
               <p></p>
             
               <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
+
             </p>
           </aside>
           <aside>
@@ -162,6 +156,7 @@
                           <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
                           <%= f.input :password, placeholder: 'To change, enter new password', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
                           <%= f.input :password_confirmation, placeholder: 'Confirm', required: true, input_html: { class: 'form-control'} %>
+
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -231,9 +226,6 @@
           
         </div>
   </div>
-    
-    <footer>
-    ...
-    </footer>
 </body>
 </html>
+

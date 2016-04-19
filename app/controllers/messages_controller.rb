@@ -12,7 +12,7 @@
 
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /messages
   # GET /messages.json
   def index
@@ -36,7 +36,10 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
+
     @message = Message.new(message_params)
+    @message.sender = current_user
+    @message.recipients << User.find_by_username(params[:to])
 
     respond_to do |format|
       if @message.save

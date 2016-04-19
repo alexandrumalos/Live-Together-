@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 20160416194044) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.date     "date"
     t.string   "location"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "start_time"
   end
 
   create_table "group_messages", force: :cascade do |t|

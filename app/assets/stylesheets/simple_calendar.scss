@@ -53,6 +53,7 @@
   .day {
     height: 50px;
     text-align: left;
+    background: white;
   }
 
   .wday-0 {}
@@ -63,9 +64,6 @@
   .wday-5 {}
   .wday-6 {}
 
-  .today {
-    background: #FFFFC0
-  }
 
   .past {}
   .future {}
@@ -81,7 +79,7 @@
   .current-month {}
 
   .has-events {
-    background: #156545;
+    
   }
   
   .today {
