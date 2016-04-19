@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <!-- Template by html.am -->
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>3 Column Layout</title>
-	
-</head>
-
-<body>
-
-	<header id="header"><p>Header...</p></header>
-
-	<div id="container">
-		<main id="center" class="column">
-			<article>
-			
-				<h1>Hello <%= @user.username %> !!</h1>
-				
-			</article>								
-		</main>
-	
-</body>
-
-</html>
-
-
-
-
-
-
 <p id="notice"><%= notice %></p>
+
+
+
+
+<div class="modal fade" id="edit-modal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">&times;</button>
+        <h4 class="modal-title">Edit User</h4>
+      </div>
+      <!-- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> -->
+      <div class="modal-body">
+        <%= render 'sessions/registrations/edit' %>
+        <!-- <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+          <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+          <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+        </div> -->
+
+      </div>
+      <div class="modal-footer">
+        <!-- <%= f.button :submit, "Sign up", class: 'btn btn-lg btn-primary' %> -->
+        <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<div class="bs-example">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %>
+        prohibited this event from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,14 +67,18 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-    <header>
-    ...
-    </header>
-    
+   
+    <main id="center" class="column">
+			<article>
+			
+				<h1>Profile</h1>
+				
+			</article>								
+		</main>
     <div id="center-contents-block">
         <div id="sidebar">
           <aside>
-            <h1>Hello <%= @user.name %>!!</h1>
+            <h2>Hello <%= @user.name %>!!</h2>
             <div class="center">
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
               <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
@@ -53,18 +86,16 @@
             </div>
           </aside>
           
-          
+
           <aside>
             <h3>Cancel my account</h3>
-
-
 
             <p>
               Unhappy? 
               <p></p>
-              <button type="button" class="btn btn-danger btn-xs btn-block">Cancel Account</button>
-              <td><%= link_to '<button type="button" class="btn btn-danger btn-xs btn-block">Cancel Account</button>'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></td>
-              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+            
+              <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
+
             </p>
           </aside>
           <aside>
@@ -96,10 +127,36 @@
                         <div class="form-inputs">
                           <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
                           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Save", class: "btn btn-primary" %>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                      <% end %>
+                    </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div id="edit2" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Edit Profile</h4>
+                      </div>
+                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <div class="modal-body">
+                        <%= f.error_notification %>
+                        <div class="form-inputs">
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
-                          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
-                          <%= f.input :password_confirmation, required: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :password, placeholder: 'To change, enter new password', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+                          <%= f.input :password_confirmation, placeholder: 'Confirm', required: true, input_html: { class: 'form-control'} %>
+
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -118,12 +175,14 @@
         </div>
         
         <div id="main-contents">
+          <p></p>
           <div class="panel profile-nav-tabs panel-success">
             <div class="panel-heading">
               <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab">Contact</a></li>
-                <li><a href="#tab2" data-toggle="tab">Posts</a></li>
-                <li><a href="#tab3" data-toggle="tab">About</a></li>
+                <li class="active"><a href="#tab1" data-toggle="tab">About</a></li>
+                <li><a href="#tab2" data-toggle="tab">Contact</a></li>
+                <li><a href="#tab3" data-toggle="tab">Neighborhoods</a></li>
+                <li><a href="#tab4" data-toggle="tab">Posts</a></li>
               </ul>
             </div>
             
@@ -131,29 +190,34 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1">
                   <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
-                  <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
-                  <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
-                  <p></p>
-                  <div><span class="glyphicon glyphicon-phone"></span>: User phone number</div>
-                </div>
-                
-                <div class="tab-pane fade post-scrollable" id="tab2">
-                  <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
-                  <% @user.posts.each do |post| %>
-                    <%= render post %>
-                  <% end %>
-                </div>
-                
-                <div class="tab-pane fade scrollable" id="tab3">
-                  <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
                   <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> About</h2>
                   <div>Name: <%= @user.name %></div>
                   <p></p>
                   <div>User Name: <%= @user.username %></div>
                   <p></p>
-                  <div>City: Valdosta(test)</div>
+                  <div>Bio: <%= @user.description %></div>
+                </div>
+                
+                <div class="tab-pane fade post-scrollable" id="tab2">
+                  <a href="#edit2" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
+                  <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
                   <p></p>
-                  <div>State: GA(test</div>
+                  <div><span class="glyphicon glyphicon-phone"></span>: <%= @user.phone_number %></div>
+                </div>
+                
+                <div class="tab-pane fade scrollable" id="tab3">
+                  <h2 class="text-left"><span class="glyphicon glyphicon-home"></span> Neighborhoods</h2>
+                  <% @user.neighborhoods.each do |neighborhood| %>
+                    <li class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></li>
+                  <% end %>
+                </div>
+                
+                <div class="tab-pane fade post-scrollable" id="tab4">
+                  <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
+                  <% @user.posts.each do |post| %>
+                    <%= render post %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -162,10 +226,6 @@
           
         </div>
   </div>
-    
-    <footer>
-    ...
-    </footer>
 </body>
 </html>
 
