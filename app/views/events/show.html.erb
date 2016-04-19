@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
-
+<style>
+  .background{
+    background: url(http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg);
+  }
+  
+  .jumbotron{
+    margin-top: 10%;
+  }
+  
+</style>
+<div class="background"></div>
 <div>
    <%= form_for(@event) do |f| %>
       <% if @event.errors.any? %>
@@ -53,9 +63,9 @@
     <% end %>
 </div>
 
-<div class="center content well">
+<div class="jumbotron center">
   <div class="center">
-    <p class="neighborhood-title"><%= @event.name %></p>
+    <h1 class="white-text"><%= @event.name %></h1>
   </div>
   
   <hr class="under-title">
@@ -86,6 +96,6 @@
   </div>
   <hr class="under-description">
   
-  <a href="#edit" class="btn btn-md btn-primary" data-toggle="modal">Edit Event</a>
+  <a href="#edit" class="btn btn-md btn-primary white-text" data-toggle="modal">Edit Event</a>
   <%= button_to 'Back', events_path, method: :get %>
 </div>
