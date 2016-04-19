@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, class: 'form-control', rows: 6 %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.label :start_time %><br>
+    <%= f.datetime_select :start_time %>
   </div>
   <div class="field">
     <%= f.label :location %><br>
