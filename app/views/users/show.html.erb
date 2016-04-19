@@ -214,7 +214,7 @@
                 <div class="tab-pane fade scrollable" id="tab3">
                   <h2 class="text-left"><span class="glyphicon glyphicon-home"></span> Neighborhoods</h2>
                   <% @user.neighborhoods.each do |neighborhood| %>
-                    <%= neighborhood.name %>
+                    <li class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></li>
                   <% end %>
                 </div>
                 
