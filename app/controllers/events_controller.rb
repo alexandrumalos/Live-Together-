@@ -22,7 +22,12 @@ class EventsController < ApplicationController
       redirect_to neighborhoods_url
     end
 
-    @events = Event.all
+    if current_user.current_neighborhood.nil?
+      @events = nil
+    else
+      @events = current_user.current_neighborhood.events.where(status: 'accepted')
+    end
+
     @event = Event.new
     @current_month = Time.now.strftime("%m").to_i
     @current_year = Time.now.strftime("%m").to_i
@@ -49,13 +54,29 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.neighborhood = current_user.current_neighborhood
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if isNewser(current_user)
+      @event.status = 'pending'
+
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to @event, notice: 'Event was successfully requested.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @event.status = 'accepted'
+
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420012824) do
+ActiveRecord::Schema.define(version: 20160420184006) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160420012824) do
     t.datetime "start_time"
     t.integer  "user_id"
     t.integer  "neighborhood_id"
+    t.string   "status"
   end
 
   add_index "events", ["neighborhood_id"], name: "index_events_on_neighborhood_id"
@@ -87,6 +88,16 @@ ActiveRecord::Schema.define(version: 20160420012824) do
     t.datetime "updated_at",  null: false
     t.integer  "threshold"
   end
+
+  create_table "pending_events", force: :cascade do |t|
+    t.integer  "pending_event"
+    t.integer  "pending_neighborhood"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "pending_events", ["pending_event"], name: "index_pending_events_on_pending_event"
+  add_index "pending_events", ["pending_neighborhood"], name: "index_pending_events_on_pending_neighborhood"
 
   create_table "posts", force: :cascade do |t|
     t.text     "body"
@@ -162,10 +173,10 @@ ActiveRecord::Schema.define(version: 20160420012824) do
     t.string   "forem_state",             default: "pending_review"
     t.boolean  "forem_auto_subscribe",    default: false
     t.integer  "current_neighborhood_id"
-    t.string   "type"
     t.integer  "score"
     t.string   "phone_number"
     t.string   "description"
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

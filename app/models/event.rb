@@ -2,13 +2,16 @@
 #
 # Table name: events
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  date        :date
-#  location    :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string
+#  description     :text
+#  location        :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  start_time      :datetime
+#  user_id         :integer
+#  neighborhood_id :integer
+#  status          :string
 #
 
 class Event < ActiveRecord::Base

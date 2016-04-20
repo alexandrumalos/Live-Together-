@@ -21,8 +21,10 @@
 #  forem_state             :string           default("pending_review")
 #  forem_auto_subscribe    :boolean          default("f")
 #  current_neighborhood_id :integer
-#  type                    :string
 #  score                   :integer
+#  phone_number            :string
+#  description             :string
+#  user_type               :string
 #
 
 #may can use has_and_belongs_to_many :groups :neighborhoods
