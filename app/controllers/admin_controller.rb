@@ -6,6 +6,6 @@ class AdminController < ApplicationController
       respond_to do |format|
         format.html { redirect_to root_url }
       end
-  end
-
+    end
+end
 end

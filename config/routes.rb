@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'admin/index'
 
 
-
   root 'main#index'
 
   post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
