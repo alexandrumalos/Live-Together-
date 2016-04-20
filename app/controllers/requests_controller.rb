@@ -87,8 +87,14 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
-    @request.destroy
     neighborhood = @request.neighborhood
+    if neighborhood.leads.include?(current_user)
+      request_type = @request.request_type
+      if request_type == 'event'
+        @request.event.destroy
+      end
+      @request.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to neighborhood, notice: 'Request denied' }
