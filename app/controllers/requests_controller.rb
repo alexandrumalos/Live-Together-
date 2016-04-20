@@ -13,6 +13,7 @@
 
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /requests
   # GET /requests.json
