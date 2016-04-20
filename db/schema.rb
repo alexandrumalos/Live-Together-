@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417224348) do
+ActiveRecord::Schema.define(version: 20160420012824) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -36,10 +36,15 @@ ActiveRecord::Schema.define(version: 20160417224348) do
     t.string   "name"
     t.text     "description"
     t.string   "location"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "start_time"
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
   end
+
+  add_index "events", ["neighborhood_id"], name: "index_events_on_neighborhood_id"
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "group_messages", force: :cascade do |t|
     t.integer  "group_id"

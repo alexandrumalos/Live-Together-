@@ -13,4 +13,6 @@
 
 class Event < ActiveRecord::Base
     validates :name, :description, :location, presence: true
+    belongs_to :user
+    belongs_to :neighborhood
 end
