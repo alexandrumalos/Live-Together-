@@ -67,13 +67,13 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-   
+
     <main id="center" class="column">
 			<article>
-			
+
 				<h1>Profile</h1>
-				
-			</article>								
+
+			</article>
 		</main>
     <div id="center-contents-block">
         <div id="sidebar">
@@ -83,17 +83,16 @@
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
               <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
               <p></p>
+              <a href="#edit2" class="btn btn-xs btn-primary btn-block" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Change Password </a>
             </div>
           </aside>
-          
+
 
           <aside>
-            <h3>Cancel my account</h3>
-
             <p>
-              Unhappy? 
+              Unhappy?
               <p></p>
-            
+
               <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
 
             </p>
@@ -101,33 +100,26 @@
           <aside>
             <div class="bs-example" id="center">
               <!-- Button HTML (to Trigger Modal) -->
-              
-              <%= form_for(@user) do |f| %>
-                <% if @user.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this event from being saved:</h2>
-                    <ul>
-                      <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-          
-                <div id="edit" class="modal fade" role="dialog">
+                <div id="edit0" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Edit Profile</h4>
                       </div>
-                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <%= form_for(@user) do |f| %>
                       <div class="modal-body">
-                        <%= f.error_notification %>
-                        <div class="form-inputs">
-                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
+                        <div class="field">
+                          <%= f.label :name %>
+                          <%= f.text_field :name, required: true, autofocus: true, value: @user.name, class: 'form-control' %>
+                        </div>
+                        <div class="field">
+                          <%= f.label :username %>
+                          <%= f.text_field :username, required: true, value: @user.username, class: 'form-control' %>
+                        </div>
+                        <div class="field">
+                          <%= f.label :description %>
+                          <%= f.text_field :description, required: true, value: @user.description, class: 'form-control' %>
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -136,27 +128,53 @@
                       </div>
                       <% end %>
                     </div>
-                      
+
                     </div>
                   </div>
-                  
+
+                  <div id="edit1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title">Edit Profile</h4>
+                        </div>
+                        <%= form_for(@user) do |f| %>
+                        <div class="modal-body">
+                          <div class="field">
+                            <%= f.label :phone_number %>
+                            <%= f.text_field :phone_number, value: @user.phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, class: 'form-control' %>
+                          </div>
+                          <div class="field">
+                            <%= f.label :email %>
+                            <%= f.text_field :email, required: true, value: @user.email, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <%= f.submit "Save", class: "btn btn-primary" %>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <% end %>
+                      </div>
+
+                      </div>
+                    </div>
+
                   <div id="edit2" class="modal fade" role="dialog">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Edit Profile</h4>
+                        <h4 class="modal-title">Change Password</h4>
                       </div>
-                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
                       <div class="modal-body">
                         <%= f.error_notification %>
                         <div class="form-inputs">
                           <%= f.input :email, required: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :phone_number, placeholder: 'Enter in the following format: XXX-XXX-XXXX',  required: true, input_html: { class: 'form-control'} %>
-                          <%= f.input :current_password, placeholder: 'Required', required: true, input_html: { class: 'form-control'}  %>
-                          <%= f.input :password, placeholder: 'To change, enter new password', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
+                          <%= f.input :current_password, placeholder: 'Current Password', required: true, input_html: { class: 'form-control'}  %>
+                          <%= f.input :password, placeholder: 'Enter A New Password', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control'} %>
                           <%= f.input :password_confirmation, placeholder: 'Confirm', required: true, input_html: { class: 'form-control'} %>
-
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -165,15 +183,14 @@
                       </div>
                       <% end %>
                     </div>
-                      
+
                     </div>
                   </div>
-              <% end %>
             </div>
           </div>
-        </aside>        
+        </aside>
         </div>
-        
+
         <div id="main-contents">
           <p></p>
           <div class="panel profile-nav-tabs panel-success">
@@ -185,34 +202,34 @@
                 <li><a href="#tab4" data-toggle="tab">Posts</a></li>
               </ul>
             </div>
-            
+
             <div class="panel-body">
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="tab1">
-                  <a href="#edit" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <a href="#edit0" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
                   <h2 class="text-left"><span class="glyphicon glyphicon-user"></span> About</h2>
                   <div>Name: <%= @user.name %></div>
                   <p></p>
-                  <div>User Name: <%= @user.username %></div>
+                  <div>Username: <%= @user.username %></div>
                   <p></p>
                   <div>Bio: <%= @user.description %></div>
                 </div>
-                
+
                 <div class="tab-pane fade post-scrollable" id="tab2">
-                  <a href="#edit2" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
+                  <a href="#edit1" class="btn btn-xs btn-primary pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Edit </a>
                   <h2 class="text-left"><span class="glyphicon glyphicon-phone-alt"></span> Contact</h2>
                   <div><span class="glyphicon glyphicon-envelope"></span>: <%= @user.email %></div>
                   <p></p>
                   <div><span class="glyphicon glyphicon-phone"></span>: <%= @user.phone_number %></div>
                 </div>
-                
+
                 <div class="tab-pane fade scrollable" id="tab3">
                   <h2 class="text-left"><span class="glyphicon glyphicon-home"></span> Neighborhoods</h2>
                   <% @user.neighborhoods.each do |neighborhood| %>
                     <li class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></li>
                   <% end %>
                 </div>
-                
+
                 <div class="tab-pane fade post-scrollable" id="tab4">
                   <h2 class="text-left"><span class="glyphicon glyphicon-list-alt"></span> Posts</h2>
                   <% @user.posts.each do |post| %>
@@ -222,10 +239,9 @@
               </div>
             </div>
           </div>
-          
-          
+
+
         </div>
   </div>
 </body>
 </html>
-

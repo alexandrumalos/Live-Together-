@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416194044) do
+ActiveRecord::Schema.define(version: 20160417224348) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 20160416194044) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "requests", force: :cascade do |t|
-    t.date     "date"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
@@ -142,18 +141,21 @@ ActiveRecord::Schema.define(version: 20160416194044) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "name"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.string   "email",                   default: "", null: false
-    t.string   "encrypted_password",      default: "", null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "email",                   default: "",               null: false
+    t.string   "encrypted_password",      default: "",               null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,                null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "forem_admin",             default: false
+    t.string   "forem_state",             default: "pending_review"
+    t.boolean  "forem_auto_subscribe",    default: false
     t.integer  "current_neighborhood_id"
     t.string   "type"
     t.integer  "score"
