@@ -18,12 +18,9 @@ class Sessions::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    super do |resource|
-      print "HEY\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-      # resource.phone_number = params[:phone_number]
-    end
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
