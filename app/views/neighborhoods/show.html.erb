@@ -40,6 +40,7 @@ body{
         </div>
         <div class="tab-pane fade scrollable" id="tab3">
           <%= render 'categories' %>
+          <%= link_to 'New', '#new-category-modal', data: { toggle: 'modal' }, class: 'btn btn-success btn-md' %>
         </div>
         <% if is_lead(current_user, @neighborhood) %>
           <div class="tab-pane fade" id="tab4">
@@ -74,3 +75,46 @@ body{
     </div>
   </p>
 </div>
+
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <ul>
+        <% @category.errors.full_messages.each do |category| %>
+          <li>
+            <%= category %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="new-category-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">New Category</h4>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :name %>
+            <br>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="field">
+            <%= f.label :description %>
+            <br>
+            <%= f.text_field :description, class: 'form-control', rows: 5  %>
+          </div>
+        <div class="modal-footer">
+          <%= f.submit "Create Event", class: "btn btn-md btn-primary" %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
