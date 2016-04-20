@@ -17,6 +17,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    if current_user.current_neighborhood.nil?
+      flash[:notice] = "Cannot view posts: No neighborhood is currently active"
+      redirect_to neighborhoods_url
+    end
+
     @events = Event.all
     @event = Event.new
     @current_month = Time.now.strftime("%m").to_i
@@ -41,6 +46,8 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
+    @event.neighborhood = current_user.current_neighborhood
 
     respond_to do |format|
       if @event.save

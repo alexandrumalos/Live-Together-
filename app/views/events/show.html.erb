@@ -1,15 +1,24 @@
 <p id="notice"><%= notice %></p>
 <style>
-  .background{
-    background: url(http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg);
+
+  body {
+    background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    /*background: url('http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg');*/
   }
-  
-  .jumbotron{
+
+  .footer {
+    display: none;
+  }
+
+  .event-jumbotron{
     margin-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
   }
-  
+
 </style>
-<div class="background"></div>
 <div>
    <%= form_for(@event) do |f| %>
       <% if @event.errors.any? %>
@@ -53,7 +62,7 @@
             </div>
             </div>
 
-            
+
             <div class="modal-footer">
               <%= f.submit "Save", class: "btn btn-primary" %>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -63,11 +72,11 @@
     <% end %>
 </div>
 
-<div class="jumbotron center">
+<div class="jumbotron event-jumbotron center">
   <div class="center">
-    <h1 class="white-text"><%= @event.name %></h1>
+    <h1 class=""><%= @event.name %></h1>
   </div>
-  
+
   <hr class="under-title">
 
   <div class="panel with-nav-tabs panel-success">
@@ -89,13 +98,17 @@
         <div class="tab-pane fade scrollable" id="tab3">
           <%= @event.location %>
         </div>
-        
+
       </div>
     </div>
-    
+
   </div>
   <hr class="under-description">
-  
-  <a href="#edit" class="btn btn-md btn-primary white-text" data-toggle="modal">Edit Event</a>
-  <%= button_to 'Back', events_path, method: :get %>
+
+  <div class="buttons">
+    <%= link_to 'Edit Event', '#edit', data: { toggle: "modal", target: '#edit' }, class: "btn btn-md btn-primary" %>
+  </div>
+  <div class="buttons">
+    <%= link_to 'Back', events_path, class: 'btn btn-md btn-primary white-text' %>
+  </div>
 </div>
