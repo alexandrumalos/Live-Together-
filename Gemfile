@@ -1,9 +1,15 @@
 source 'https://rubygems.org'
 #
 
+gem 'fog'
+
+gem 'carrierwave'
 
 gem 'devise'
 
+gem 'figaro'
+
+gem 'simple_calendar' , '~> 2.0'
 gem 'gmaps4rails'
 
 gem 'carousel'

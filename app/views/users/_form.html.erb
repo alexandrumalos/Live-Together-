@@ -1,3 +1,22 @@
+<style>
+input[type=text] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+</style>
+
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -28,8 +47,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :descrpition %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
     <%= f.label :isNewser %><br>
-    
+
   </div>
   <div class="actions">
     <%= f.submit %>
