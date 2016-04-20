@@ -12,6 +12,7 @@
 #  user_id         :integer
 #  neighborhood_id :integer
 #  status          :string
+#  request_id      :integer
 #
 
 require 'test_helper'

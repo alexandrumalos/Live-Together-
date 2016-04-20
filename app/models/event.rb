@@ -12,10 +12,12 @@
 #  user_id         :integer
 #  neighborhood_id :integer
 #  status          :string
+#  request_id      :integer
 #
 
 class Event < ActiveRecord::Base
     validates :name, :description, :location, presence: true
     belongs_to :user
     belongs_to :neighborhood
+    belongs_to :request, dependent: :destroy
 end

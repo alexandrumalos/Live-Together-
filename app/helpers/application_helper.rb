@@ -6,12 +6,4 @@ module ApplicationHelper
       false
     end
   end
-
-  def isNewser(user)
-    if user.user_type == 'newser'
-      true
-    else
-      false
-    end
-  end
 end

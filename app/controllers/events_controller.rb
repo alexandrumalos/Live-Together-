@@ -57,8 +57,15 @@ class EventsController < ApplicationController
     if isNewser(current_user)
       @event.status = 'pending'
 
+      @request = Request.new()
+      @request.user = current_user
+      @request.neighborhood = current_user.current_neighborhood
+      @request.event = @event
+      @event.request = @request
+      @request.request_type = 'event'
+
       respond_to do |format|
-        if @event.save
+        if @event.save && @request.save
           format.html { redirect_to @event, notice: 'Event was successfully requested.' }
           format.json { render :show, status: :created, location: @event }
         else
@@ -71,7 +78,7 @@ class EventsController < ApplicationController
 
       respond_to do |format|
         if @event.save
-          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.html { redirect_to events_url, notice: 'Event was successfully created.' }
           format.json { render :show, status: :created, location: @event }
         else
           format.html { render :new }

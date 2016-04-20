@@ -23,7 +23,11 @@ class PostsController < ApplicationController
       redirect_to neighborhoods_url
     end
 
-    @posts = Post.all
+    if current_user.current_neighborhood.nil?
+      @posts = nil
+    else
+      @posts = current_user.current_neighborhood.posts
+    end
     @post = Post.new
   end
 

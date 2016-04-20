@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420184006) do
+ActiveRecord::Schema.define(version: 20160420185151) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20160420184006) do
     t.integer  "user_id"
     t.integer  "neighborhood_id"
     t.string   "status"
+    t.integer  "request_id"
   end
 
   add_index "events", ["neighborhood_id"], name: "index_events_on_neighborhood_id"
+  add_index "events", ["request_id"], name: "index_events_on_request_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "group_messages", force: :cascade do |t|
@@ -119,8 +121,10 @@ ActiveRecord::Schema.define(version: 20160420184006) do
     t.integer  "user_id"
     t.integer  "neighborhood_id"
     t.string   "request_type"
+    t.integer  "event_id"
   end
 
+  add_index "requests", ["event_id"], name: "index_requests_on_event_id"
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
