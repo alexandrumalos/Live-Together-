@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
+  post 'neighborhoods/:id/remove_user/:user_id', as: 'remove_user', to: 'neighborhoods#remove_user'
 
   resources :posts do
     member do

@@ -11,13 +11,29 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join, :leave]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join, :leave, :remove_user]
   before_action :authenticate_user!
 
   # GET /neighborhoods
   # GET /neighborhoods.json
   def index
     @neighborhoods = Neighborhood.all
+  end
+
+  def remove_user
+    user = User.find_by(id: params[:user_id])
+    @neighborhood.users.delete(user)
+    if @neighborhood.leads.include?(user)
+      @neighborhood.leads.delete(user)
+      if @neighborhood.leads.count < 1
+        @neighborhood.destroy
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to neighborhoods_url, notice: 'User has been removed' }
+      format.json { render :show, status: :created, location: @neighborhood }
+    end
   end
 
   # GET /neighborhoods/1

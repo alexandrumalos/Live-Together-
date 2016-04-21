@@ -7,6 +7,9 @@
       <th>
         Email
       </th>
+      <th>
+
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +30,10 @@
         </td>
         <td>
           <%= user.email %>
+        </td>
+        <td>
+          <%= button_to 'Remove', remove_user_path(@neighborhood.id, user.id), class: 'btn btn-xs btn-danger left-button' %>
+          <% # button_to 'Deny', request, method: :delete, class: 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>
