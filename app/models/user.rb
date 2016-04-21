@@ -25,6 +25,7 @@
 #  phone_number            :string
 #  description             :string
 #  user_type               :string
+#  image_url               :string
 #
 
 #may can use has_and_belongs_to_many :groups :neighborhoods
