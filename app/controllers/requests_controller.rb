@@ -12,7 +12,10 @@
 #
 
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :approve]
+  before_action :authenticate_user!
+
 
   # GET /requests
   # GET /requests.json
@@ -32,6 +35,25 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+  end
+
+  def approve
+    neighborhood = @request.neighborhood
+    if neighborhood.leads.include?(current_user)
+      request_type = @request.request_type
+      if request_type == 'join'
+        neighborhood.users << @request.user
+        @request.destroy
+      elsif request_type == 'event'
+        @request.event.status = 'accepted'
+        @request.event.save!
+        @request.destroy
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to neighborhood, notice: 'Request approved' }
+    end
   end
 
   # POST /requests
@@ -68,9 +90,17 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
-    @request.destroy
+    neighborhood = @request.neighborhood
+    if neighborhood.leads.include?(current_user)
+      request_type = @request.request_type
+      if request_type == 'event'
+        @request.event.destroy
+      end
+      @request.destroy
+    end
+
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to neighborhood, notice: 'Request denied' }
       format.json { head :no_content }
     end
   end

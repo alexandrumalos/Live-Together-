@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -34,7 +33,7 @@ body {font-family: Verdana,sans-serif;}
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    
+
 }
 
 .month .prev {
@@ -112,7 +111,7 @@ body {font-family: Verdana,sans-serif;}
 <div class="center">
     <div class="calendar" >
       <%= month_calendar events: @events do |date, events| %>
-    <div><%= date.day %></div> 
+    <div><%= date.day %></div>
     <ul class="event-text">
       <% @events.each do |event| %>
         <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y") %>

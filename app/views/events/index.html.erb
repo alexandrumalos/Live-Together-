@@ -1,113 +1,109 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script type='text/javascript'
-  src='http://code.jquery.com/jquery-2.0.2.js'></script>
-<link rel="stylesheet" type="text/css"
-  href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script type='text/javascript'
-  src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css"
-  href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
-<script type='text/javascript'>//<![CDATA[
-$(window).load(function(){<!--from w  ww.  j  a  v a 2  s  .c  o m-->
-//save the selector so you don't have to do the lookup everytime
-$dropdown = $("#contextMenu");
-$(".actionButton").click(function() {
-    //get row ID
-    //var id = $(this).closest("tr").children().first().html();
-    //move dropdown menu
-    $(this).after($dropdown);
-    //update links
-    //$dropdown.find(".edit").attr("href", "/events/"+id"/edit?");
-    /*$dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);*/
-    //show dropdown
-    $(this).dropdown();
-});
-});//]]>
-</script>
-<style>
-.background{
-    background: url(http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg);
-  }
-</style>
-</head>
+<div class="events-page">
+  <script type='text/javascript' src='http://code.jquery.com/jquery-2.0.2.js'></script>
+  <script type='text/javascript'>
+    //<![CDATA[
+    $(window).load(function() { <!--from w  ww.  j  a  v a 2  s  .c  o m-->
+      //save the selector so you don't have to do the lookup everytime
+      $dropdown = $("#contextMenu");
+      $(".actionButton").click(function() {
+        //get row ID
+        //var id = $(this).closest("tr").children().first().html();
+        //move dropdown menu
+        $(this).after($dropdown);
+        //update links
+        //$dropdown.find(".edit").attr("href", "/events/"+id"/edit?");
+        /*$dropdown.find(".destory").attr("href", "/transaction/delete?id="+id);*/
+        //show dropdown
+        $(this).dropdown();
+      });
+    }); //]]>
+  </script>
+  <style>
+    body {
+      background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+      background-attachment: fixed;
+      background-size: cover;
+      /*background: url('http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg');*/
+    }
 
+    .footer {
+      display: none;
+    }
+  </style>
+  <p id="notice">
+    <%= notice %>
+  </p>
 
-<p id="notice"><%= notice %></p>
+  <div class="container">
+    <%= render 'calendar' %>
+  </div>
 
+  <div class="container">
+    <%= render 'table' %>
+  </div>
 
+  <br>
 
-<div class="background"></div>
+  <%#= button_to 'New Event', new_event_path, :method => "get", class: "btn btn-success" %>
 
+  <%= form_for(@event) do |f| %>
+    <% if @event.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+        <ul>
+          <% @event.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
- <div class="container">
-   <%= render 'calendar' %>
- </div>
-
-<div class="container">
-   <%= render 'table' %>
- </div>
-
-
-</html>
-
-<br>
-
-<%#= button_to 'New Event', new_event_path, :method => "get", class: "btn btn-success" %>
-<html>
-<body>
-  
-    <%= form_for(@event) do |f| %>
-      <% if @event.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-          <ul>
-            <% @event.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div id="new" class="modal fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">New Event</h4>
-            </div>
-            <div class="modal-body">
-              <p><large>Please fill out the information below</large></p>
-              <div class="field">
-              <%= f.label :name %><br>
+    <div id="new" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">New Event</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <large>Please fill out the information below</large>
+            </p>
+            <div class="field">
+              <%= f.label :name %>
+              <br>
               <%= f.text_field :name, class: 'form-control' %>
             </div>
 
             <div class="field">
-              <%= f.label :description %><br>
+              <%= f.label :description %>
+              <br>
               <%= f.text_field :description, class: 'form-control', rows: 5  %>
             </div>
 
             <div class="field">
-              <%= f.label :start_time %><br>
+              <%= f.label :start_time %>
+              <br>
               <%= f.datetime_select :start_time, class: 'form-control' %>
             </div>
 
             <div class="field">
-              <%= f.label :location %><br>
+              <%= f.label :location %>
+              <br>
               <%= f.text_field :location, class: 'form-control' %>
             </div>
-            </div>
+          </div>
 
-            
-            <div class="modal-footer">
-              <%= f.submit "Create Event", class: "btn btn-primary" %>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+
+          <div class="modal-footer">
+            <%= f.submit "Create Event", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-    <% end %>
-  
-</body>
-</html>
+      </div>
+    </div>
+  <% end %>
+</div>

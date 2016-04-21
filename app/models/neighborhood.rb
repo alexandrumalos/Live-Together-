@@ -21,4 +21,5 @@ class Neighborhood < ActiveRecord::Base
   has_many :categories, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :requests, dependent: :destroy
+  has_many :events
 end

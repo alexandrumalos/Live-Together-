@@ -13,11 +13,22 @@
 
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if current_user.current_neighborhood.nil?
+      flash[:notice] = "Cannot view posts: No neighborhood is currently active"
+      redirect_to neighborhoods_url
+    end
+
+    if current_user.current_neighborhood.nil?
+      @events = nil
+    else
+      @events = current_user.current_neighborhood.events.where(status: 'accepted')
+    end
+
     @event = Event.new
     @current_month = Time.now.strftime("%m").to_i
     @current_year = Time.now.strftime("%m").to_i
@@ -41,14 +52,39 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
+    @event.neighborhood = current_user.current_neighborhood
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    if isNewser(current_user)
+      @event.status = 'pending'
+
+      @request = Request.new()
+      @request.user = current_user
+      @request.neighborhood = current_user.current_neighborhood
+      @request.event = @event
+      @event.request = @request
+      @request.request_type = 'event'
+
+      respond_to do |format|
+        if @event.save && @request.save
+          format.html { redirect_to @event, notice: 'Event was successfully requested.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @event.status = 'accepted'
+
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to events_url, notice: 'Event was successfully created.' }
+          format.json { render :show, status: :created, location: @event }
+        else
+          format.html { render :new }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

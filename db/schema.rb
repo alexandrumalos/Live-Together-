@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416194044) do
+ActiveRecord::Schema.define(version: 20160420185151) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -36,10 +36,18 @@ ActiveRecord::Schema.define(version: 20160416194044) do
     t.string   "name"
     t.text     "description"
     t.string   "location"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "start_time"
+    t.integer  "user_id"
+    t.integer  "neighborhood_id"
+    t.string   "status"
+    t.integer  "request_id"
   end
+
+  add_index "events", ["neighborhood_id"], name: "index_events_on_neighborhood_id"
+  add_index "events", ["request_id"], name: "index_events_on_request_id"
+  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "group_messages", force: :cascade do |t|
     t.integer  "group_id"
@@ -98,14 +106,15 @@ ActiveRecord::Schema.define(version: 20160416194044) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "requests", force: :cascade do |t|
-    t.date     "date"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
     t.integer  "neighborhood_id"
     t.string   "request_type"
+    t.integer  "event_id"
   end
 
+  add_index "requests", ["event_id"], name: "index_requests_on_event_id"
   add_index "requests", ["neighborhood_id"], name: "index_requests_on_neighborhood_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
@@ -155,10 +164,10 @@ ActiveRecord::Schema.define(version: 20160416194044) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "current_neighborhood_id"
-    t.string   "type"
     t.integer  "score"
     t.string   "phone_number"
     t.string   "description"
+    t.string   "user_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   }
 
   get 'admin/index'
-  
-  
-  
+
+
   root 'main#index'
 
   post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
@@ -27,11 +26,15 @@ Rails.application.routes.draw do
 
   post 'comment/:post_id', to: 'comments#create', as: 'create_comment'
 
-  resources :requests
+  resources :requests do
+    member do
+      post 'approve', to: 'requests#approve'
+    end
+  end
   resources :neighborhoods do
     member do
       post 'set_active', to: 'neighborhoods#set_active'
-      post 'join', to: 'neighborhoods#join'
+      post 'request_to_join', to: 'neighborhoods#request_to_join'
     end
   end
   resources :categories
