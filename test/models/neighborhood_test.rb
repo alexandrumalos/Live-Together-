@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  threshold   :integer
+#  parent_id   :integer
 #
 
 require 'test_helper'

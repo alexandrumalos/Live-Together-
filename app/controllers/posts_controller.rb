@@ -26,7 +26,15 @@ class PostsController < ApplicationController
     if current_user.current_neighborhood.nil?
       @posts = nil
     else
-      @posts = current_user.current_neighborhood.posts
+      @posts = current_user.current_neighborhood.posts.to_a
+      parent = current_user.current_neighborhood.parent
+      until parent.nil?
+        parent_posts = parent.posts.to_a
+        parent_posts.each do |post|
+          @posts.push(post)
+        end
+        parent = parent.parent
+      end
     end
     @post = Post.new
   end

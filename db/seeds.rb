@@ -30,16 +30,31 @@ jill.save!
 joe = User.new(name: 'Joe', username: 'joebob123', password: 'joebob123', user_type: 'user', email: 'joe@bob.com', phone_number: '111-222-3333', description: 'I\'m just a cool guy')
 joe.save!
 
+miller = User.new(name: 'Miller', username: 'millerman', password: 'millerman', user_type: 'user', email: 'miller@yahoo.com', phone_number: '445-555-1432', description: 'I wonder what rainbows taste like')
+miller.save!
+
 # Create a Newser
 matt = User.new(name: 'Sports Warehouse', username: 'matt1234', password: 'matt1234', user_type: 'newser', email: 'matt@sportsequipment.com')
 matt.save!
 
 place = Neighborhood.new(name: 'Placeton Place', location: '123 Fake Street', threshold: 100, description: 'It\'s a place for places to be')
 place.users << jake
+place.users << matt
 place.users << jill
 place.leads << jill
-place.users << matt
 place.save!
+
+parent_place = Neighborhood.new(name: 'Parents Palace', location: '42 Wallaby Way, Sydney', threshold: 600, description: 'This is a big place for big things')
+parent_place.users << jake
+parent_place.users << matt
+parent_place.users << miller
+parent_place.leads << miller
+parent_place.children << place
+place.save!
+
+fun = Category.new(name: 'Fun', description: 'Enjoyable things')
+parent_place.categories << fun
+fun.save!
 
 misc = Category.new(name: 'Miscellaneous', description: 'Default Category')
 place.categories << misc
@@ -60,6 +75,17 @@ place.posts << mattpost
 matt.posts << mattpost
 mattpost.category = misc
 mattpost.save!
+
+millerpost = Post.new(title: 'Hello World', body: 'I wonder if you guys can read this in your own neighborhood', score: 6)
+parent_place.posts << millerpost
+miller.posts << millerpost
+millerpost.category = fun
+millerpost.save!
+
+millercomment = Comment.new(comment: 'I believe even the comments should show up too', score: 3)
+miller.comments << millercomment
+millerpost.comments << millercomment
+millercomment.save!
 
 jillcomment = Comment.new(comment: 'sure thing', score: 2)
 jill.comments << jillcomment
