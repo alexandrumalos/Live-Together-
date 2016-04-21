@@ -14,4 +14,12 @@ module ApplicationHelper
       false
     end
   end
+
+  def tag_color(user)
+    if isNewser(user)
+      'label-primary'
+    else
+      'label-success'
+    end
+  end
 end

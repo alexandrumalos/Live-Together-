@@ -13,6 +13,9 @@
       <th>
 
       </th>
+      <th>
+
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -23,16 +26,20 @@
         </td>
         <td>
           <%= request.user.name %>
-          <span class="label label-success">
-            <%= request.user.username %>
-          </span>
+          <div class="username-btn">
+            <%= button_to request.user, class: "btn label label-success", method: :get do %>
+              <%= request.user.username %>
+            <% end %>
+          </div>
         </td>
         <td>
           <%= I18n.l request.created_at, format: :short %>
         </td>
         <td>
-          <%= button_to 'Approve', approve_request_path(request), class: 'btn btn-xs btn-success left-button' %>
-          <%= button_to 'Deny', request, method: :delete, class: 'btn btn-xs btn-danger' %>
+          <%= button_to 'Approve', approve_request_path(request), class: 'btn btn-xs btn-success pull-right' %>
+        </td>
+        <td>
+          <%= button_to 'Deny', request, method: :delete, class: 'btn btn-xs btn-danger pull-left' %>
         </td>
       </tr>
     <% end %>

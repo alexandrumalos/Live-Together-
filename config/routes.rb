@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
+  post 'neighborhoods/:id/remove_user/:user_id', as: 'remove_user', to: 'neighborhoods#remove_user'
 
   resources :posts do
     member do
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
     member do
       post 'set_active', to: 'neighborhoods#set_active'
       post 'request_to_join', to: 'neighborhoods#request_to_join'
+      post 'leave', to: 'neighborhoods#leave'
     end
   end
   resources :categories

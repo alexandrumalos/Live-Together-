@@ -16,6 +16,10 @@
  *= require simple_calendar
  */
 
+.username-btn {
+  display: inline-block;
+}
+
 body {
   padding-top: 70px;
 }

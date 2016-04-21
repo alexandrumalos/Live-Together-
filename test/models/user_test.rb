@@ -25,6 +25,7 @@
 #  phone_number            :string
 #  description             :string
 #  user_type               :string
+#  image_url               :string
 #
 
 require 'test_helper'

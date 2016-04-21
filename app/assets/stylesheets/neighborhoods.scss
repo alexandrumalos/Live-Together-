@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#neighborhoods {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: auto;
+    max-height: 300px;
+}
+
+#neighborhoods td, #neighborhoods th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#neighborhoods tr:nth-child(even){background-color: #f2f2f2}
+
+#neighborhoods tr:hover {background-color: #ddd;}
+
+#neighborhoods th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
+
 .click-row {
   cursor: pointer;
 }

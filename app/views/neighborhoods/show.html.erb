@@ -63,6 +63,9 @@ body{
         <%= button_to 'Join', request_to_join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
       </div>
     <% else %>
+      <div class="buttons">
+        <%= button_to 'Leave', leave_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-danger', data: { confirm: 'are you sure you want to leave?' } %>
+      </div>
       <% if current_user.current_neighborhood != @neighborhood %>
         <div class="buttons">
           <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>

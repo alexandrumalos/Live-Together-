@@ -7,6 +7,9 @@
       <th>
         Email
       </th>
+      <th>
+
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -14,19 +17,17 @@
       <tr class="<%= 'lead-row' if is_lead(user, @neighborhood) %>">
         <td>
           <%= user.name %>
-          <span class="label
-            <%=
-              if isNewser(user)
-                'label-primary'
-              else
-                'label-success'
-              end
-            %>">
-            <%= user.username %>
-          </span>
+          <div class="username-btn">
+            <%= button_to user, method: :get, class: "btn label " + tag_color(user) do %>
+              <%= user.username %>
+            <% end %>
+          </div>
         </td>
         <td>
           <%= user.email %>
+        </td>
+        <td>
+          <%= button_to 'Remove', remove_user_path(@neighborhood.id, user.id), class: 'btn btn-xs btn-danger left-button' %>
         </td>
       </tr>
     <% end %>
