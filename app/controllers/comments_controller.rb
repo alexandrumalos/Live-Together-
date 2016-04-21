@@ -10,7 +10,7 @@
 #
 
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_post, only: [:create]
   before_action :authenticate_user!
 
@@ -72,7 +72,7 @@ class CommentsController < ApplicationController
   
   def upvote
     @comment.score = @comment.score + 1
-    update_lead_status(@comment.user, @comment.neighborhood, 1)
+    update_lead_status(@comment.user, @comment.post.neighborhood, 1)
 
     respond_to do |format|
       if @comment.save
@@ -84,7 +84,7 @@ class CommentsController < ApplicationController
 
   def downvote
     @comment.score = @comment.score - 1
-    update_lead_status(@comment.user, @comment.neighborhood, -1)
+    update_lead_status(@comment.user, @comment.post.neighborhood, -1)
 
     respond_to do |format|
       if @comment.save
