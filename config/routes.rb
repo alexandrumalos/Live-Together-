@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'admin/index'
 
+  get 'reload_posts', to: 'posts#reload_posts'
 
   root 'main#index'
 

@@ -65,6 +65,23 @@ class PostsController < ApplicationController
     end
   end
 
+  def reload_posts
+    if current_user.current_neighborhood.nil?
+      @posts = nil
+    else
+      if params[:category] == '-1'
+        @posts = current_user.current_neighborhood.posts
+      else
+        @posts = current_user.current_neighborhood.posts.where(category: params[:category])
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+      format.js
+    end
+  end
+
   def update_category
     if @post.neighborhood.leads.include?(current_user)
       @post.category_id = post_params[:category_id]
