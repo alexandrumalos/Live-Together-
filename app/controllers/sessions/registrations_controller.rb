@@ -8,9 +8,13 @@ class Sessions::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      if resource.user_type == 'admin' && User.where(user_type: :admin).count > 1
+        resource.destroy
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
