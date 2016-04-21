@@ -71,11 +71,11 @@ class CommentsController < ApplicationController
   end
   
   def upvote
-    @post.score = @post.score + 1
-    update_lead_status(@post.user, @post.neighborhood, 1)
+    @comment.score = @comment.score + 1
+    update_lead_status(@comment.user, @comment.neighborhood, 1)
 
     respond_to do |format|
-      if @post.save
+      if @comment.save
         format.html { redirect_to posts_url }
         format.js
       end
@@ -83,11 +83,11 @@ class CommentsController < ApplicationController
   end
 
   def downvote
-    @post.score = @post.score - 1
-    update_lead_status(@post.user, @post.neighborhood, -1)
+    @comment.score = @comment.score - 1
+    update_lead_status(@comment.user, @comment.neighborhood, -1)
 
     respond_to do |format|
-      if @post.save
+      if @comment.save
         format.html { redirect_to posts_url }
         format.js
       end
