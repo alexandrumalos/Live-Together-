@@ -7,6 +7,9 @@
       <th>
         Description
       </th>
+      <th>
+
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +20,9 @@
         </td>
         <td>
           <%= category.description %>
+        </td>
+        <td>
+          <%= button_to 'Delete', category, method: :delete, class: 'btn btn-xs btn-danger' %>
         </td>
       </tr>
     <% end %>

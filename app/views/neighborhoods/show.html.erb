@@ -38,9 +38,13 @@ body{
         <div class="tab-pane fade scrollable" id="tab2">
           <%= render 'users' %>
         </div>
-        <div class="tab-pane fade scrollable" id="tab3">
-          <%= render 'categories' %>
-          <%= link_to 'New', '#new-category-modal', data: { toggle: 'modal' }, class: 'btn btn-success btn-md' %>
+        <div class="tab-pane fade" id="tab3">
+          <div class="scrollable">
+            <%= render 'categories' %>
+          </div>
+          <% if is_lead(current_user, @neighborhood) %>
+            <%= link_to 'New', '#new-category-modal', data: { toggle: 'modal' }, class: 'btn btn-success btn-lg pull-right' %>
+          <% end %>
         </div>
         <% if is_lead(current_user, @neighborhood) %>
           <div class="tab-pane fade" id="tab4">
