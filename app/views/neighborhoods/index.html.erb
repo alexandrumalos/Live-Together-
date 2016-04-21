@@ -3,36 +3,7 @@
 <h1>Neighborhoods</h1>
 
 
-<html>
-<head>
-<style>
-#neighborhoods {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#neighborhoods td, #neighborhoods th {
-    border: 1px solid #ddd;
-    text-align: left;
-    padding: 8px;
-}
-
-#neighborhoods tr:nth-child(even){background-color: #f2f2f2}
-
-#neighborhoods tr:hover {background-color: #ddd;}
-
-#neighborhoods th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-</head>
-<body>
-
-<table id="neighborhoods">
+<table id="neighborhoods" class="table">
   <tr>
     <th>Name</th>
     <th>Location</th>
@@ -53,10 +24,8 @@
   </tbody>
 </table>
 
-</body>
-</html>
-
-
 <br>
 
-<%= link_to 'New Neighborhood', new_neighborhood_path %>
+<% unless isNewser(current_user) %>
+<%= link_to 'New Neighborhood', new_neighborhood_path, class: 'btn btn-lg btn-success white-text' %>
+<% end %>

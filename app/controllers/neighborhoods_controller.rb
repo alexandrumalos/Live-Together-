@@ -44,6 +44,11 @@ class NeighborhoodsController < ApplicationController
 
   # GET /neighborhoods/new
   def new
+    if isNewser(current_user)
+      respond_to do |format|
+        format.html { redirect_to neighborhoods_url, notice: 'Newsers cannot create neighborhoods' }
+      end
+    end
     @neighborhood = Neighborhood.new
   end
 
