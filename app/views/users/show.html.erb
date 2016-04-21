@@ -92,10 +92,12 @@
             <div class="center">
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
               <p></p>
-              <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
+              <%= button_to 'Send Message', messages_path, class: 'btn btn-primary btn-xs btn-block', method: :get %>
               <p></p>
               <% if @user == current_user %>
                 <a href="#edit2" class="btn btn-xs btn-primary btn-block" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span> Change Password </a>
+                
+
               <% end %>
             </div>
           </aside>
