@@ -125,7 +125,7 @@
                       <div class="modal-body">
                         <%= f.error_notification %>
                         <div class="form-inputs">
-                          <%= f.input :name, required: true, autofocus: true, input_html: { class: 'form-control'} %>
+                          <%= f.input :name, :value: required: true, autofocus: true, input_html: { class: 'form-control'} %>
                           <%= f.input :username, required: true, input_html: { class: 'form-control'} %>
                           <%= f.input :description, required: true, input_html: { class: 'form-control'} %>
                         </div>
