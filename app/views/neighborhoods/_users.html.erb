@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table">
   <thead>
     <tr>
       <th>
@@ -11,10 +11,17 @@
   </thead>
   <tbody>
     <% @neighborhood.users.order(:name).each do |user| %>
-      <tr>
+      <tr class="<%= 'lead-row' if is_lead(user, @neighborhood) %>">
         <td>
           <%= user.name %>
-          <span class="label label-success">
+          <span class="label
+            <%=
+              if isNewser(user)
+                'label-primary'
+              else
+                'label-success'
+              end
+            %>">
             <%= user.username %>
           </span>
         </td>
