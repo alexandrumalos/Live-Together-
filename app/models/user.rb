@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
-  validates :user_type, inclusion: [:user, :newser, :admin]
+  validates :user_type, inclusion: ['user', 'newser', 'admin']
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
