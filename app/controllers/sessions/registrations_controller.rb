@@ -52,7 +52,7 @@ class Sessions::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :username, :email, :password, :updated_at)
+      u.permit(:name, :username, :email, :password, :updated_at, :current_password)
     end
   end
 
