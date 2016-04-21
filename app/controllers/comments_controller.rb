@@ -69,6 +69,30 @@ class CommentsController < ApplicationController
       end
     end
   end
+  
+  def upvote
+    @post.score = @post.score + 1
+    update_lead_status(@post.user, @post.neighborhood, 1)
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    @post.score = @post.score - 1
+    update_lead_status(@post.user, @post.neighborhood, -1)
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
 
   # DELETE /comments/1
   # DELETE /comments/1.json

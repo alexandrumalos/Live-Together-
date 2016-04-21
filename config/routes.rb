@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :comments, except: [:create, :destroy] do
     member do
+      post 'upvote'
+      post 'downvote'
       delete 'delete', to: 'comments#destroy'
     end
   end
