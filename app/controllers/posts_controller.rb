@@ -26,7 +26,18 @@ class PostsController < ApplicationController
     if current_user.current_neighborhood.nil?
       @posts = nil
     else
-      @posts = current_user.current_neighborhood.posts
+      @posts = current_user.current_neighborhood.posts.to_a
+      parent = current_user.current_neighborhood.parent
+      until parent.nil?
+        parent_posts = parent.posts.to_a
+        parent_posts.each do |post|
+          if isNewser(post.user)
+            @posts.push(post)
+          end
+        end
+        parent = parent.parent
+      end
+      @posts.sort! {|left, right| right.created_at <=> left.created_at}
     end
     @post = Post.new
   end

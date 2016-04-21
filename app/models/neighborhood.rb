@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  threshold   :integer
+#  parent_id   :integer
 #
 
 class Neighborhood < ActiveRecord::Base
@@ -22,4 +23,7 @@ class Neighborhood < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :events
+
+  belongs_to :parent, class_name: 'Neighborhood', foreign_key: :parent_id
+  has_many :children, class_name: 'Neighborhood', foreign_key: :parent_id
 end
