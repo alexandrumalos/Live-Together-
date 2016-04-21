@@ -30,10 +30,10 @@ jill.save!
 joe = User.new(name: 'Joe', username: 'joebob123', password: 'joebob123', user_type: 'user', email: 'joe@bob.com', phone_number: '111-222-3333', description: 'I\'m just a cool guy')
 joe.save!
 
-miller = User.new(name: 'Miller', username: 'millerman', password: 'millerman', user_type: 'user', email: 'miller@yahoo.com', phone_number: '445-555-1432', description: 'I wonder what rainbows taste like')
+# Create a Newser
+miller = User.new(name: 'Miller Realty', username: 'millerman', password: 'millerman', user_type: 'newser', email: 'miller@yahoo.com', phone_number: '445-555-1432', description: 'I wonder what rainbows taste like')
 miller.save!
 
-# Create a Newser
 matt = User.new(name: 'Sports Warehouse', username: 'matt1234', password: 'matt1234', user_type: 'newser', email: 'matt@sportsequipment.com')
 matt.save!
 
@@ -48,7 +48,7 @@ parent_place = Neighborhood.new(name: 'Parents Palace', location: '42 Wallaby Wa
 parent_place.users << jake
 parent_place.users << matt
 parent_place.users << miller
-parent_place.leads << miller
+parent_place.leads << jake
 parent_place.children << place
 place.save!
 
@@ -70,17 +70,18 @@ jake.posts << jakepost
 jakepost.category = sales
 jakepost.save!
 
+millerpost = Post.new(title: 'Hello World', body: 'I wonder if you guys can read this in your own neighborhood', score: 6)
+parent_place.posts << millerpost
+miller.posts << millerpost
+millerpost.category = fun
+millerpost.save!
+
 mattpost = Post.new(title: 'Health Survey', body: 'Hey could you guys please take a look at the survey that\'s been going around? It would help bunches', score: 6)
 place.posts << mattpost
 matt.posts << mattpost
 mattpost.category = misc
 mattpost.save!
 
-millerpost = Post.new(title: 'Hello World', body: 'I wonder if you guys can read this in your own neighborhood', score: 6)
-parent_place.posts << millerpost
-miller.posts << millerpost
-millerpost.category = fun
-millerpost.save!
 
 millercomment = Comment.new(comment: 'I believe even the comments should show up too', score: 3)
 miller.comments << millercomment
@@ -97,15 +98,20 @@ jake.comments << jakecomment
 mattpost.comments << jakecomment
 jakecomment.save!
 
-jakeevent = Event.new(name: 'Party', location: 'at my house', status: 'accepted', description: 'Bring your own beer but I\'m buying food so you will be fed. Feel free to bring snacks though.')
+jakeevent = Event.new(name: 'Party', location: 'at my house', status: 'accepted', start_time: Time.now, description: 'Bring your own beer but I\'m buying food so you will be fed. Feel free to bring snacks though.')
 jake.events << jakeevent
 place.events << jakeevent
 jakeevent.save!
 
-mattevent = Event.new(name: 'Blow-out Sales', location: '234 Place street', status: 'pending', description: 'I\'ll be selling lots of new sports equipment. Come on by')
+mattevent = Event.new(name: 'Blow-out Sales', location: '234 Place street', status: 'pending', start_time: Time.now, description: 'I\'ll be selling lots of new sports equipment. Come on by')
 matt.events << mattevent
 place.events << mattevent
 mattevent.save!
+
+millerevent = Event.new(name: 'Open House (Literally)', location: 'Fake Street', status: 'accepted', start_time: Time.now, description: 'Interested in buying a new home? Many beautiful homes on Fake Street will be open for viewing on this day! Refreshments willl be served as well.')
+miller.events << millerevent
+parent_place.events << millerevent
+millerevent.save!
 
 mattrequest = Request.new(request_type: 'event')
 matt.requests << mattrequest

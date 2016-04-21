@@ -31,10 +31,13 @@ class PostsController < ApplicationController
       until parent.nil?
         parent_posts = parent.posts.to_a
         parent_posts.each do |post|
-          @posts.push(post)
+          if isNewser(post.user)
+            @posts.push(post)
+          end
         end
         parent = parent.parent
       end
+      @posts.sort! {|left, right| right.created_at <=> left.created_at}
     end
     @post = Post.new
   end

@@ -26,7 +26,18 @@ class EventsController < ApplicationController
     if current_user.current_neighborhood.nil?
       @events = nil
     else
-      @events = current_user.current_neighborhood.events.where(status: 'accepted')
+      @events = current_user.current_neighborhood.events.where(status: 'accepted').to_a
+      parent = current_user.current_neighborhood.parent
+      until parent.nil?
+        parent_events = parent.events.where(status: 'accepted').to_a
+        parent_events.each do |event|
+          if isNewser(event.user)
+            @events.push(event)
+          end
+        end
+        parent = parent.parent
+      end
+      @events.sort! {|left, right| right.start_time <=> left.start_time}
     end
 
     @event = Event.new
