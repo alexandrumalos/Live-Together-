@@ -12,7 +12,7 @@
 #
 
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :upvote, :downvote, :comment]
+  before_action :set_post, only: [:show, :edit, :update, :update_category, :destroy, :upvote, :downvote, :comment]
   before_action :authenticate_user!
 
   # GET /posts
@@ -61,6 +61,27 @@ class PostsController < ApplicationController
       else
         format.html { render :index }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_category
+    if @post.neighborhood.leads.include?(current_user)
+      @post.category_id = post_params[:category_id]
+
+      respond_to do |format|
+        if @post.save
+          format.html { redirect_to posts_url, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: 'Must be a lead to edit category.' }
+        format.json { render :show, status: :ok, location: @post }
       end
     end
   end
