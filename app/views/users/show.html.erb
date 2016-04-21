@@ -1,5 +1,5 @@
 <!-- Template by html.am -->
-<p id="notice"><%= notice %></p>
+
 
 <div class="modal fade" id="edit-modal" role="dialog">
   <div class="modal-dialog">
@@ -60,7 +60,7 @@
         <%= @user.name %>!!</h3>
     <% else %>
       <h3><%= @user.name %>
-        <span class="label label-success label-xs"><%= @user.username %></span>
+        <span class="label <%= tag_color @user %> label-xs"><%= @user.username %></span>
       </h3>
       <% end %>
 
