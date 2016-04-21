@@ -70,15 +70,25 @@
 
     <main id="center" class="column">
 			<article>
-
-				<h1>Profile</h1>
+        
+        <% if @user == current_user %>
+          <h1>My Profile</h1>    
+        <% else %>
+              <h2><%= @user.username %>'s Profile</h2>
+        <% end %>
+				
 
 			</article>
 		</main>
     <div id="center-contents-block">
         <div id="sidebar">
           <aside>
-            <h2>Hello <%= @user.name %>!!</h2>
+            <% if @user == current_user %>
+              <h2>Hello <%= @user.name %>!!</h2>
+            <% else %>
+              <h2><%= @user.name %> (<%= @user.username %>)</h2>
+            <% end %>
+            
             <div class="center">
               <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
               <a class="btn btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Message</a>
