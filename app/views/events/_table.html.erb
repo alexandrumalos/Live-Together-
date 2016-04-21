@@ -34,7 +34,7 @@
       border-bottom: solid 1px rgba(255,255,255,0.1);
     }
     .event-thead {
-      background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+      background: url(http://jackrugile.com/images/misc/noise-diagonal.png), #4CAF50;
     	border-left: 1px solid #555;
     	border-right: 1px solid #777;
     	border-top: 1px solid #555;
@@ -92,10 +92,12 @@
               <td><%= event.location %></td>
               <td class="dropdown">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-primary actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+                  <button type="button" class="btn btn-sm btn-success actionButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
                   <ul id="contextMenu" class="dropdown-menu" role="menu">
                     <li><%= link_to 'Show', event %></li>
-                    <li><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                    <% if canDeleteEvent current_user, event %>
+                      <li><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                    <% end %>
                   </ul>
                 </div>
               </td>
@@ -110,7 +112,7 @@
 
     </div>
     <p></p>
-    <a href="#new" class="btn btn-md btn-primary" data-toggle="modal">Add New Event</a>
+    <a href="#new" class="btn btn-md btn-success" data-toggle="modal">Add New Event</a>
 
 
 </head>

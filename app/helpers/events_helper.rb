@@ -12,4 +12,13 @@
 #
 
 module EventsHelper
+    
+    def canDeleteEvent(user, event)
+        if event.neighborhood.users.include?(user)
+          user.id == event.user_id || is_lead(user, event.neighborhood)
+        else
+          false
+        end
+    end
+    
 end
