@@ -20,7 +20,9 @@
   }
   </style>
   <div class="data-hidden field">
-    <%= f.text_field :parent_id, value: @parent.id %>
+    <% unless @parent.nil? %>
+      <%= f.text_field :parent_id, value: @parent.id %>
+    <% end %>
   </div>
   <div class="center content well">
     <div class="center">
