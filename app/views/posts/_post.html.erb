@@ -5,17 +5,13 @@
         <a href="#">
           <img class="media-object" src="http://placekitten.com/150/150">
         </a>
-        <p><%= post.user.name %> <span class="label <%=
-          if isNewser(post.user)
-            'label-primary'
-          else
-            'label-success'
-          end
-          %>">
+        <p>
+          <%= post.user.name %>
+          <%= button_to post.user, method: :get, class: "btn label " + tag_color(post.user) do %>
             <%= post.user.username %>
-          </span>
+          <% end %>
          </p>
-        <% if is_lead(current_user, current_user.current_neighborhood) %>
+        <% if is_lead(current_user, post.neighborhood) %>
           <p><a href="#change-category-modal-<%= post.id %>" data-toggle="modal"><%= '<' + post.category.name + '>' unless post.category.nil? %></a></p>
         <% else %>
           <p><%= '<' + post.category.name + '>' unless post.category.nil? %></p>
@@ -92,7 +88,7 @@
               Category
             </label>
             <select name="post[category_id]" class="form-control">
-              <% current_user.current_neighborhood.categories.each do |category| %>
+              <% post.neighborhood.categories.each do |category| %>
                 <option value="<%= category.id %>"><%= category.name %></option>
               <% end %>
             </select>

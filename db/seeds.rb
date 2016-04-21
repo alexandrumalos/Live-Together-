@@ -31,7 +31,7 @@ joe = User.new(name: 'Joe', username: 'joebob123', password: 'joebob123', user_t
 joe.save!
 
 # Create a Newser
-matt = User.new(name: 'Sports Equipment Warehouse', username: 'matt1234', password: 'matt1234', user_type: 'newser', email: 'matt@sportsequipment.com')
+matt = User.new(name: 'Sports Warehouse', username: 'matt1234', password: 'matt1234', user_type: 'newser', email: 'matt@sportsequipment.com')
 matt.save!
 
 place = Neighborhood.new(name: 'Placeton Place', location: '123 Fake Street', threshold: 100, description: 'It\'s a place for places to be')
@@ -68,7 +68,7 @@ jillcomment.save!
 
 jakecomment = Comment.new(comment: 'I\'ll try to get to that sometime', score: 1)
 jake.comments << jakecomment
-jakepost.comments << jakecomment
+mattpost.comments << jakecomment
 jakecomment.save!
 
 jakeevent = Event.new(name: 'Party', location: 'at my house', status: 'accepted', description: 'Bring your own beer but I\'m buying food so you will be fed. Feel free to bring snacks though.')
