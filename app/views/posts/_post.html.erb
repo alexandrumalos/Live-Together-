@@ -5,7 +5,16 @@
         <a href="#">
           <img class="media-object" src="http://placekitten.com/150/150">
         </a>
-        <p><%= post.user.name %><span class="label label-primary"><%= post.user.username %></span></p>
+        <p><%= post.user.name %> <span class="label <%=
+          if isNewser(post.user)
+            'label-primary'
+          else
+            'label-success'
+          end
+          %>">
+            <%= post.user.username %>
+          </span>
+         </p>
         <% if is_lead(current_user, current_user.current_neighborhood) %>
           <p><a href="#change-category-modal-<%= post.id %>" data-toggle="modal"><%= '<' + post.category.name + '>' unless post.category.nil? %></a></p>
         <% else %>
@@ -15,23 +24,17 @@
         <br>
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><%= post.title %></h4>
+        <h4 class="media-heading">
+          <%= post.title %>
+          <% if canDeletePost(current_user, post) %>
+            <%= link_to post, method: :delete, class: 'pull-right' do %>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% end %>
+          <% end %>
+        </h4>
         <hr>
         <p><%= post.body %></p>
       </div>
-      <ul class="list-inline list-unstyled bottom-left">
-        <% if canEditPost(current_user, post) %>
-        <li>
-          <%= link_to 'Edit', edit_post_path(post), method: :get %>
-        </li>
-        <li>|</li>
-        <% end %>
-        <% if canDeletePost(current_user, post) %>
-        <li>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </li>
-        <% end %>
-      </ul>
       <ul class="list-inline list-unstyled bottom-right">
         <li>
           <%= link_to upvote_post_path(post), remote: true, method: :post do %>
