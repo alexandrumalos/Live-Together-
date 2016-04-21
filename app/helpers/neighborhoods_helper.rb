@@ -14,4 +14,12 @@ module NeighborhoodsHelper
   def user_in_neighborhood(user, neighborhood)
     return neighborhood.users.include?(user)
   end
+
+  def is_lead(user, neighborhood)
+    if neighborhood.leads.include?(user)
+      true
+    else
+      false
+    end
+  end
 end

@@ -4,16 +4,31 @@
 
 <div class="center">
 
-  <h1><%= current_user.current_neighborhood.name %></h1>
+  <h1>
+    <%= current_user.current_neighborhood.name %>&nbsp;
+    <div class="filter-div">
+      <%= form_tag reload_posts_path, method: :get, id: 'filter-form', remote: true do %>
+        <%= submit_tag 'Filter', class: 'btn btn-md btn-success pull-right' %>
+        <select name="category" class="form-control narrow-drop-down pull-right" id='filter'>
+          <option value="-1">Show All</option>
+          <% current_user.current_neighborhood.categories.each do |category| %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% end %>
+        </select>
+      <% end %>
+    </div>
+  </h1>
   <hr>
 
   <%= render 'form' %>
 
   <hr>
 
-  <% @posts.each do |post| %>
-    <%= render post %>
-  <% end %>
+  <div id="list-of-posts">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
 </div>
 
 <br>

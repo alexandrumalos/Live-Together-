@@ -37,15 +37,22 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
+    if current_user.current_neighborhood.leads.include?(current_user)
+      @category = Category.new(category_params)
+      @category.neighborhood = current_user.current_neighborhood
 
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
-      else
-        format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @category.save
+          format.html { redirect_to current_user.current_neighborhood, notice: 'Category was successfully created.' }
+          format.json { render :show, status: :created, location: @category }
+        else
+          format.html { render :new }
+          format.json { render json: @category.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to current_user.current_neighborhood, notice: 'Only leads can create categories' }
       end
     end
   end
@@ -67,9 +74,10 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    neighborhood = @category.neighborhood
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to neighborhood, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

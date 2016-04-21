@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'admin/index'
 
+  get 'reload_posts', to: 'posts#reload_posts'
 
   root 'main#index'
 
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
     member do
       post 'upvote'
       post 'downvote'
+      post 'update_category'
     end
   end
 
