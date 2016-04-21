@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'fog'
 
+gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'devise'

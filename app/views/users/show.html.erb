@@ -98,7 +98,7 @@
                 <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
                 <h4 class="modal-title">Edit Profile</h4>
               </div>
-              <%= form_for(@user) do |f| %>
+              <%= form_for @user, :html => {:multipart => true} do |f| %>
               <div class="modal-body">
 
                 <div class="field">
@@ -111,7 +111,11 @@
                 </div>
                 <div class="field">
                   <%= f.label :Bio %>
-                  <%= f.text_field :description, required: true, value: @user.description, class: 'form-control' %>
+                  <%= f.text_field :description, value: @user.description, class: 'form-control' %>
+                </div>
+                <div class="field">
+                  <%= f.label :profile_picture %>
+                  <%= f.file_field :image_url %>
                 </div>
               </div>
               <div class="modal-footer">

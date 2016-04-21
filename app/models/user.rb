@@ -31,6 +31,8 @@
 #may can use has_and_belongs_to_many :groups :neighborhoods
 
 class User < ActiveRecord::Base
+  mount_uploader :image_url, ImageUploader
+
   validates :username,
     :presence => true,
     :uniqueness => {
