@@ -21,7 +21,7 @@ User.delete_all
 User.new(name: 'Admin', username: 'admin', password: 'admin123', user_type: 'admin', email: 'admin@email.com').save!
 
 # Create ordindary users
-jake = User.new(name: 'Jake', username: 'jakefromstatefarm', password: 'jakefromstatefarm', user_type: 'user', email: 'jake@statefarm.com')
+jake = User.new(name: 'Jake from Statefarm', username: 'jake1234', password: 'jake1234', user_type: 'user', email: 'jake@statefarm.com')
 jake.save!
 
 jill = User.new(name: 'Jill', username: 'jill1234', password: 'jill1234', user_type: 'user', email: 'jill@example.com')
