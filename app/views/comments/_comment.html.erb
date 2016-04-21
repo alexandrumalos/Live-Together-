@@ -10,7 +10,7 @@
   <br>
   <ul class="list-inline list-unstyled bottom-right">
     <li>
-      <%= link_to '#', remote: true, method: :post do %>
+      <%= link_to upvote_comment_path(comment), remote: true, method: :post do %>
       <span class="glyphicon glyphicon-thumbs-up"></span>
       <% end %>
     </li>
@@ -20,7 +20,7 @@
       </span>
     </li>
     <li>
-      <%= link_to '#', remote: true, method: :post do %>
+      <%= link_to downvote_comment_path(comment), remote: true, method: :post do %>
       <span class="glyphicon glyphicon-thumbs-down"></span>
       <% end %>
     </li>
