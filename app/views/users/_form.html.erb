@@ -55,8 +55,11 @@ input[type=text]:focus {
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :image_url %><br>
+    <%= f.file_field :image_url %>
+  </div>
+  <div class="field">
     <%= f.label :isNewser %><br>
-
   </div>
   <div class="actions">
     <%= f.submit %>

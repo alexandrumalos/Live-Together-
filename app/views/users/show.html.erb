@@ -86,7 +86,7 @@
             <% if @user == current_user %>
               <h3>Hello <%= @user.name %>!!</h3>
             <% else %>
-              <h3><%= @user.name %> <span class="label label-success"><%= @user.username %></span></h3>
+              <h3><%= @user.name %> <span class="label label-success label-xs"><%= @user.username %></span></h3>
             <% end %>
             
             <div class="center">
@@ -127,6 +127,10 @@
                       </div>
                       <%= form_for(@user) do |f| %>
                       <div class="modal-body">
+                        <div class="field">
+                          <%= f.label :image_url %><br>
+                          <%= f.file_field :image_url %>
+                        </div>
                         <div class="field">
                           <%= f.label :name %>
                           <%= f.text_field :name, required: true, autofocus: true, value: @user.name, class: 'form-control' %>
