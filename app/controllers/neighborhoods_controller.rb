@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join, :leave]
   before_action :authenticate_user!
 
   # GET /neighborhoods
@@ -35,13 +35,34 @@ class NeighborhoodsController < ApplicationController
   def edit
   end
 
+  def leave
+    @neighborhood.users.delete(current_user)
+    if @neighborhood.leads.include?(current_user)
+      @neighborhood.leads.delete(current_user)
+      if @neighborhood.leads.count < 1
+        @neighborhood.destroy
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to neighborhoods_url, notice: 'You have left the neighborhood "' + @neighborhood.name + '".' }
+      format.json { render :show, status: :created, location: @neighborhood }
+    end
+  end
+
   # POST /neighborhoods
   # POST /neighborhoods.json
   def create
     @neighborhood = Neighborhood.new(neighborhood_params)
-    @neighborhood.threshold = 100
+    if @neighborhood.threshold.nil?
+      @neighborhood.threshold = 100
+    end
     @neighborhood.users << current_user
     @neighborhood.leads << current_user
+    misc = Category.new()
+    misc.name = 'Miscellaneous'
+    misc.description = 'Default Category'
+    @neighborhood.categories << misc
     set_active
 
     # respond_to do |format|
@@ -134,6 +155,6 @@ class NeighborhoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def neighborhood_params
-      params.require(:neighborhood).permit(:name, :location, :description)
+      params.require(:neighborhood).permit(:name, :location, :description, :threshold)
     end
 end
