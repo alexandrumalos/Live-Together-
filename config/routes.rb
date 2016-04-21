@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       post 'set_active', to: 'neighborhoods#set_active'
       post 'request_to_join', to: 'neighborhoods#request_to_join'
       post 'leave', to: 'neighborhoods#leave'
+      get 'inherit', to: 'neighborhoods#new'
     end
   end
   resources :categories

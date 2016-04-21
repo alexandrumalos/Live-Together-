@@ -44,12 +44,15 @@ class NeighborhoodsController < ApplicationController
 
   # GET /neighborhoods/new
   def new
+    @neighborhood = Neighborhood.new
+    unless params[:id].nil?
+      @parent = Neighborhood.find(params[:id])
+    end
     if isNewser(current_user)
       respond_to do |format|
         format.html { redirect_to neighborhoods_url, notice: 'Newsers cannot create neighborhoods' }
       end
     end
-    @neighborhood = Neighborhood.new
   end
 
   # GET /neighborhoods/1/edit
@@ -176,6 +179,6 @@ class NeighborhoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def neighborhood_params
-      params.require(:neighborhood).permit(:name, :location, :description, :threshold)
+      params.require(:neighborhood).permit(:name, :location, :description, :threshold, :parent_id)
     end
 end

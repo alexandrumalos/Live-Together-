@@ -66,6 +66,11 @@ body{
       <div class="buttons">
         <%= button_to 'Leave', leave_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-danger', data: { confirm: 'are you sure you want to leave?' } %>
       </div>
+      <% unless isNewser(current_user) %>
+        <div class="buttons">
+          <%= button_to 'New Sub-Neighborhood', inherit_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success', method: :get %>
+        </div>
+      <% end %>
       <% if current_user.current_neighborhood != @neighborhood %>
         <div class="buttons">
           <%= button_to 'Visit', set_active_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
