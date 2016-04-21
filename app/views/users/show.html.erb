@@ -86,7 +86,7 @@
             <% if @user == current_user %>
               <h3>Hello <%= @user.name %>!!</h3>
             <% else %>
-              <h3><%= @user.name %> (<%= @user.username %>)</h3>
+              <h3><%= @user.name %> <span class="label label-success"><%= @user.username %></span></h3>
             <% end %>
             
             <div class="center">
