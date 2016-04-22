@@ -1,44 +1,6 @@
 <!-- Template by html.am -->
 
 
-<div class="modal fade" id="edit-modal" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal" type="button">&times;</button>
-        <h4 class="modal-title">Edit User</h4>
-      </div>
-      <!-- <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %> -->
-      <div class="modal-body">
-        <%= render 'sessions/registrations/edit' %>
-      </div>
-      <div class="modal-footer">
-        <!-- <%= f.button :submit, "Sign up", class: 'btn btn-lg btn-primary' %> -->
-        <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
-      </div>
-      <% end %>
-    </div>
-
-  </div>
-</div>
-
-<div class="bs-example">
-  <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %>
-      prohibited this event from being saved:</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <% end %>
-</div>
-
 <body>
 
 <main class="column" id="center">
@@ -65,7 +27,11 @@
       <% end %>
 
       <div class="center">
-        <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
+        <% if @user.image_url.file.nil? || !@user.image_url.file.exists? %>
+          <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
+        <% else %>
+          <%= image_tag @user.image_url, width: '200', height: '200', class: 'img-circle', id: 'center', alt: 'profile' %>
+        <% end %>
         <p></p>
         <%= button_to 'Send Message', messages_path, class: 'btn btn-primary btn-xs btn-block', method: :get %>
         <p></p>
