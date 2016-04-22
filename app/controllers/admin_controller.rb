@@ -5,10 +5,10 @@ class AdminController < ApplicationController
 
     @users = User.all
 
-    # if current_user.user_type != 'admin'
-    #   respond_to do |format|
-    #     format.html { redirect_to root_url }
-    #   end
-    # end
+    if current_user.user_type != 'admin'
+      respond_to do |format|
+        format.html { redirect_to root_url }
+      end
+    end
  end
 end
