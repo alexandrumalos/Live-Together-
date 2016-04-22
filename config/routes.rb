@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     sessions: 'sessions/sessions', registrations: 'sessions/registrations'
   }
 
-  get 'admin/index'
+
+  get 'admin', to: 'admin#index', as: 'admin'
+
 
   get 'reload_posts', to: 'posts#reload_posts'
 

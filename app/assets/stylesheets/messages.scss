@@ -1,8 +1,27 @@
 // Place all the styles related to the Messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.fixed-btn{
+.new-message-btn{
     position:fixed;
-    top:60px;
-    right:8px;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    padding-top: 19px;
+}
+
+.pagination {
+  .previous_page {}
+  .previous_page.disabled { background: white; color: white }
+  .current { }
+  .next_page { }
+  .next_page.disabled { background: white; color: white }
+  font-size: 1.5em;
+}
+
+.message {
+
+  width:60%;
+  margin-left:20%;
 }
