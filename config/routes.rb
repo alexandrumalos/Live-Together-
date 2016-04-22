@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post 'add_user/:neighborhood_id', to: 'neighborhoods#add_user'
   post 'neighborhoods/:id/remove_user/:user_id', as: 'remove_user', to: 'neighborhoods#remove_user'
 
+  post 'categories/:neighborhood_id/create', as: 'create_category', to: 'categories#create'
+
   resources :posts do
     member do
       post 'upvote'
@@ -42,9 +44,11 @@ Rails.application.routes.draw do
       get 'inherit', to: 'neighborhoods#new'
     end
   end
-  resources :categories
+  resources :categories, except: [:create]
   resources :comments, except: [:create, :destroy] do
     member do
+      post 'upvote'
+      post 'downvote'
       delete 'delete', to: 'comments#destroy'
     end
   end

@@ -115,7 +115,7 @@ body {font-family: Verdana,sans-serif;}
     <ul class="event-text">
       <% @events.each do |event| %>
         <% if event.start_time.strftime("%B %d %Y") == date.strftime("%B %d %Y") %>
-          <li class="click-row" onclick="goto('<%= event_path(event) %>');"><%= event.name %></li>
+          <li class="click-row pointer" onclick="goto('<%= event_path(event) %>');"><%= event.name %></li>
         <% end %>
       <% end %>
     </ul>

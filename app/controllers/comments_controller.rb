@@ -10,7 +10,7 @@
 #
 
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :set_post, only: [:create]
   before_action :authenticate_user!
 
@@ -66,6 +66,30 @@ class CommentsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def upvote
+    @comment.score = @comment.score + 1
+    update_lead_status(@comment.user, @comment.post.neighborhood, 1)
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to posts_url }
+        format.js
+      end
+    end
+  end
+
+  def downvote
+    @comment.score = @comment.score - 1
+    update_lead_status(@comment.user, @comment.post.neighborhood, -1)
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to posts_url }
+        format.js
       end
     end
   end

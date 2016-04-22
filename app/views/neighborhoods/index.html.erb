@@ -3,26 +3,11 @@
 <h1>Neighborhoods</h1>
 
 
-<table id="neighborhoods" class="table">
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Neighborhood Name</th>
-    <th>Join Neighborhood</th>
-    <th>Set your neighborhood</th>
-  </tr>
-  <tbody>
-    <% @neighborhoods.each do |neighborhood| %>
-      <tr>
-        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></td>
-        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.location %></td>
-        <td class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.description %></td>
-        <td><%= button_to 'Join', request_to_join_neighborhood_path(neighborhood) %></td>
-        <td><%= button_to 'Visit', set_active_neighborhood_path(neighborhood) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<% @neighborhoods.each do |neighborhood| %>
+  <%= render neighborhood %>
+  
+<% end %>
 
 <br>
 

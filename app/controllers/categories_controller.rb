@@ -37,13 +37,14 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    if current_user.current_neighborhood.leads.include?(current_user)
+    neighborhood = Neighborhood.find_by(id: params[:neighborhood_id])
+    if neighborhood.leads.include?(current_user)
       @category = Category.new(category_params)
-      @category.neighborhood = current_user.current_neighborhood
+      @category.neighborhood = neighborhood
 
       respond_to do |format|
         if @category.save
-          format.html { redirect_to current_user.current_neighborhood, notice: 'Category was successfully created.' }
+          format.html { redirect_to neighborhood, notice: 'Category was successfully created.' }
           format.json { render :show, status: :created, location: @category }
         else
           format.html { render :new }
@@ -90,6 +91,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :description, :neighborhood_id)
+      params.permit(:name, :description, :neighborhood_id)
     end
 end
