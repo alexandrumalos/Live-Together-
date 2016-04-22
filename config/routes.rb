@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   post 'comment/:post_id', to: 'comments#create', as: 'create_comment'
 
+  get '/neighborhoods/visit/:id', to: 'neighborhoods#visit', as: 'visit'
+
   resources :requests do
     member do
       post 'approve', to: 'requests#approve'

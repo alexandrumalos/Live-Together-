@@ -29,28 +29,24 @@
                 <% end %>
               </li>
             <% end %>
-            <li>
-              <%= link_to posts_path do %>
-              <span class="glyphicon glyphicon-home"></span>
-              Home
-              <% end %>
-            </li>
-            <li>
-              <%= link_to messages_path do %>
-              <span class="glyphicon glyphicon-envelope"></span>
-              Messages
-              <% end %>
-            </li>
-            <li>
-              <%= link_to events_path do %>
-              <span class="glyphicon glyphicon-calendar"></span>
-              Events
-              <% end %>
-            </li>
+            <% unless current_user.current_neighborhood.nil? %>
+              <li>
+                <%= link_to posts_path do %>
+                <span class="glyphicon glyphicon-tasks"></span>
+                Posts
+                <% end %>
+              </li>
+              <li>
+                <%= link_to events_path do %>
+                <span class="glyphicon glyphicon-calendar"></span>
+                Events
+                <% end %>
+              </li>
+            <% end %>
             <% if current_user.neighborhoods.count > 0 %>
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown">
-                  <span class="glyphicon glyphicon-tree-conifer"></span>
+                  <span class="glyphicon glyphicon-home"></span>
                   <% if current_user.current_neighborhood.nil? %>
                     Neighborhoods
                   <% else %>
@@ -59,13 +55,17 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= neighborhoods_path %>">View All</a></li>
+                  <li><a href="<%= neighborhood_path(current_user.current_neighborhood) %>">Neighborhood Info</a></li>
                   <li role="separator" class="divider"></li>
-                  <% current_user.neighborhoods.each do |neighborhood| %>
-                    <% if neighborhood != current_user.current_neighborhood %>
-                      <li>
-                        <a class="<% 'lead-nhood' if is_lead(current_user, neighborhood) %>" href="<%= neighborhood_path(neighborhood) %>"><%= neighborhood.name %></a>
-                      </li>
+                  <li><a href="<%= neighborhoods_path %>">View All Neighborhoods</a></li>
+                  <% if current_user.neighborhoods.count > 1 %>
+                    <li role="separator" class="divider"></li>
+                    <% current_user.neighborhoods.each do |neighborhood| %>
+                      <% if neighborhood != current_user.current_neighborhood %>
+                        <li>
+                          <a class="<% 'lead-nhood' if is_lead(current_user, neighborhood) %>" href="<%= visit_path(neighborhood) %>"><%= neighborhood.name %></a>
+                        </li>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </ul>
@@ -73,11 +73,18 @@
             <% else %>
               <li>
                 <%= link_to neighborhoods_path do %>
-                <span class="glyphicon glyphicon-tree-conifer"></span>
+                <span class="glyphicon glyphicon-home"></span>
                 Neighborhoods
                 <% end %>
               </li>
             <% end %>
+            <li class="navbar-text">&#124;</li>
+            <li>
+              <%= link_to messages_path do %>
+              <span class="glyphicon glyphicon-envelope"></span>
+              Messages
+              <% end %>
+            </li>
             <li>
               <%= link_to current_user do %>
               <span class="glyphicon glyphicon-user"></span>
