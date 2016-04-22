@@ -29,29 +29,75 @@
                 <% end %>
               </li>
             <% end %>
-            <li>
-              <%= link_to posts_path do %>
-              <span class="glyphicon glyphicon-home"></span>
-              Home
-              <% end %>
-            </li>
-            <li>
-              <%= link_to messages_path do %>
-              <span class="glyphicon glyphicon-envelope"></span>
-              Messages
-              <% end %>
-            </li>
-            <li>
-              <%= link_to neighborhoods_path do %>
-              <span class="glyphicon glyphicon-tree-conifer"></span>
-              Neighborhood
-              <% end %>
-            </li>
-            <li>
-              <%= link_to events_path do %>
-              <span class="glyphicon glyphicon-calendar"></span>
-              Events
-              <% end %>
+            <% unless current_user.current_neighborhood.nil? %>
+              <li>
+                <%= link_to posts_path do %>
+                <span class="glyphicon glyphicon-tasks"></span>
+                Posts
+                <% end %>
+              </li>
+              <li>
+                <%= link_to events_path do %>
+                <span class="glyphicon glyphicon-calendar"></span>
+                Events
+                <% end %>
+              </li>
+            <% end %>
+            <% if current_user.neighborhoods.count > 0 %>
+              <li class="dropdown">
+                <a href="#" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-home"></span>
+                  <% if current_user.current_neighborhood.nil? %>
+                    Neighborhoods
+                  <% else %>
+                    <%= current_user.current_neighborhood.name %>
+                  <% end %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= neighborhood_path(current_user.current_neighborhood) %>">Neighborhood Info</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="<%= neighborhoods_path %>">View All Neighborhoods</a></li>
+                  <% if current_user.neighborhoods.count > 1 %>
+                    <li role="separator" class="divider"></li>
+                    <% current_user.neighborhoods.each do |neighborhood| %>
+                      <% if neighborhood != current_user.current_neighborhood %>
+                        <li>
+                          <a class="<% 'lead-nhood' if is_lead(current_user, neighborhood) %>" href="<%= visit_path(neighborhood) %>"><%= neighborhood.name %></a>
+                        </li>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to neighborhoods_path do %>
+                <span class="glyphicon glyphicon-home"></span>
+                Neighborhoods
+                <% end %>
+              </li>
+            <% end %>
+            <li class="navbar-text">&#124;</li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-envelope"></span>
+                Messages
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= messages_path %>">All Messages</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="<%= new_group_path %>">New Message Group</a></li>
+                <% if current_user.groups.count > 1 %>
+                  <li role="separator" class="divider"></li>
+                  <% current_user.groups.each do |group| %>
+                    <li>
+                      <a href="<%= group_path(group) %>"><%= group.name %></a>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
             </li>
             <li>
               <%= link_to current_user do %>

@@ -21,9 +21,6 @@ class PostsController < ApplicationController
     if current_user.current_neighborhood.nil?
       flash[:notice] = "Cannot view posts: No neighborhood is currently active"
       redirect_to neighborhoods_url
-    end
-
-    if current_user.current_neighborhood.nil?
       @posts = nil
     else
       @posts = current_user.current_neighborhood.posts.to_a

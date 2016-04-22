@@ -11,7 +11,7 @@
 #
 
 class NeighborhoodsController < ApplicationController
-  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join, :leave, :remove_user]
+  before_action :set_neighborhood, only: [:show, :edit, :update, :destroy, :set_active, :request_to_join, :leave, :remove_user, :visit]
   before_action :authenticate_user!
 
   # GET /neighborhoods
@@ -39,7 +39,25 @@ class NeighborhoodsController < ApplicationController
   # GET /neighborhoods/1
   # GET /neighborhoods/1.json
   def show
+    if @neighborhood.users.include?(current_user)
+      current_user.current_neighborhood = @neighborhood
+    end
     @category = Category.new
+  end
+
+  def visit
+    if @neighborhood.users.include?(current_user)
+      current_user.current_neighborhood = @neighborhood
+      current_user.save!
+
+      respond_to do |format|
+        format.html { redirect_to posts_url }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to neighborhoods_url }
+      end
+    end
   end
 
   # GET /neighborhoods/new
