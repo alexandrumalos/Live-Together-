@@ -3,13 +3,12 @@
 
   <div class="center">
 
-
     <hr>
 
     <% @messages.each do |message| %>
       <%= render message %>
     <% end %>
-  </div>
+
 
   <%= will_paginate @messages %>
 
@@ -18,3 +17,4 @@
 </span>
 
 <%end%>
+  </div>
