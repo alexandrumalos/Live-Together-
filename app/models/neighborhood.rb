@@ -13,6 +13,8 @@
 #
 
 class Neighborhood < ActiveRecord::Base
+  mount_uploader :image_url, NhoodUploader
+
   has_many :user_neighborhood_connections
   has_many :users, class_name: 'User', through: :user_neighborhood_connections
   has_many :neighborhood_leads

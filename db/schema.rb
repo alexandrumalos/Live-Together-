@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421095216) do
+ActiveRecord::Schema.define(version: 20160422205813) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160421095216) do
     t.datetime "updated_at",  null: false
     t.integer  "threshold"
     t.integer  "parent_id"
+    t.string   "image_url"
   end
 
   add_index "neighborhoods", ["parent_id"], name: "index_neighborhoods_on_parent_id"

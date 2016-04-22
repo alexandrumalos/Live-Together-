@@ -45,6 +45,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
           <li><a href="#tab2" data-toggle="tab">Stats</a></li>
+          <li><a href="#tab3" data-toggle="tab">Background</a></li>
         </ul>
       </div>
       <div class="panel-body">
@@ -58,6 +59,12 @@
             <div class="field text-left">
               <%= f.label :threshold %>
               <%= f.text_field :threshold, placeholder: 'threshold', value: @neighborhood.threshold, class: 'form-control n-threshold-form' %>
+            </div>
+          </div>
+          <div class="tab-pane fade scrollable" id="tab3">
+            <div class="field text-left">
+              <%= f.label :change_background %>
+              <%= f.file_field :image_url, value: @neighborhood.image_url %>
             </div>
           </div>
         </div>
