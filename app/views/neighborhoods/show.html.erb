@@ -88,21 +88,7 @@ body{
   </p>
 </div>
 
-<%= form_for(@category) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-      <ul>
-        <% @category.errors.full_messages.each do |category| %>
-          <li>
-            <%= category %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_tag create_category_path(@neighborhood), method: :post do %>
   <div id="new-category-modal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -112,19 +98,19 @@ body{
         </div>
         <div class="modal-body">
           <div class="field">
-            <%= f.label :name %>
+            <%= label_tag :name %>
             <br>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= text_field_tag :name, '', class: 'form-control' %>
           </div>
 
           <div class="field">
-            <%= f.label :description %>
+            <%= label_tag :description %>
             <br>
-            <%= f.text_field :description, class: 'form-control', rows: 5  %>
+            <%= text_field_tag :description, '', class: 'form-control', rows: 5  %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= f.submit "Create Category", class: "btn btn-md btn-primary" %>
+          <%= submit_tag "Create Category", class: "btn btn-md btn-primary" %>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
