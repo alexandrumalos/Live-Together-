@@ -6,11 +6,14 @@
 
 <% @neighborhoods.each do |neighborhood| %>
   <%= render neighborhood %>
-  
+
 <% end %>
 
 <br>
 
 <% unless isNewser(current_user) %>
-<%= link_to 'New Neighborhood', new_neighborhood_path, class: 'btn btn-lg btn-success white-text' %>
-<% end %>
+<%= button_to new_neighborhood_path, class: 'fixed-btn btn btn-success white-text', method: :get do %>
+<span class="glyphicon glyphicon-plus">
+</span>
+<%end%>
+<%end%>

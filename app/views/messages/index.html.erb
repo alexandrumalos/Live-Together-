@@ -1,20 +1,18 @@
-<h1> <%= current_user.name  %>'s Messages</h1>
+<h1>
+  <%= current_user.name  %>'s Messages</h1>
 
+<div class="center">
 
-  <div class="center">
+  <hr>
 
-    <hr>
-
-    <% @messages.each do |message| %>
-      <%= render message %>
-    <% end %>
-
+  <% @messages.each do |message| %>
+  <%= render message %>
+  <% end %>
 
   <%= will_paginate @messages %>
 
-<%= button_to  new_message_path, class: 'btn btn-success fixed-btn', method: :get do %>
-<span class="glyphicon glyphicon-plus">
-</span>
+  <%= button_to  new_message_path, class: 'btn btn-success fixed-btn', method: :get do %>
+  <span class="glyphicon glyphicon-plus"></span>
 
-<%end%>
-  </div>
+  <%end%>
+</div>
