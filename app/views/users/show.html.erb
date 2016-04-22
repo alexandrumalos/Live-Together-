@@ -21,16 +21,18 @@
       <h3>Hello
         <%= @user.name %>!!</h3>
     <% else %>
-      <h3><%= @user.name %>
+      <h3><%= @user.name %></h3>
+      <p class="center">
         <span class="label <%= tag_color @user %> label-xs"><%= @user.username %></span>
-      </h3>
-      <% end %>
+      </p>
+    <% end %>
+    <br>
 
       <div class="center">
-        <% if @user.image_url.file.nil? || !@user.image_url.file.exists? %>
-          <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
-        <% else %>
+        <% if @user.image_url.present? %>
           <%= image_tag @user.image_url, width: '200', height: '200', class: 'img-circle', id: 'center', alt: 'profile' %>
+        <% else %>
+          <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
         <% end %>
         <p></p>
         <%= button_to 'Send Message', messages_path, class: 'btn btn-primary btn-xs btn-block', method: :get %>
