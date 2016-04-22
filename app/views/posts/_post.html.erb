@@ -2,8 +2,12 @@
   <div class="well">
     <div class="media foot-parent">
       <div class="pull-left">
-        <a href="#">
-          <img class="media-object" src="http://placekitten.com/150/150">
+        <a href="<%= user_path(post.user) %>">
+          <% if post.user.image_url.present? %>
+            <%= image_tag post.user.image_url, class: 'media-object post-profile-pic' %>
+          <% else %>
+            <img class="media-object post-profile-pic" src="<%= asset_path("profile.png") %>">
+          <% end %>
         </a>
         <p>
           <%= post.user.name %>

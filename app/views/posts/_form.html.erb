@@ -3,8 +3,12 @@
     <div class="well">
       <div class="media">
         <div class="pull-left">
-          <a href='#'>
-            <img class="media-object" src="http://placekitten.com/150/150">
+          <a href='<%= user_path(current_user) %>'>
+            <% if current_user.image_url.present? %>
+              <%= image_tag current_user.image_url, class: 'media-object post-profile-pic' %>
+            <% else %>
+              <img class="media-object post-profile-pic" src="<%= asset_path("profile.png") %>">
+            <% end %>
           </a>
           <div class="field">
             <label for="category">
