@@ -1,12 +1,17 @@
-<div class="post center">
+<div class="message center">
   <div class="well">
     <div class="media foot-parent">
       <div class="pull-left">
         <a href="#">
           <img class="media-object" src="/images/mail.png">
         </a>
+
         <p><b>From:</b>
-        <%=message.sender.name + ' <' + message.sender.username + '>' %></p>
+          <%= message.sender.name %>
+          <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %>
+            <%= message.sender.username %>
+          <% end %>
+         </p>
         <br>
         <br>
       </div>
