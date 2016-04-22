@@ -6,7 +6,7 @@
 
     <hr>
 
-    <%current_user.received_messages.each do |message| %>
+    <% @messages.each do |message| %>
       <%= render message %>
     <% end %>
   </div>
