@@ -249,7 +249,7 @@
             <span class="glyphicon glyphicon-home"></span>
             Neighborhoods</h2>
           <% @user.neighborhoods.each do |neighborhood| %>
-        <li class="click-row" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></li>
+        <li class="click-row pointer" onclick="goto('<%= neighborhood_path(neighborhood) %>');"><%= neighborhood.name %></li>
         <% end %>
       </div>
 
