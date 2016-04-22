@@ -1,0 +1,36 @@
+
+<div class="neighborhood center">
+    <div class="well pointer" onclick="goto('<%= neighborhood_path(neighborhood) %>');">
+        <div class="pointer">
+            
+        
+        <h2 class="space"><%= neighborhood.name %></h2>
+        <h4><%= neighborhood.location %><h4>
+        <hr class="under-title">
+        <div class="panel panel-success">
+            <div class="panel-heading white-text">
+                <span class="white-text bold">Description</span>
+            </div>
+            <div class="panel-body">
+                <%= neighborhood.description %>
+            </div>
+        </div>
+                
+        
+        </div>
+        
+        
+        <% unless user_in_neighborhood(current_user, neighborhood) %>
+          <div class="buttons">
+            <%= button_to 'Join', request_to_join_neighborhood_path(neighborhood), class: 'btn btn-md btn-success' %>
+          </div>
+        <% else %>
+            <% if current_user.current_neighborhood != neighborhood %>
+                <div class="buttons">
+                    <%= button_to 'Visit', set_active_neighborhood_path(neighborhood), class: 'btn btn-md btn-success' %>
+                </div>
+            <% end %>
+        <% end %>
+        
+    </div>
+</div>

@@ -31,7 +31,24 @@
     color: white;
 }
 
-.click-row {
+h4{
+  font-size: 1em;
+}
+.space{
+  color: #333;
+  margin-bottom: 5px;
+  padding-bottom: 0px;
+}
+
+.panel-success .panel-heading{
+  background-color: #5cb85c;
+}
+.neighborhood{
+  width: 60%;
+  margin-left: 20%;
+}
+
+.pointer {
   cursor: pointer;
 }
 
