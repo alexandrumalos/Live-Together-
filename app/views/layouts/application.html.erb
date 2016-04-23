@@ -55,8 +55,10 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="<%= neighborhood_path(current_user.current_neighborhood) %>">Neighborhood Info</a></li>
-                  <li role="separator" class="divider"></li>
+                  <% unless current_user.current_neighborhood.nil? %>
+                    <li><a href="<%= neighborhood_path(current_user.current_neighborhood) %>">Neighborhood Info</a></li>
+                    <li role="separator" class="divider"></li>
+                  <% end %>
                   <li><a href="<%= neighborhoods_path %>">View All Neighborhoods</a></li>
                   <% if current_user.neighborhoods.count > 1 %>
                     <li role="separator" class="divider"></li>
