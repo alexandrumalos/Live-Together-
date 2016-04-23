@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_lead(user, neighborhood)
-    if neighborhood.leads.include?(user)
+    if neighborhood.leads.include?(user) || user.user_type == 'admin'
       true
     else
       false
@@ -37,17 +37,11 @@ class ApplicationController < ActionController::Base
       user.score = 0
     end
     user.score = user.score + increase
-    unless neighborhood.leads.include?(user)
-      if neighborhood.threshold.nil?
-        neighborhood.threshold = 100
-      end
-      if user.score >= neighborhood.threshold
-        user.lead_neighborhoods << neighborhood
-        neighborhood.leads << user
-      end
-    else
-      user.lead_neighborhoods.delete(neighborhood)
-      neighborhood.leads.delete(user)
+    if neighborhood.threshold.nil?
+      neighborhood.threshold = 100
+    end
+    if user.score >= neighborhood.threshold
+      neighborhood.leads << user
     end
 
     user.save!
