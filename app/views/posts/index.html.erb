@@ -5,7 +5,7 @@
 <div class="center">
 
   <h1>
-    <%= current_user.current_neighborhood.name %>&nbsp;
+    <a href="<%= neighborhood_path(current_user.current_neighborhood) %>" class="undo-link"><%= current_user.current_neighborhood.name %></a>&nbsp;
     <div class="filter-div">
       <%= form_tag reload_posts_path, method: :get, id: 'filter-form', remote: true do %>
         <%= submit_tag 'Filter', class: 'btn btn-md btn-success pull-right' %>
@@ -29,6 +29,7 @@
       <%= render post %>
     <% end %>
   </div>
+
 </div>
 
 <br>

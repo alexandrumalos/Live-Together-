@@ -1,6 +1,5 @@
 <!-- Template by html.am -->
 
-
 <body>
 
 <main class="column" id="center">
@@ -35,7 +34,7 @@
           <img alt="profile" class="img-circle" id="center" src="<%= asset_path("profile.png") %>">
         <% end %>
         <p></p>
-        <%= button_to 'Send Message', messages_path, class: 'btn btn-primary btn-xs btn-block', method: :get %>
+        <%= link_to 'Send Message', 'javascript: send_to("' + @user.username.to_s + '")', class: 'btn btn-primary btn-xs btn-block white-text' %>
         <p></p>
         <% if @user == current_user %>
         <a class="btn btn-xs btn-primary btn-block" data-toggle="modal" href="#edit2">

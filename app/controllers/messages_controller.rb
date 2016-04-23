@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
   def index
     @messages = current_user.received_messages
     @messages = @messages.paginate(page: params[:page], per_page:5)
+    @messages = @messages.to_a
+    @messages.sort! {|left, right| right.created_at <=> left.created_at}
   end
 
   # GET /messages/1
@@ -40,11 +42,36 @@ class MessagesController < ApplicationController
 
     @message = Message.new(message_params)
     @message.sender = current_user
-    @message.recipients << User.find_by_username(params[:to])
+    to = params[:to]
+    if to.nil?
+      group = Group.find_by(id: params[:group_id])
+      @message.groups << group
+      to = []
+      unless group.nil?
+        group.users.each do |user|
+          to << user.username
+        end
+      end
+    else
+      to = to.split(/\s*,\s*/)
+    end
+    to.each do |user_str|
+      user = User.find_by(username: user_str)
+      if user.nil?
+        user = User.find_by(email: user_str)
+      end
+      unless user.nil?
+        @message.recipients << user
+      end
+    end
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        if group.nil?
+          format.html { redirect_to messages_url, notice: 'Message was successfully created.' }
+        else
+          format.html { redirect_to group, notice: 'Message was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -85,6 +112,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:text, :head)
+      params.permit(:text, :head)
     end
 end

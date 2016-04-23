@@ -41,13 +41,6 @@ module UsersHelper
     end
   end
 
-  def is_lead(user, neighborhood)
-    if neighborhood.leads.include?(user)
-      true
-    else
-      false
-    end
-  end
   # def total_score(user)
   #   count = 0
   #   user.posts.each do |post|

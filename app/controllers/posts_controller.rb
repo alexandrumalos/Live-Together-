@@ -34,6 +34,10 @@ class PostsController < ApplicationController
         end
         parent = parent.parent
       end
+      admin = User.find_by(user_type: 'admin');
+      admin.posts.each do |post|
+        @posts.push(post)
+      end
       @posts.sort! {|left, right| right.created_at <=> left.created_at}
     end
     @post = Post.new

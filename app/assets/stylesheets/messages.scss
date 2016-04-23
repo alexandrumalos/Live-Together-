@@ -11,6 +11,10 @@
     padding-top: 19px;
 }
 
+.is-sender {
+  background-color: #dff;
+}
+
 .pagination {
   .previous_page {}
   .previous_page.disabled { background: white; color: white }
@@ -21,7 +25,6 @@
 }
 
 .message {
-
   width:60%;
   margin-left:20%;
 }

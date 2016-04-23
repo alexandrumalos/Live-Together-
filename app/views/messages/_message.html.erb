@@ -1,7 +1,12 @@
 <div class="message center">
-  <div class="well">
+  <div class="well <%= classIfSender(current_user, message) %>">
     <div class="media foot-parent">
       <div class="pull-left">
+        <% unless message.groups.count == 0 %>
+        <p>
+          &lt;<%= message.groups.first.name %>&gt;
+        </p>
+        <% end %>
         <a href="#">
           <img class="media-object" src="/images/mail.png">
         </a>
@@ -11,9 +16,7 @@
           <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %><br>
             <%= message.sender.username %>
           <% end %>
-         </p>
-        <br>
-        <br>
+        </p>
       </div>
       <div class="media-body">
         <h4 class="media-heading"><%= message.head %></h4>
@@ -24,7 +27,6 @@
       </ul>
       <ul class="list-inline list-unstyled bottom-right">
        <div class='footer'>
-        </li>
         <li>
           <span class="glyphicon glyphicon-share-alt">Reply</span>|
           <span class="glyphicon glyphicon-trash">Delete</span>|
