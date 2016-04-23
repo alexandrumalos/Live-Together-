@@ -2,6 +2,11 @@
   <div class="well <%= classIfSender(current_user, message) %>">
     <div class="media foot-parent">
       <div class="pull-left">
+        <% unless message.groups.count == 0 %>
+        <p>
+          &lt;<%= message.groups.first.name %>&gt;
+        </p>
+        <% end %>
         <a href="#">
           <img class="media-object" src="/images/mail.png">
         </a>
@@ -21,8 +26,6 @@
       <ul class="list-inline list-unstyled bottom-left">
       </ul>
       <ul class="list-inline list-unstyled bottom-right">
-
-        </li>
         <li>
           <span>
             <i class="glyphicon glyphicon-calendar"></i>
