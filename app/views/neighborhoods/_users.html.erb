@@ -7,9 +7,11 @@
       <th>
         Email
       </th>
+      <% if is_lead(current_user, @neighborhood) %>
       <th>
 
       </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -26,9 +28,11 @@
         <td>
           <%= user.email %>
         </td>
+        <% if is_lead(current_user, @neighborhood) %>
         <td>
           <%= button_to 'Remove', remove_user_path(@neighborhood.id, user.id), class: 'btn btn-xs btn-danger left-button' %>
         </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -7,9 +7,11 @@
       <th>
         Description
       </th>
+      <% if is_lead(current_user, @neighborhood) %>
       <th>
 
       </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -21,9 +23,11 @@
         <td>
           <%= category.description %>
         </td>
+        <% if is_lead(current_user, @neighborhood) %>
         <td>
           <%= button_to 'Delete', category, method: :delete, class: 'btn btn-xs btn-danger' %>
         </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

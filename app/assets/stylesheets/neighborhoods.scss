@@ -6,6 +6,18 @@
   display: none;
 }
 
+.undo-link {
+  background-color: inherit !important;
+  color: #000;
+  text-decoration: none;
+}
+
+.undo-link:hover {
+  background-color: inherit !important;
+  color: #000;
+  text-decoration: none;
+}
+
 #neighborhoods {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
