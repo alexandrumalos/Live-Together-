@@ -6,9 +6,9 @@
           <img class="media-object" src="/images/mail.png">
         </a>
 
-        <p><b>From:</b>
+        <p>
           <%= message.sender.name %>
-          <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %>
+          <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %><br>
             <%= message.sender.username %>
           <% end %>
          </p>
@@ -16,22 +16,25 @@
         <br>
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><b>Subject:</b><%= message.head %></h4>
+        <h4 class="media-heading"><%= message.head %></h4>
         <hr>
-        <p> <b>Message:</b><%= message.text %></p>
+        <p> <%= message.text %></p>
       </div>
       <ul class="list-inline list-unstyled bottom-left">
       </ul>
       <ul class="list-inline list-unstyled bottom-right">
-
+       <div class='footer'>
         </li>
         <li>
+          <span class="glyphicon glyphicon-share-alt">Reply</span>|
+          <span class="glyphicon glyphicon-trash">Delete</span>|
           <span>
             <i class="glyphicon glyphicon-calendar"></i>
             <%= I18n.localize message.updated_at, format: :post %>
           </span>
         </li>
       </ul>
+</div>
   </div>
 </div>
 </div>
