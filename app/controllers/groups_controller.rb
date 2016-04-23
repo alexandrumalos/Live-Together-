@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @messages = @group.messages.paginate(page: params[:page], per_page:5)
   end
 
   # GET /groups/new
@@ -38,13 +39,15 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     userstring = params[:users]
-    userstring = userstring.split(',')
-    userstring.each do |user|
-      @group.users << User.find_by_username(user.squish)
-
+    userstring = userstring.split(/\s*,\s*/)
+    @group.users << current_user
+    userstring.each do |username|
+      user = User.find_by_username(username)
+      unless user.nil? || @group.users.include?(user)
+        @group.users << user
+      end
     end
 
-    @group.users << current_user
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -88,6 +91,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      params.permit(:name)
     end
 end

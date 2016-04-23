@@ -11,4 +11,11 @@
 #
 
 module MessagesHelper
+  def classIfSender(user, message)
+    if message.sender == user
+      'is-sender'
+    else
+      ''
+    end
+  end
 end
