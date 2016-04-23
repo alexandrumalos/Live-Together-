@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
   def index
     @messages = current_user.received_messages
     @messages = @messages.paginate(page: params[:page], per_page:5)
+    @messages = @messages.to_a
+    @messages.sort! {|left, right| right.created_at <=> left.created_at}
   end
 
   # GET /messages/1

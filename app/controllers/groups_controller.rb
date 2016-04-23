@@ -22,6 +22,8 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @messages = @group.messages.paginate(page: params[:page], per_page:5)
+    @messages = @messages.to_a
+    @messages.sort! {|left, right| right.created_at <=> left.created_at}
   end
 
   # GET /groups/new
