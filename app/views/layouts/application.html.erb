@@ -88,7 +88,9 @@
               <ul class="dropdown-menu">
                 <li><a href="<%= messages_path %>">All Messages</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="<%= new_group_path %>">New Message Group</a></li>
+                <li>
+                  <%= link_to 'New Message Group', '#new-group-modal', 'data-toggle' => 'modal' %>
+                </li>
                 <% if current_user.groups.count > 1 %>
                   <li role="separator" class="divider"></li>
                   <% current_user.groups.each do |group| %>
@@ -218,5 +220,38 @@
 
       </div>
     </div>
+
+    <div class="modal fade" id="new-group-modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal" type="button">&times;</button>
+            <h4 class="modal-title">New Group</h4>
+          </div>
+          <div class="modal-body">
+          <%= form_tag groups_path, method: :post %>
+            <div class="field">
+              <%= label_tag :name %><br>
+              <%= text_field_tag :name, '', class: 'form-control' %>
+            </div>
+            <div class="field">
+              <%= label_tag :users %><br>
+              <%= text_area_tag :users, '', class: 'form-control', placeholder: 'user1, user2, ...' %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="actions buttons">
+              <%= submit_tag 'Create Group', class: 'btn btn-lg btn-primary' %>
+            </div>
+            <div class="buttons">
+              <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

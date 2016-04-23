@@ -40,7 +40,19 @@ class MessagesController < ApplicationController
 
     @message = Message.new(message_params)
     @message.sender = current_user
-    to = params[:to].split(/\s*,\s*/)
+    to = params[:to]
+    if to.nil?
+      group = Group.find_by(id: params[:group_id])
+      @message.groups << group
+      to = []
+      unless group.nil?
+        group.users.each do |user|
+          to << user.username
+        end
+      end
+    else
+      to = to.split(/\s*,\s*/)
+    end
     to.each do |user_str|
       user = User.find_by(username: user_str)
       if user.nil?
@@ -53,7 +65,11 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        if group.nil?
+          format.html { redirect_to messages_url, notice: 'Message was successfully created.' }
+        else
+          format.html { redirect_to group, notice: 'Message was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
