@@ -24,7 +24,7 @@
         <br>
       </div>
       <div class="media-body">
-        <h4 class="media-heading">
+        <h2 class="media-heading">
           <%= post.title %>
           <% if canDeletePost(current_user, post) %>
             <%= link_to post, method: :delete, class: 'pull-right' do %>

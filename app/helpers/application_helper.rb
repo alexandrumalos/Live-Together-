@@ -1,6 +1,6 @@
 module ApplicationHelper
   def is_lead(user, neighborhood)
-    if neighborhood.leads.include?(user)
+    if neighborhood.leads.include?(user) || user.user_type == 'admin'
       true
     else
       false

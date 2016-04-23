@@ -40,7 +40,16 @@ class MessagesController < ApplicationController
 
     @message = Message.new(message_params)
     @message.sender = current_user
-    @message.recipients << User.find_by_username(params[:to])
+    to = params[:to].split(/\s*,\s*/)
+    to.each do |user_str|
+      user = User.find_by(username: user_str)
+      if user.nil?
+        user = User.find_by(email: user_str)
+      end
+      unless user.nil?
+        @message.recipients << user
+      end
+    end
 
     respond_to do |format|
       if @message.save
@@ -85,6 +94,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:text, :head)
+      params.permit(:text, :head)
     end
 end

@@ -41,6 +41,7 @@ class NeighborhoodsController < ApplicationController
   def show
     if @neighborhood.users.include?(current_user)
       current_user.current_neighborhood = @neighborhood
+      current_user.save!
     end
     @category = Category.new
   end
@@ -157,18 +158,25 @@ class NeighborhoodsController < ApplicationController
 
   # POST /neighborhoods/1/request_to_join
   def request_to_join
-    @request = Request.new
-    @request.user = current_user
-    @request.neighborhood = @neighborhood
-    @request.request_type = 'join'
+    unless user_pending(current_user)
+      @request = Request.new
+      @request.user = current_user
+      @request.neighborhood = @neighborhood
+      @request.request_type = 'join'
 
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to neighborhoods_url, notice: 'Request was successfully created.' }
+      respond_to do |format|
+        if @request.save
+          format.html { redirect_to @neighborhood, notice: 'Request was successfully created.' }
+          format.json { render :show, status: :created, location: @request }
+        else
+          format.html { render :new }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @neighborhood, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -198,5 +206,13 @@ class NeighborhoodsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def neighborhood_params
       params.require(:neighborhood).permit(:name, :location, :description, :threshold, :parent_id, :image_url)
+    end
+
+    def user_pending(user)
+      if Request.find_by(user_id: user.id, request_type: 'join').nil?
+        false
+      else
+        true
+      end
     end
 end

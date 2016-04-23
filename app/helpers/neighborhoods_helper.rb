@@ -15,11 +15,11 @@ module NeighborhoodsHelper
     return neighborhood.users.include?(user)
   end
 
-  def is_lead(user, neighborhood)
-    if neighborhood.leads.include?(user)
-      true
-    else
+  def user_pending(user)
+    if Request.find_by(user_id: user.id, request_type: 'join').nil?
       false
+    else
+      true
     end
   end
 end
