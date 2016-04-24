@@ -83,8 +83,7 @@
     <div class="panel-heading">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-        <li><a href="#tab2" data-toggle="tab">Time</a></li>
-        <li><a href="#tab3" data-toggle="tab">Location</a></li>
+        <li><a href="#tab2" data-toggle="tab">Details</a></li>
       </ul>
     </div>
     <div class="panel-body">
@@ -93,12 +92,18 @@
           <%= @event.description %>
         </div>
         <div class="tab-pane fade scrollable" id="tab2">
-          <%= @event.start_time %>
+          <div>
+            <b>When?</b> <%= I18n.localize @event.start_time, format: :event %>
+          </div>
+          <p></p>
+          <div>
+            <b>Where?</b> <%= @event.location %>
+          </div>
+          <p></p>
+          <div>
+            <b>Hosted by</b> <%= @event.user.name %>
+          </div>
         </div>
-        <div class="tab-pane fade scrollable" id="tab3">
-          <%= @event.location %>
-        </div>
-
       </div>
     </div>
 

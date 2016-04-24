@@ -24,3 +24,4 @@ en:
   time:
     formats:
       post: '%l:%M%P %b %e'
+      event: '%B %d, %Y %l:%M%P'

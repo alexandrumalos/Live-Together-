@@ -88,7 +88,7 @@
             <tr>
               <td><%= event.name %></td>
               <td><%= truncate(strip_tags(event.description), length: 80) %></td>
-              <td><%= event.start_time %></td>
+              <td><%= I18n.localize event.start_time, format: :event %></td>
               <td><%= event.location %></td>
               <td class="dropdown">
                 <div class="btn-group">
