@@ -19,10 +19,18 @@ module CommentsHelper
   end
 
   def can_delete_comment(user, comment)
-    if comment.user_id == user.id || is_lead(user, user.current_neighborhood)
+    if comment.user_id == user.id
       true
     else
-      false
+      unless user.current_neighborhood.nil?
+        if is_lead(user, user.current_neighborhood)
+          true
+        else
+          false
+        end
+      else
+        false
+      end
     end
   end
 end
