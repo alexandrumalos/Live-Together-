@@ -1,19 +1,29 @@
+<div class="group-form">
 <h2>Sign up</h2>
+
+<style>
+.required {
+  width: 100% !important;
+}
+</style>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name, required: true, autofocus: true %>
-    <%= f.input :username, required: true, autofocus: true %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <%= f.input :name, required: true, autofocus: true, input_html: { class: "form-control force-width" } %>
+    <%= f.input :username, required: true, input_html: { class: "form-control force-width" } %>
+    <%= f.input :email, required: true, input_html: { class: "form-control force-width" } %>
+    <%= f.input :password, required: true, input_html: { class: "form-control force-width" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, required: true, input_html: { class: "form-control force-width" } %>
+    <%= f.input :user_type, as: :radio_buttons, collection: [
+      ['User - An ordindary user who can belong to neighborhoods, create neighborhoods, and participate in neighborhoods as a resident of that neighborhood.', 'user'],
+      ['Newser - a special type of user intended for businesses, agencies, and home owners associations. Newsers can deliver information to several neighborhoods that spreads to all subcommunities.', 'newser']
+      ] %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn btn-success btn-md" %>
   </div>
 <% end %>
-
-<%= render "sessions/shared/links" %>
+</div>

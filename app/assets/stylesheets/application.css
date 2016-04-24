@@ -16,6 +16,10 @@
  *= require simple_calendar
  */
 
+.force-width {
+  width: 100% !important;
+}
+
 .username-btn {
   display: inline-block;
 }

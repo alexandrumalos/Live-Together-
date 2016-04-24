@@ -21,6 +21,12 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    unless @group.users.include?(current_user)
+      respond_to do |format|
+        format.html { redirect_to root_url }
+      end
+    end
+
     @messages = @group.messages.paginate(page: params[:page], per_page:5)
     @messages = @messages.to_a
     @messages.sort! {|left, right| right.created_at <=> left.created_at}
