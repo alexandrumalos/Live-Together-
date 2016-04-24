@@ -1,4 +1,18 @@
-<h1><%= @group.name  %></h1>
+<h1>
+  <%= @group.name  %>
+  <span class="dropdown buttons">
+    <button href="#" data-toggle="dropdown" class='btn btn-md btn-success dropdown-toggle'>
+      <span class="glyphicon glyphicon-pencil"></span>
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu bigger-text">
+      <li><a href="#show-users" data-toggle="modal">Group Members</a></li>
+      <li><a href="#add-users" data-toggle="modal">Invite</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Leave</a></li>
+    </ul>
+  </span>
+</h1>
 
 <div class="center">
 
@@ -10,14 +24,14 @@
 
   <%= will_paginate @messages %>
 
-  <%= link_to '#edit0',class: 'btn btn-success new-message-btn white-text', data: {toggle: 'modal'} do %>
+  <%= link_to '#new-message',class: 'btn btn-success new-message-btn white-text', data: {toggle: 'modal'} do %>
   <span class="glyphicon glyphicon-plus"></span>
 
   <%end%>
 </div>
 
 
-<div class="modal fade" id="edit0" role="dialog">
+<div class="modal fade" id="new-message" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -49,5 +63,48 @@
       <% end %>
     </div>
 
+  </div>
+</div>
+
+<div class="modal fade" id="show-users" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+        <h4 class="modal-title">Members of <%= @group.name %></h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'users' %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="add-users" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+        <h4 class="modal-title">New Message</h4>
+      </div>
+      <%= form_tag add_users_group_path(@group), method: :post do  %>
+      <div class="modal-body">
+
+          <div class="field">
+            <%= label_tag :users %><br>
+            <%= text_area_tag :users, '', placeholder: 'user1, user2, ...', class: 'form-control' %>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag "Add Users", class: "btn btn-primary" %>
+        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,29 @@
+<table class="table center">
+  <thead>
+    <tr>
+      <th>
+        User
+      </th>
+      <th>
+        Email
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @group.users.order(:name).each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+          <div class="username-btn">
+            <%= button_to user, method: :get, class: "btn label " + tag_color(user) do %>
+              <%= user.username %>
+            <% end %>
+          </div>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

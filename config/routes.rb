@@ -58,7 +58,11 @@ Rails.application.routes.draw do
   end
   resources :events
   resources :messages
-  resources :groups
+  resources :groups do
+    member do
+      post 'add_users', to: 'groups#add_users'
+    end
+  end
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
