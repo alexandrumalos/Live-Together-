@@ -2,10 +2,13 @@
 <style>
 
   body {
-    background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+    <% if !@event.neighborhood.nil? && @event.neighborhood.image_url.present? %>
+      background-image: url('<%= @event.neighborhood.image_url %>');
+    <% else %>
+      background-image: url("http://static.trulia-cdn.com/images/guide/guide/horizontal/home_equity_loans_the_types_pros_and_cons.jpg");
+    <% end %>
     background-attachment: fixed;
     background-size: cover;
-    /*background: url('http://cdn01.wallconvert.com/_media/wallpapers_2560x1600/1/2/gradient-16415.jpg');*/
   }
 
   .footer {
