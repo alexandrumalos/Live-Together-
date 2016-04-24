@@ -9,7 +9,7 @@
 #
 
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_users]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_users, :leave]
   before_action :authenticate_user!
 
   # GET /groups
@@ -53,6 +53,22 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.json { render :show, status: :created, location: @group }
+      else
+        format.html { render :new }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def leave
+    if @group.users.include?(current_user)
+      @group.users.delete(current_user)
+    end
+
+    respond_to do |format|
+      if @group.save
+        format.html { redirect_to current_user, notice: 'Successfully left group' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }

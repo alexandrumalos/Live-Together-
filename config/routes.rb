@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   resources :groups do
     member do
       post 'add_users', to: 'groups#add_users'
+      get 'leave', to: 'groups#leave'
     end
   end
   resources :users
