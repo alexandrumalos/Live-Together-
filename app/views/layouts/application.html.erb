@@ -265,10 +265,16 @@
           <%= form_tag messages_path, method: :post do  %>
           <div class="modal-body">
 
-              <div class="field">
-                <%= label_tag :to %><br>
-                <%= text_field_tag :to, '', class: 'form-control', id: 'to_field' %>
-              </div>
+              <% if @group.nil? %>
+                <div class="field">
+                  <%= label_tag :to %><br>
+                  <%= text_field_tag :to, '', class: 'form-control', id: 'to_field' %>
+                </div>
+              <% else %>
+                <div class="field hidden">
+                  <%= text_field_tag :group_id, @group.id %>
+                </div>
+              <% end %>
 
               <div  class="field">
                 <%= label_tag :subject %><br>
