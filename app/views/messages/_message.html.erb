@@ -14,29 +14,39 @@
         <p>
           <%= message.sender.name %>
           <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %><br>
-            <%= message.sender.username %>
+          <%= message.sender.username %>
           <% end %>
         </p>
       </div>
       <div class="media-body">
         <h4 class="media-heading"><%= message.head %></h4>
         <hr>
-        <p> <%= message.text %></p>
+        <p>
+          <%= message.text %></p>
       </div>
-      <ul class="list-inline list-unstyled bottom-left">
-      </ul>
+      <ul class="list-inline list-unstyled bottom-left"></ul>
       <ul class="list-inline list-unstyled bottom-right">
-       <div class='footer'>
-        <li>
-          <a href="javascript: send_to(' + user.username + ')"><span class="glyphicon glyphicon-share-alt">Reply</span>|</a>
-          <span class="glyphicon glyphicon-trash">Delete</span>|
+        <div class='footer'>
+          <li>
+            <a href="javascript: send_to(' + user.username + ')">
+              <span class="glyphicon glyphicon-share-alt">Reply</span>|</a>
+          <li>
+            <%= link_to message, method: :delete, data: { confirm: 'Are you sure?'} do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            Delete
+            <% end %>
+          </li>
+          <li>
+            |
+          </li>
+
           <span>
             <i class="glyphicon glyphicon-calendar"></i>
             <%= I18n.localize message.updated_at, format: :post %>
           </span>
         </li>
       </ul>
-</div>
+    </div>
   </div>
 </div>
 </div>
