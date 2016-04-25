@@ -1,18 +1,18 @@
 <h1>
-  <%= current_user.name  %>'s Messages</h1>
+  <%= current_user.name  %>'s Messages
+</h1>
 
 <div class="center">
 
   <hr>
 
   <% @messages.each do |message| %>
-  <%= render message %>
+    <%= render message %>
   <% end %>
 
   <%= will_paginate @messages %>
 
   <%= link_to '#new-message-modal', data: { toggle: 'modal' }, class: 'btn btn-success new-message-btn white-text' do %>
     <span class="glyphicon glyphicon-plus"></span>
-
-  <%end%>
+  <% end %>
 </div>
