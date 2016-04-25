@@ -21,7 +21,11 @@
   <p>
     Where your neighbor becomes your friend
   </p>
-  <%= link_to "Get Started", '#sign-up-modal', data: { toggle: 'modal' }, class: "btn btn-lg btn-primary white-text" %>
+  <% if user_signed_in? %>
+    <%= link_to "Get Started", neighborhoods_path, class: "btn btn-lg btn-primary white-text" %>
+  <% else %>
+    <%= link_to "Get Started", '#sign-up-modal', data: { toggle: 'modal' }, class: "btn btn-lg btn-primary white-text" %>
+  <% end %>
 </div>
 <% content_for :title do %>Rails Bootstrap<% end %>
 <% content_for :description do %>Rails Bootstrap Example<% end %>
