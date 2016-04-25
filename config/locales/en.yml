@@ -24,4 +24,5 @@ en:
   time:
     formats:
       post: '%l:%M%P %b %e'
-      event: '%B %d, %Y %l:%M%P'
+      event: '%B %e, %Y %l:%M%P'
+      admin: '%b %e, %Y %I:%M:%S%P'

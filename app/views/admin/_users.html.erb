@@ -1,0 +1,73 @@
+<table class="table spaced-table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        User
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Phone Number
+      </th>
+      <th>
+        Last Sign-in
+      </th>
+      <th>
+        Sign-in Count
+      </th>
+      <th>
+        User Type
+      </th>
+      <th>
+        Neighborhood Count
+      </th>
+      <th>
+        Post Count
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr onclick="window.document.location = '<%= user_path(user) %>';" class="pointer">
+        <td>
+          <%= user.id %>
+        </td>
+        <td>
+          <%= user.name %>
+          <div class="username-btn">
+            <%= button_to user, method: :get, class: "btn label " + tag_color(user) do %>
+              <%= user.username %>
+            <% end %>
+          </div>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.phone_number %>
+        </td>
+        <td>
+          <% unless user.last_sign_in_at.nil? %>
+          <%= I18n.localize user.last_sign_in_at, format: :admin %>
+          <% end %>
+        </td>
+        <td>
+          <%= user.sign_in_count %>
+        </td>
+        <td>
+          <%= user.user_type %>
+        </td>
+        <td>
+          <%= user.neighborhoods.count %>
+        </td>
+        <td>
+          <%= user.posts.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

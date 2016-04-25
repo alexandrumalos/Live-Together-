@@ -1,0 +1,36 @@
+<table class="table spaced-table">
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Location
+      </th>
+      <th>
+        User count
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @neighborhoods.each do |neighborhood| %>
+      <tr onclick="window.document.location = '<%= neighborhood_path(neighborhood) %>';" class="pointer">
+        <td>
+          <%= neighborhood.id %>
+        </td>
+        <td>
+          <%= neighborhood.name %>
+        </td>
+        <td>
+          <%= neighborhood.location %>
+        </td>
+        <td>
+          <%= neighborhood.users.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

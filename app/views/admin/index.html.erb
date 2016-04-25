@@ -1,5 +1,4 @@
-<h1>Admin/Lead Page</h1>
-<h1>Listing Users</h1>
+<h1>Site Statistics</h1>
 
 <style>
 #users {
@@ -26,31 +25,28 @@
 }
 </style>
 
-<table id="users">
+<fieldset class="outline">
+  <legend class="legendary">
+    <%= pluralize @user_count, 'User' %>
+  </legend>
+  <div class="center admin-scrollable">
+    <%= render 'users' %>
+  </div>
+  <div class="center">
+    <%= will_paginate @users, param_name: 'user_page' %>
+  </div>
+</fieldset>
 
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Password</th>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Isnewser</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<br>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.password %></td>
-        <td><%= user.email %></td>
-        <td><%= user.name %></td>
-        <td></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<fieldset class="outline">
+  <legend class="legendary">
+    <%= pluralize @neighborhood_count, 'Neighborhood' %>
+  </legend>
+  <div class="center admin-scrollable">
+    <%= render 'neighborhoods' %>
+  </div>
+  <div class="center">
+    <%= will_paginate @neighborhoods, param_name: 'neighborhood_page' %>
+  </div>
+</fieldset>
