@@ -47,13 +47,13 @@
     </aside>
 
     <aside>
+      <hr>
 
-      <% if @user == current_user %>
-        <br>
+      <% if @user == current_user && @user.user_type != 'admin' %>
+        <p></p>
         <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
-        <% end %>
+      <% end %>
 
-      </p>
     </aside>
     <aside>
       <div class="bs-example" id="center">
