@@ -13,8 +13,8 @@
 
         <p>
           <%= message.sender.name %>
-          <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %><br>
-          <%= message.sender.username %>
+          <%= button_to message.sender, method: :get, class: "btn label " + tag_color(message.sender) do %>
+            <%= message.sender.username %>
           <% end %>
         </p>
       </div>
@@ -47,5 +47,4 @@
       </ul>
     </div>
   </div>
-</div>
 </div>
