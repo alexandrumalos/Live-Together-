@@ -23,6 +23,8 @@ class PostsController < ApplicationController
       redirect_to neighborhoods_url
       @posts = nil
     else
+      @posts = current_user.current_neighborhood.posts
+      @posts = @posts.order(created_at: :desc)
       @posts = current_user.current_neighborhood.posts.to_a
       parent = current_user.current_neighborhood.parent
       until parent.nil?
@@ -36,7 +38,9 @@ class PostsController < ApplicationController
       end
       admin = User.find_by(user_type: 'admin');
       admin.posts.each do |post|
-        @posts.push(post)
+        unless @posts.include?(post)
+          @posts.push(post)
+        end
       end
       @posts.sort! {|left, right| right.created_at <=> left.created_at}
     end

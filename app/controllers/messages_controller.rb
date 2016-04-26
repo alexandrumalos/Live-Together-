@@ -17,9 +17,9 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = current_user.received_messages
+    @messages = @messages.order(created_at: :desc)
     @messages = @messages.paginate(page: params[:page], per_page:5)
     @messages = @messages.to_a
-    @messages.sort! {|left, right| right.created_at <=> left.created_at}
   end
 
   # GET /messages/1
