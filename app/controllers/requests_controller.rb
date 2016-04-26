@@ -12,7 +12,7 @@
 #
 
 class RequestsController < ApplicationController
-  
+
   before_action :set_request, only: [:show, :edit, :update, :destroy, :approve]
   before_action :authenticate_user!
 
@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
 
   def approve
     neighborhood = @request.neighborhood
-    if neighborhood.leads.include?(current_user)
+    if is_lead(current_user, neighborhood)
       request_type = @request.request_type
       if request_type == 'join'
         neighborhood.users << @request.user
