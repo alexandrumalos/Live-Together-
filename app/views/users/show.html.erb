@@ -49,9 +49,13 @@
     <aside>
       <hr>
 
-      <% if @user == current_user && @user.user_type != 'admin' %>
-        <p></p>
-        <%= button_to "Cancel account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
+      <p></p>
+      <% if @user.user_type != 'admin' %>
+        <% if @user == current_user %>
+          <%= button_to "Cancel account", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs btn-block" %>
+        <% elsif current_user.user_type == 'admin' %>
+          <%= button_to "Delete user", user_path(@user), method: :delete, class: "btn btn-danger btn-xs btn-block" %>
+        <% end %>
       <% end %>
 
     </aside>
