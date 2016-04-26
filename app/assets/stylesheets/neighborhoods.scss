@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.explanation {
+  font-size: 0.8em;
+  width: 60%;
+  margin-left: 20%;
+}
+
 .data-hidden {
   display: none;
 }
@@ -66,6 +72,7 @@ h4{
 
 .lead-row {
   font-weight: bold;
+  background-color: #eee;
 }
 
 .left-button {
