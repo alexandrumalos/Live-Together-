@@ -21,3 +21,8 @@ function send_to(username){
   $("#new-message-modal").modal();
   document.getElementById('to_field').value = username;
 }
+
+function send_blank(){
+  $("#new-message-modal").modal();
+  document.getElementById('to_field').value = '';
+}

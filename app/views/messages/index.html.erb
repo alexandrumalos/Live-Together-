@@ -12,7 +12,7 @@
 
   <%= will_paginate @messages %>
 
-  <%= link_to '#new-message-modal', data: { toggle: 'modal' }, class: 'btn btn-success new-message-btn white-text' do %>
+  <%= link_to 'javascript: send_blank();', class: 'btn btn-success new-message-btn white-text' do %>
     <span class="glyphicon glyphicon-plus"></span>
   <% end %>
 </div>
