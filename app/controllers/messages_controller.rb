@@ -42,6 +42,7 @@ class MessagesController < ApplicationController
 
     @message = Message.new(message_params)
     @message.sender = current_user
+    @message.recipients << current_user
     to = params[:to]
     if to.nil?
       group = Group.find_by(id: params[:group_id])
@@ -61,7 +62,9 @@ class MessagesController < ApplicationController
         user = User.find_by(email: user_str)
       end
       unless user.nil?
-        @message.recipients << user
+        unless @message.recipients.include?(user)
+          @message.recipients << user
+        end
       end
     end
 
