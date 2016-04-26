@@ -1,7 +1,7 @@
 <div class="well comment foot-parent">
   <%= form_tag create_comment_path(post.id), method: :post, remote: true  do %>
     <div class="field comment-textarea">
-      <%= text_area_tag :'comment[comment]', '', class: 'form-control', placeholder: 'How do you feel about this...' %>
+      <%= text_area_tag :'comment[comment]', '', class: 'form-control', placeholder: 'How do you feel about this...',  id: "comments-form-" + post.id.to_s %>
     </div>
     <div class="actions text-right comment-submit">
       <%= submit_tag 'Comment', class: 'btn btn-md btn-primary', remote: true %>
