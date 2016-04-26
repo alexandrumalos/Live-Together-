@@ -91,7 +91,7 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.json
   def destroy
     neighborhood = @request.neighborhood
-    if neighborhood.leads.include?(current_user)
+    if is_lead(current_user, neighborhood)
       request_type = @request.request_type
       if request_type == 'event'
         @request.event.destroy

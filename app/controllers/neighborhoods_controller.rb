@@ -23,7 +23,7 @@ class NeighborhoodsController < ApplicationController
   def remove_user
     user = User.find_by(id: params[:user_id])
     @neighborhood.users.delete(user)
-    if @neighborhood.leads.include?(user)
+    if is_lead(user, @neighborhood) && current_user.user_type != 'admin'
       @neighborhood.leads.delete(user)
       if @neighborhood.leads.count < 1
         @neighborhood.destroy
@@ -80,7 +80,7 @@ class NeighborhoodsController < ApplicationController
 
   def leave
     @neighborhood.users.delete(current_user)
-    if @neighborhood.leads.include?(current_user)
+    if is_lead(current_user, @neighborhood) && current_user.user_type != 'admin'
       @neighborhood.leads.delete(current_user)
       if @neighborhood.leads.count < 1
         @neighborhood.destroy

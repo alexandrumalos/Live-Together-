@@ -95,7 +95,7 @@ class PostsController < ApplicationController
   end
 
   def update_category
-    if @post.neighborhood.leads.include?(current_user)
+    if is_lead(current_user, @post.neighborhood)
       @post.category_id = post_params[:category_id]
 
       respond_to do |format|

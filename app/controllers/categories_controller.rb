@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     neighborhood = Neighborhood.find_by(id: params[:neighborhood_id])
-    if neighborhood.leads.include?(current_user)
+    if is_lead(current_user, neighborhood)
       @category = Category.new(category_params)
       @category.neighborhood = neighborhood
 
