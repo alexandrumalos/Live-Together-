@@ -70,11 +70,14 @@ class GroupsController < ApplicationController
   def leave
     if @group.users.include?(current_user)
       @group.users.delete(current_user)
+      if @group.users.count == 0
+        @group.destroy
+      end
     end
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to current_user, notice: 'Successfully left group' }
+        format.html { redirect_to messages_path, notice: 'Successfully left group' }
         format.json { render :show, status: :created, location: @group }
       else
         format.html { render :new }
