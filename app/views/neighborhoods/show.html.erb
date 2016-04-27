@@ -38,6 +38,22 @@ body{
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
           <%= @neighborhood.description %>
+          <hr>
+          <% unless @neighborhood.parent.nil? %>
+            <p>
+              <b>Parent Neighborhood:</b> <span class="click-row pointer" onclick="goto('<%= neighborhood_path(@neighborhood.parent) %>')"><%= @neighborhood.parent.name %></span>
+            </p>
+          <% end %>
+          <% unless @neighborhood.children.count == 0 %>
+            <p><b>Sub-Neighborhoods:</b></p>
+            <ul>
+              <% @neighborhood.children.each do |child| %>
+                <li class="click-row pointer" onclick="goto('<%= neighborhood_path(child) %>');">
+                  <%= child.name %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
         <div class="tab-pane fade scrollable" id="tab2">
           <%= render 'users' %>
