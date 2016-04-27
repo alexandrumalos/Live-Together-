@@ -224,15 +224,13 @@
 
     <div class="modal fade" id="new-group-modal" role="dialog">
       <div class="modal-dialog">
-
-        <!-- Modal content -->
         <div class="modal-content">
           <div class="modal-header">
-            <button class="close" data-dismiss="modal" type="button">&times;</button>
+            <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
             <h4 class="modal-title">New Group</h4>
           </div>
-          <div class="modal-body">
           <%= form_tag groups_path, method: :post do %>
+          <div class="modal-body">
             <div class="field">
               <%= label_tag :name %><br>
               <%= text_field_tag :name, '', class: 'form-control' %>
@@ -244,7 +242,7 @@
           </div>
           <div class="modal-footer">
             <div class="actions buttons">
-              <%= submit_tag 'Create Group', class: 'btn btn-lg btn-primary' %>
+              <%= submit_tag 'Create Group', class: 'btn btn-primary' %>
             </div>
             <div class="buttons">
               <button class="btn btn-lg btn-default" data-dismiss="modal" type="button">Close</button>
