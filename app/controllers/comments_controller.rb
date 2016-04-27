@@ -69,7 +69,7 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
   def upvote
     @comment.score = @comment.score + 1
     update_lead_status(@comment.user, @comment.post.neighborhood, 1)

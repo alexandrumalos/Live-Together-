@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
         end
         format.json { render :show, status: :created, location: @message }
       else
-        format.html { render :new }
+        format.html { redirect_to messages_url }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end

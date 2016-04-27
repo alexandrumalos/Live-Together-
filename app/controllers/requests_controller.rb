@@ -67,7 +67,7 @@ class RequestsController < ApplicationController
         format.html { redirect_to requests_url, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
-        format.html { render :new }
+        format.html { redirect_to requests_url }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end

@@ -108,8 +108,13 @@ class NeighborhoodsController < ApplicationController
     misc.name = 'Miscellaneous'
     misc.description = 'Default Category'
     @neighborhood.categories << misc
-    set_active
-
+    if @neighborhood.save
+      set_active
+    else
+      respond_to do |format|
+        format.html { redirect_to neighborhoods_url }
+      end
+    end
     # respond_to do |format|
     #   if @neighborhood.save
     #     format.html { redirect_to @neighborhood, notice: 'Neighborhood was successfully created.' }
