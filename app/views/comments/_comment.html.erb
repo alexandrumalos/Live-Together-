@@ -26,7 +26,12 @@
     </li>
     <li>|</li>
     <li>
-      <p><%= comment.user.name + ' <' + comment.user.username + '>' %></p>
+      <%= comment.user.name %>
+      <div class="buttons">
+        <%= button_to comment.user, method: :get, class: "btn label " + tag_color(comment.user) do %>
+          <%= comment.user.username %>
+        <% end %>
+      </div>
     </li>
     <li>|</li>
     <li>
