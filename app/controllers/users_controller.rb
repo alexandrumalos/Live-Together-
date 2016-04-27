@@ -74,6 +74,10 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        unless @user.phone_number.nil? || @user.phone_number.match(/^[0-9]{3}[-.]?[0-9]{3}[-.]?[0-9]{4}$/)
+          @user.phone_number = nil
+          @user.save!
+        end
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
