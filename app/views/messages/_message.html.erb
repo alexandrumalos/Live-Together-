@@ -26,15 +26,17 @@
         </p>
       </div>
       <ul class="list-inline list-unstyled bottom-right">
+        <% if message.groups.count == 0 %>
+          <li>
+            <a href="javascript: send_to('<%= message.sender.username %>')">
+              <span class="glyphicon glyphicon-share-alt"></span>
+              Reply
+            </a>
+          </li>
+          <li>|</li>
+        <% end %>
         <li>
-          <a href="javascript: send_to('<%= message.sender.username %>')">
-            <span class="glyphicon glyphicon-share-alt"></span>
-            Reply
-          </a>
-        </li>
-        <li>|</li>
-        <li>
-          <%= link_to message, method: :delete, data: { confirm: 'Are you sure?'} do %>
+          <%= link_to message, method: :delete, data: { confirm: 'Remove this message from your inbox?' } do %>
           <span class="glyphicon glyphicon-trash"></span>
           Delete
           <% end %>
