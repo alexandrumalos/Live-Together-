@@ -1,3 +1,4 @@
+<% unless message.nil? || message.sender.nil? %>
 <div class="message center">
   <div class="well <%= classIfSender(current_user, message) %>">
     <div class="media foot-parent">
@@ -50,3 +51,4 @@
     </div>
   </div>
 </div>
+<% end %>
