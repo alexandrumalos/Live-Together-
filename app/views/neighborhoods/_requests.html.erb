@@ -26,8 +26,8 @@
         </td>
         <td>
           <%= request.user.name %>
-          <div class="username-btn">
-            <%= button_to request.user, class: "btn label label-success", method: :get do %>
+          <div class="buttons">
+            <%= button_to request.user, method: :get, class: "btn label " + tag_color(request.user) do %>
               <%= request.user.username %>
             <% end %>
           </div>
