@@ -83,6 +83,10 @@ body{
         <div class="buttons">
           <%= button_to 'Join', request_to_join_neighborhood_path(@neighborhood), class: 'btn btn-lg btn-success' %>
         </div>
+      <% else %>
+        <div class="buttons">
+          <%= button_to 'Join Request Pending', '#', disabled: true, class: 'btn btn-lg btn-default' %>
+        </div>
       <% end %>
     <% else %>
       <div class="buttons">
