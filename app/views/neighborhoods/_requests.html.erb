@@ -23,6 +23,17 @@
       <tr>
         <td>
           <%= request.request_type %>
+          <div class="buttons">
+            <% if request.request_type == 'event' %>
+              <%= button_to request.event, method: :get, class: "btn label label-primary" do %>
+                view
+              <% end %>
+            <% else %>
+              <%= button_to request.user, method: :get, class: "btn label " + tag_color(request.user) do %>
+                view
+              <% end %>
+            <% end %>
+          </div>
         </td>
         <td>
           <%= request.user.name %>
