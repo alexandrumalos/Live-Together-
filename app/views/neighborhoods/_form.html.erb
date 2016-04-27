@@ -63,6 +63,9 @@
             <div class="field text-left">
               <%= f.label :threshold %>
               <%= f.text_field :threshold, placeholder: 'threshold', value: @neighborhood.threshold, class: 'form-control n-threshold-form' %>
+              <p class="threshold">
+                *Threshold is used for the automatic promotion of users to leads of a neighborhood. When a user's score meets or exceeds this value, that user becomes a lead in this neighborhood.
+              </p>
             </div>
           </div>
           <div class="tab-pane fade scrollable" id="tab3">
