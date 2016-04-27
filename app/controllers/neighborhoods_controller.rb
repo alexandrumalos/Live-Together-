@@ -82,9 +82,11 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.users.delete(current_user)
     if is_lead(current_user, @neighborhood) && current_user.user_type != 'admin'
       @neighborhood.leads.delete(current_user)
-      if @neighborhood.leads.count < 1
+      if @neighborhood.leads.count == 0
         @neighborhood.destroy
       end
+    elsif @neighborhood.users.count == 0
+      @neighborhood.destroy
     end
 
     respond_to do |format|
