@@ -18,6 +18,8 @@ module ApplicationHelper
   def tag_color(user)
     if isNewser(user)
       'label-primary'
+    elsif user.user_type == 'admin'
+      'label-danger'
     else
       'label-success'
     end
