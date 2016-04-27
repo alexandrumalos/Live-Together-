@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.pending {
+  background-color: #eee;
+  td {
+    color: #888 !important;
+  }
+}
+
 .events-page {
   width: 80%;
 }

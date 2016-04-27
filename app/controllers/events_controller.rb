@@ -40,6 +40,8 @@ class EventsController < ApplicationController
       @events.sort! {|left, right| right.start_time <=> left.start_time}
     end
 
+    @pendings = Event.where(neighborhood: current_user.current_neighborhood, status: 'pending', user_id: current_user.id)
+
     @event = Event.new
     @current_month = Time.now.strftime("%m").to_i
     @current_year = Time.now.strftime("%m").to_i
